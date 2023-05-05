@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useState } from 'react';
-
+import Header from 'components/header';
 export default function Home(props) {
   const [count, setCount] = useState(0);
   const [current, setCurrent] = useState(props.data[count]);
