@@ -1,5 +1,5 @@
-import { Layout } from '@/src/pages/common';
+import { Therapists } from '@/src/pages/therapists';
 
 export default function TherapistsPage() {
-  return <Layout></Layout>;
+  return <Therapists />;
 }
