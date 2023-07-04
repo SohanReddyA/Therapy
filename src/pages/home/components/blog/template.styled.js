@@ -15,7 +15,7 @@ const TextHeading = styled.div`
   text-align: center;
   color: #5627b0;
   font-size: 64px;
-  font-family: Poppins;
+
   font-weight: 700;
   text-transform: capitalize;
 `;
@@ -23,7 +23,7 @@ const TextBody = styled.div`
   color: rgba(26, 26, 26, 0.7);
   text-align: center;
   font-size: 28px;
-  font-family: Poppins;
+
   font-weight: 500;
   line-height: 160%;
   text-transform: capitalize;
@@ -38,7 +38,7 @@ const BlogHeadline = styled.div`
 const BlogHeadlineTitle = styled.div`
   color: #1a1a1a;
   font-size: 36px;
-  font-family: Poppins;
+
   font-weight: 600;
   line-height: 140%;
   text-transform: capitalize;
@@ -81,14 +81,14 @@ const BlogTextFlex = styled.div`
 const BlogText1 = styled.div`
   color: rgba(26, 26, 26, 0.7);
   font-size: 18px;
-  font-family: Poppins;
+
   line-height: 180%;
 `;
 
 const BlogText2 = styled.div`
   color: #1a1a1a;
   font-size: 28px;
-  font-family: Poppins;
+
   font-weight: 600;
   line-height: 160%;
   text-transform: capitalize;
@@ -101,7 +101,7 @@ const BlogButton = styled.button`
   width: fit-content;
   color: #fff;
   font-size: 20px;
-  font-family: Poppins;
+
   font-weight: 700;
   line-height: 140%;
 `;

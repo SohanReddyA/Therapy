@@ -31,7 +31,7 @@ const Label = styled.div`
   ${(props) => getLabel(props.quiztype)}
   border-radius: 12px;
   font-size: 18px;
-  font-family: Poppins;
+
   font-weight: 600;
   line-height: 140%;
 `;
@@ -45,7 +45,7 @@ const QuestionContainer = styled.div`
 const QuestionNumber = styled.div`
   color: #1a1a1a;
   font-size: 32px;
-  font-family: Poppins;
+
   font-weight: 700;
   line-height: 140%;
 `;
@@ -53,7 +53,7 @@ const QuestionNumber = styled.div`
 const QuestionText = styled.div`
   color: #1a1a1a;
   font-size: 24px;
-  font-family: Poppins;
+
   font-weight: 500;
   line-height: 140%;
 `;
@@ -99,7 +99,7 @@ const QuizOptionText = styled.div`
     props.checked ? getOptionTextColor(props.quiztype) : '#1a1a1a'};
   ${(props) => (props.checked ? 'font-weight: 600' : '')};
   font-size: 20px;
-  font-family: Poppins;
+
   line-height: 140%;
   user-select: none;
 `;
@@ -119,7 +119,7 @@ const getBackButton = (type) => {
     padding: 12px 24px;
     color: #284E4F;
     font-size: 24px;
-    font-family: Poppins;
+    
     font-weight: 700;
     line-height: 140%;`;
   } else if (type == 'Anxiety') {
@@ -130,7 +130,7 @@ const getBackButton = (type) => {
     color: #FE981C;
     padding: 12px 24px;
     font-size: 24px;
-    font-family: Poppins;
+    
     font-weight: 700;
     line-height: 140%;`;
   }
@@ -141,7 +141,7 @@ const getBackButton = (type) => {
     background: #FFF;
     color: #0F60A0;
     font-size: 24px;
-    font-family: Poppins;
+    
     font-weight: 700;
     line-height: 140%;
     `;
@@ -159,7 +159,7 @@ const getNextButton = (type) => {
     padding: 12px 24px;
     color: #FFF;
     font-size: 24px;
-    font-family: Poppins;
+    
     font-weight: 700;
     line-height: 140%;`;
   } else if (type == 'Anxiety') {
@@ -169,7 +169,7 @@ const getNextButton = (type) => {
     background: #FE981C;
     color: #FFF;
     font-size: 24px;
-    font-family: Poppins;
+    
     font-weight: 700;
     line-height: 140%;`;
   }
@@ -179,7 +179,7 @@ const getNextButton = (type) => {
     background: #0F60A0;
     color: #FFF;
     font-size: 24px;
-    font-family: Poppins;
+    
     font-weight: 700;
     line-height: 140%;
     `;

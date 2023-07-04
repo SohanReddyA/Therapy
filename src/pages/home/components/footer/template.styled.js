@@ -20,7 +20,6 @@ const LogoContainer = styled.div`
 `;
 
 const Logo = styled.div`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
@@ -29,7 +28,6 @@ const Logo = styled.div`
 `;
 
 const Text = styled.div`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -57,7 +55,7 @@ const LinksContainer = styled.div`
 
 const Links = styled.div`
   font-style: normal;
-  font-family: 'Poppins';
+
   font-weight: 400;
   font-size: 20px;
   line-height: 180%;
@@ -66,7 +64,6 @@ const Links = styled.div`
 `;
 
 const Heading = styled.div`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -85,7 +82,7 @@ const Styled = {
   GroupContainer,
   LinksContainer,
   Links,
-  Heading
+  Heading,
 };
 
 export default Styled;

@@ -29,7 +29,6 @@ const MainFlex = styled.div`
 `;
 
 const MainTitle = styled.p`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
@@ -37,7 +36,6 @@ const MainTitle = styled.p`
   color: #1a1a1a;
 `;
 const MainDesc = styled.p`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -63,7 +61,6 @@ const ProcessFlex = styled.div`
 `;
 
 const ProcessTitle = styled.p`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
@@ -73,7 +70,6 @@ const ProcessTitle = styled.p`
 `;
 
 const ProcessDesc = styled.p`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -92,7 +88,7 @@ const Styled = {
   ProcessDesc,
   ProcessTitle,
   ProcessFlex,
-  ProcessImage
+  ProcessImage,
 };
 
 export default Styled;

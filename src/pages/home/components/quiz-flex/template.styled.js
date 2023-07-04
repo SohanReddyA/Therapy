@@ -31,7 +31,7 @@ const InfoBox = styled.div`
 const InfoText = styled.p`
   display: inline;
   font-style: normal;
-  font-family: 'Poppins';
+
   font-weight: 600;
   font-size: 14px;
   line-height: 140%;
@@ -49,12 +49,11 @@ const CardTitle = styled.p`
   font-weight: 700;
   font-size: 32px;
   line-height: 140%;
-  font-family: 'Poppins';
+
   color: ${(props) => props.color};
 `;
 
 const CardText = styled.p`
-  font-family: 'Poppins';
   font-style: normal;
   padding-bottom: 20px;
   font-weight: 400;
@@ -73,7 +72,7 @@ const CardButton = styled.button`
   height: 52px;
   width: fit-content;
   margin: auto;
-  font-family: 'Poppins';
+
   font-style: normal;
   font-weight: 500;
   font-size: 20px;

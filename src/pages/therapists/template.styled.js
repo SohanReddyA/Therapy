@@ -34,7 +34,7 @@ const ImageText = styled.div`
   width: 100%;
   color: #fff;
   font-size: 20px;
-  font-family: Poppins;
+
   font-style: normal;
   font-weight: 600;
   line-height: 140%;
@@ -50,7 +50,7 @@ const TextContainer = styled.div`
 const Text1 = styled.div`
   color: #1a1a1a;
   font-size: 14px;
-  font-family: Poppins;
+
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -60,7 +60,7 @@ const Text1 = styled.div`
 const Text2 = styled.div`
   color: #284e4f;
   font-size: 14px;
-  font-family: Poppins;
+
   font-style: normal;
   font-weight: 800;
   line-height: normal;

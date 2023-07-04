@@ -27,7 +27,7 @@ const TakeQuizButton = styled.button`
   border: 1px solid #5627b0;
   border-radius: 30px;
   height: 52px;
-  font-family: 'Poppins';
+
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -41,7 +41,7 @@ const SignUpButton = styled.button`
   border-radius: 30px;
   padding: 12px 20px;
   height: 52px;
-  font-family: 'Poppins';
+
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -55,7 +55,7 @@ const NavLinks = styled.p`
   font-size: 20px;
   line-height: 140%;
   cursor: pointer;
-  font-family: 'Poppins';
+
   color: #111111;
 `;
 const Logo = styled.p`
@@ -65,7 +65,6 @@ const Logo = styled.p`
   font-size: 32px;
   line-height: 140%;
   color: #5627b0;
-  font-family: 'Poppins';
 `;
 const Styled = {
   Container,
@@ -73,7 +72,7 @@ const Styled = {
   SignUpButton,
   FlexContainer,
   NavLinks,
-  Logo
+  Logo,
 };
 
 export default Styled;

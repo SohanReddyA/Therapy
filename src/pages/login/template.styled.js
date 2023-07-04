@@ -22,14 +22,13 @@ const TextContainer = styled.div`
 const SignInTitle = styled.div`
   color: #1a1a1a;
   font-size: 36px;
-  font-family: Poppins;
+
   font-weight: 700;
 `;
 
 const SignInText = styled.div`
   color: #1a1a1a;
   font-size: 24px;
-  font-family: Poppins;
 `;
 const InputBoxes = styled.div`
   display: flex;
@@ -49,7 +48,6 @@ const InputBoxContainer = styled.div`
 const InputLabel = styled.div`
   color: #1a1a1a;
   font-size: 16px;
-  font-family: Poppins;
 `;
 
 const BoxContainer = styled.div`
@@ -86,7 +84,7 @@ const ShowPassword = styled.span`
 
 const InputField = styled.input`
   flex: 1;
-  font-family: Poppins;
+
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -109,7 +107,7 @@ const LoginButton = styled.button`
   padding: 12px 20px;
   height: 52px;
   width: 100%;
-  font-family: 'Poppins';
+
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -120,7 +118,7 @@ const LoginButton = styled.button`
 const LoginText = styled.div`
   color: rgba(26, 26, 26, 0.7);
   font-size: 16px;
-  font-family: Poppins;
+
   font-weight: 500;
 `;
 
@@ -130,7 +128,7 @@ const Logo = styled.div`
   left: 80px;
   color: #fff;
   font-size: 32px;
-  font-family: Poppins;
+
   font-weight: 700;
   line-height: 140%;
   cursor: pointer;

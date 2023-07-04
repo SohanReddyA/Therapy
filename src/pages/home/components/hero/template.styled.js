@@ -17,7 +17,7 @@ const HeroContainer = styled.div`
 const HeroTitle = styled.div`
   color: #1a1a1a;
   font-size: 64px;
-  font-family: Poppins;
+
   font-weight: 700;
   text-transform: capitalize;
 `;
@@ -25,7 +25,7 @@ const HeroTitle = styled.div`
 const HeroText1 = styled.div`
   color: #1a1a1a;
   font-size: 30px;
-  font-family: Poppins;
+
   font-weight: 700;
   line-height: 48px;
   text-transform: capitalize;
@@ -33,7 +33,7 @@ const HeroText1 = styled.div`
 const HeroText2 = styled.li`
   color: rgba(26, 26, 26, 0.7);
   font-size: 28px;
-  font-family: Poppins;
+
   font-weight: 700;
   line-height: 150%;
 `;
@@ -43,7 +43,7 @@ const HeroButton = styled.button`
   border-radius: 30px;
   padding: 12px 24px;
   width: fit-content;
-  font-family: 'Poppins';
+
   color: #fff;
   font-size: 28px;
   font-weight: 700;

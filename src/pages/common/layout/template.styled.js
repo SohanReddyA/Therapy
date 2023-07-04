@@ -17,7 +17,7 @@ const Container = styled.div`
 const ButtonText = styled.div`
   color: #fff;
   font-size: 36px;
-  font-family: Poppins;
+
   font-style: normal;
   font-weight: 700;
   line-height: 140%;
