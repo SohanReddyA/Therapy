@@ -6,6 +6,8 @@ import { OurProcess } from './components/our-process';
 import { QuizFlex } from './components/quiz-flex';
 import { QuizModal } from './components/quiz-modal';
 import HomeController from './template.controller';
+import { useState, useEffect } from 'react';
+import { CookieUtil } from '@/src/utils';
 
 const Home = ({ ADHDQuiz, AnxietyQuiz, depressionQuiz }) => {
   const {
@@ -18,8 +20,13 @@ const Home = ({ ADHDQuiz, AnxietyQuiz, depressionQuiz }) => {
     DepressionOpen,
     setDepressionOpen,
   } = HomeController();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  useEffect(() => {
+    setIsLoggedIn(CookieUtil.getCookie('FriennlyUser'));
+  }, [CookieUtil.getCookie('FriennlyUser')]);
   return (
-    <Layout executeScroll={executeScroll}>
+    <Layout executeScroll={executeScroll} isLoggedIn={isLoggedIn}>
       <div
         style={{
           display: 'flex',

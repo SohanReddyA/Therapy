@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
 import Styled from './template.styled';
 import { CookieUtil } from '@/src/utils';
+import { useEffect, useState } from 'react';
 
-const Navbar = ({ executeScroll }) => {
+const Navbar = ({ executeScroll, isLoggedIn }) => {
   const router = useRouter();
   return (
     <Styled.Container>
@@ -13,7 +14,7 @@ const Navbar = ({ executeScroll }) => {
         <Styled.TakeQuizButton onClick={executeScroll}>
           Take The Quiz
         </Styled.TakeQuizButton>
-        {CookieUtil.getCookie('FriennlyUser') ? (
+        {isLoggedIn ? (
           <img
             src="/images/defaultAvatar.png"
             height="60px"

@@ -2,15 +2,16 @@ import { CookieUtil } from '@/src/utils';
 import { Navbar } from './components/navbar';
 import Styled from './template.styled';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
-const Layout = ({ children, executeScroll = null }) => {
+const Layout = ({ children, executeScroll = null, isLoggedIn }) => {
   const router = useRouter();
   return (
     <div
       style={{ backgroundColor: 'white', width: '100%', marginTop: '100px' }}>
-      <Navbar executeScroll={executeScroll} />
+      <Navbar executeScroll={executeScroll} isLoggedIn={isLoggedIn} />
       {children}
-      {CookieUtil.getCookie('FriennlyUser') && (
+      {isLoggedIn && (
         <Styled.Container>
           <img
             src="/images/message-circle-dots.png"
