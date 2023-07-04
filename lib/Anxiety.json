@@ -1,0 +1,65 @@
+[
+  {
+    "Question": "Feeling nervous, anxious, or on edge",
+    "Options": [
+      { "Option": "Several Days", "value": 1 },
+      { "Option": "Nearly every day", "value": 3 },
+      { "Option": "Not at all", "value": 0 },
+      { "Option": "More than half the days", "value": 2 }
+    ]
+  },
+  {
+    "Question": "Not being able to stop or control worrying",
+    "Options": [
+      { "Option": "Several Days", "value": 1 },
+      { "Option": "Not at all", "value": 0 },
+      { "Option": "Nearly every day", "value": 3 },
+      { "Option": "More than half the days", "value": 2 }
+    ]
+  },
+  {
+    "Question": "Worrying too much about different things",
+    "Options": [
+      { "Option": "More than half the days", "value": 2 },
+      { "Option": "Not at all", "value": 0 },
+      { "Option": "Nearly every day", "value": 3 },
+      { "Option": "Several Days", "value": 1 }
+    ]
+  },
+  {
+    "Question": "Trouble relaxing",
+    "Options": [
+      { "Option": "More than half the days", "value": 2 },
+      { "Option": "Not at all", "value": 0 },
+      { "Option": "Nearly every day", "value": 3 },
+      { "Option": "Several Days", "value": 1 }
+    ]
+  },
+  {
+    "Question": "Being so restless that it is hard to sit still",
+    "Options": [
+      { "Option": "Several Days", "value": 1 },
+      { "Option": "Nearly every day", "value": 3 },
+      { "Option": "Not at all", "value": 0 },
+      { "Option": "More than half the days", "value": 2 }
+    ]
+  },
+  {
+    "Question": "Becoming easily annoyed or irritable",
+    "Options": [
+      { "Option": "Several Days", "value": 1 },
+      { "Option": "More than half the days", "value": 2 },
+      { "Option": "Nearly every day", "value": 3 },
+      { "Option": "Not at all", "value": 0 }
+    ]
+  },
+  {
+    "Question": "Feeling afraid, as if something awful might happen",
+    "Options": [
+      { "Option": "Not at all", "value": 0 },
+      { "Option": "More than half the days", "value": 2 },
+      { "Option": "Nearly every day", "value": 3 },
+      { "Option": "Several Days", "value": 1 }
+    ]
+  }
+]

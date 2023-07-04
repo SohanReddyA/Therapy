@@ -1,0 +1,182 @@
+[
+  {
+    "Question": "How often do you have trouble wrapping up the final details of a project, once the challenging parts have been done?",
+    "Options": [
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Often", "value": 3 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Rarely", "value": 1 }
+    ]
+  },
+  {
+    "Question": "How often do you have difficulty getting things in order when you have to do a task that requires organization?",
+    "Options": [
+      { "Option": "Often", "value": 3 },
+      { "Option": "Rarely", "value": 1 },
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Sometimes", "value": 2 }
+    ]
+  },
+  {
+    "Question": "How often do you have problems remembering appointments or obligations?",
+    "Options": [
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Rarely", "value": 1 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Often", "value": 3 }
+    ]
+  },
+  {
+    "Question": "When you have a task that requires a lot of thought, how often do you avoid or delay getting started",
+    "Options": [
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Rarely", "value": 1 },
+      { "Option": "Often", "value": 3 }
+    ]
+  },
+  {
+    "Question": "How often do you fidget or squirm with your hands or feet when you have to sit down for a long time?",
+    "Options": [
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Rarely", "value": 1 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Often", "value": 3 },
+      { "Option": "Very Often", "value": 4 }
+    ]
+  },
+  {
+    "Question": "How often do you feel overly active and compelled to do things, like you were driven by a motor?",
+    "Options": [
+      { "Option": "Often", "value": 3 },
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Rarely", "value": 1 }
+    ]
+  },
+  {
+    "Question": "How often do you make careless mistakes when you have to work on a boring or difficult project?",
+    "Options": [
+      { "Option": "Never", "value": 0 },
+      { "Option": "Often", "value": 3 },
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Rarely", "value": 1 },
+      { "Option": "Very Often", "value": 4 }
+    ]
+  },
+  {
+    "Question": "How often do you have difficulty keeping your attention when you are doing boring or repetitive work?",
+    "Options": [
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Rarely", "value": 1 },
+      { "Option": "Often", "value": 3 }
+    ]
+  },
+  {
+    "Question": "How often do you have difficulty concentrating on what people say to you, even when they are speaking to you directly?",
+    "Options": [
+      { "Option": "Often", "value": 3 },
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Rarely", "value": 1 }
+    ]
+  },
+  {
+    "Question": "How often do you misplace or have difficulty finding things at home or at work?",
+    "Options": [
+      { "Option": "Often", "value": 3 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Rarely", "value": 1 },
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Sometimes", "value": 2 }
+    ]
+  },
+  {
+    "Question": "How often are you distracted by activity or noise around you?",
+    "Options": [
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Often", "value": 3 },
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Rarely", "value": 1 }
+    ]
+  },
+  {
+    "Question": "How often do you leave your seat in meetings or other situations in which you are expected to remain seated?",
+    "Options": [
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Often", "value": 3 },
+      { "Option": "Rarely", "value": 1 },
+      { "Option": "Sometimes", "value": 2 }
+    ]
+  },
+  {
+    "Question": "How often do you feel restless or fidgety?",
+    "Options": [
+      { "Option": "Often", "value": 3 },
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Rarely", "value": 1 }
+    ]
+  },
+  {
+    "Question": "How often do you have difficulty unwinding and relaxing when you have time to yourself?",
+    "Options": [
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Often", "value": 3 },
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Rarely", "value": 1 }
+    ]
+  },
+  {
+    "Question": "How often do you find yourself talking too much when you are in social situations?",
+    "Options": [
+      { "Option": "Rarely", "value": 1 },
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Often", "value": 3 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Very Often", "value": 4 }
+    ]
+  },
+  {
+    "Question": "When you’re in a conversation, how often do you find yourself finishing the sentences of the people you are talking to, before they can finish them themselves?",
+    "Options": [
+      { "Option": "Often", "value": 3 },
+      { "Option": "Rarely", "value": 1 },
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Never", "value": 0 }
+    ]
+  },
+  {
+    "Question": "How often do you have difficulty waiting your turn in situations when turn taking is required?",
+    "Options": [
+      { "Option": "Never", "value": 0 },
+      { "Option": "Often", "value": 3 },
+      { "Option": "Sometimes", "value": 2 },
+      { "Option": "Rarely", "value": 1 },
+      { "Option": "Very Often", "value": 4 }
+    ]
+  },
+  {
+    "Question": "How often do you interrupt others when they are busy?",
+    "Options": [
+      { "Option": "Rarely", "value": 1 },
+      { "Option": "Never", "value": 0 },
+      { "Option": "Often", "value": 3 },
+      { "Option": "Very Often", "value": 4 },
+      { "Option": "Sometimes", "value": 2 }
+    ]
+  }
+]
