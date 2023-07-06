@@ -1,6 +1,6 @@
 import Styled from './template.styled';
 
-const Hero = ({executeScroll}) => {
+const Hero = ({ executeScroll }) => {
   return (
     <Styled.Container>
       <Styled.HeroContainer>
@@ -22,9 +22,11 @@ const Hero = ({executeScroll}) => {
             Find a therapist who is best for you
           </Styled.HeroText2>
         </ul>
-        <Styled.HeroButton onClick={executeScroll}>Take the Quiz</Styled.HeroButton>
+        <Styled.HeroButton onClick={executeScroll}>
+          Take the Quiz
+        </Styled.HeroButton>
       </Styled.HeroContainer>
-      <img src="/images/HeroImage.png" alt="HeroImage" width={'40%'} />
+      <img src="/images/HeroImage.png" alt="HeroImage" width={'50%'} />
     </Styled.Container>
   );
 };

@@ -49,7 +49,7 @@ const Register = () => {
     } else if (password != confirmPassword) {
       toast.error('Passwords do not match');
     } else {
-      fetch('http://localhost:8081/auth/signup', {
+      fetch('https://frennly.up.railway.app/auth/signup', {
         method: 'POST',
         body: JSON.stringify({
           username,
