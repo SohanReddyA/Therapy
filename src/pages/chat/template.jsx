@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { AiOutlineSearch } from "react-icons/ai";
-import { BsFilter, BsEmojiSmile } from "react-icons/bs";
-import { ImAttachment } from "react-icons/im";
-import { IoMdSend } from "react-icons/io";
-import ChatCard from "./components/chat-card/template";
-import { MessageCard } from "./components/message-card";
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { BsFilter, BsEmojiSmile } from 'react-icons/bs';
+import { ImAttachment } from 'react-icons/im';
+import { IoMdSend } from 'react-icons/io';
+import ChatCard from './components/chat-card/template';
+import { MessageCard } from './components/message-card';
 
 const Chat = () => {
   const router = useRouter();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const [currentChat, setCurrentChat] = useState(null);
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState('');
   const [paymentDone, setPaymentDone] = useState(false);
 
   const handleClickOnChatCard = () => {
@@ -99,9 +99,8 @@ const Chat = () => {
             <h1
               className="font-bold h-full text-[#5627B0] px-3 py-10 mx-7 text-3xl cursor-pointer"
               onClick={() => {
-                router.push("/");
-              }}
-            >
+                router.push('/');
+              }}>
               Therap.ai
             </h1>
           </div>
@@ -126,8 +125,8 @@ const Chat = () => {
 
             {/* Chat List */}
             <div className="bg-white overflow-auto h-[75vh] px-3">
-              {[1, 1, 1, 1, 1, 1, 1].map((list) => (
-                <div onClick={handleClickOnChatCard}>
+              {[1, 1, 1, 1, 1, 1, 1].map((list, index) => (
+                <div onClick={handleClickOnChatCard} key={index}>
                   {query && <ChatCard />}
                 </div>
               ))}
@@ -141,7 +140,7 @@ const Chat = () => {
             <div className="flex flex-col items-center text-center max-width-[70%]">
               <img className="w-52 h-52" src="/images/testLogo2.svg" alt="" />
               <p className="my-9 text-2xl font-medium text-[#5627B0]">
-                Chat with your favorite therapist now!{" "}
+                Chat with your favorite therapist now!{' '}
               </p>
             </div>
           )}
@@ -176,9 +175,10 @@ const Chat = () => {
                 <div className="space-y-2 py-2 flex flex-col justify-center ">
                   {[1, 1, 1, 1, 1].map((list, i) => (
                     <MessageCard
-                      isReqUserMessage={i%2===0}
+                      key={i}
+                      isReqUserMessage={i % 2 === 0}
                       content={`this is a sample message from ${i % 2}`}
-                      time={"18:30"}
+                      time={'18:30'}
                     />
                   ))}
                 </div>
@@ -200,9 +200,9 @@ const Chat = () => {
                         setContent(e.target.value);
                       }}
                       onKeyPress={(e) => {
-                        if (e.key === "Enter") {
+                        if (e.key === 'Enter') {
                           handleCreateMessage();
-                          setContent("");
+                          setContent('');
                         }
                       }}
                       value={content}
@@ -211,7 +211,7 @@ const Chat = () => {
                       className="text-[#5627B0] absolute left-[80%] cursor-pointer"
                       onClick={() => {
                         handleCreateMessage();
-                        setContent("");
+                        setContent('');
                       }}
                     />
                   </div>
@@ -226,8 +226,7 @@ const Chat = () => {
                       className="text-[#5627B0] underline cursor-pointer"
                       onClick={() => {
                         setPaymentDone(true);
-                      }}
-                    >
+                      }}>
                       Renew here
                     </p>
                   </span>
