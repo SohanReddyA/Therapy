@@ -21,7 +21,7 @@ const Login = () => {
   };
 
   const handleClick = () => {
-    fetch('http://localhost:8081/auth/login', {
+    fetch('https://frennly.up.railway.app/auth/login', {
       method: 'POST',
       body: JSON.stringify({
         username,

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import Styled from './template.styled';
 import { useState } from 'react';
+import { CookieUtil } from '@/src/utils';
 
 const Navbar = ({ executeScroll, isLoggedIn }) => {
   const router = useRouter();
@@ -23,16 +24,29 @@ const Navbar = ({ executeScroll, isLoggedIn }) => {
           Take The Quiz
         </Styled.TakeQuizButton>
         {isLoggedIn ? (
-          <>
+          <div style={{ position: 'relative' }}>
             <img
               src="/images/defaultAvatar.png"
               height="60px"
               width="60px"
               alt="Message"
-              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                setButtonOpen(!isButtonOpen);
+              }}
+              style={{
+                cursor: 'pointer',
+              }}
             />
-            {isButtonOpen && <></>}
-          </>
+            {isButtonOpen && (
+              <Styled.LogoutButton
+                onClick={() => {
+                  CookieUtil.removeCookie('FriennlyUser');
+                  router.push('/');
+                }}>
+                Logout
+              </Styled.LogoutButton>
+            )}
+          </div>
         ) : (
           <Styled.SignUpButton onClick={() => router.push('register')}>
             Sign Up

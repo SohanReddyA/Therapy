@@ -66,11 +66,27 @@ const Logo = styled.p`
   line-height: 140%;
   color: #5627b0;
 `;
+
+const LogoutButton = styled.button`
+  border: 1px solid #5627b0;
+  background-color: #fff;
+  height: 52px;
+  position: absolute;
+  bottom: -50px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  color: #5627b0;
+  padding: 12px 20px;
+`;
+
 const Styled = {
   Container,
   TakeQuizButton,
   SignUpButton,
   FlexContainer,
+  LogoutButton,
   NavLinks,
   Logo,
 };
