@@ -221,7 +221,7 @@ const Chat = () => {
               {!paymentDone && (
                 <div className="footer absolute bottom-0 py-5 text-lg w-full items-center justify-center flex">
                   <span className="bg-[#EEE9F7] font-semibold flex justify-center space-x-1 rounded-lg items-center px-5 py-3 w-[80%]">
-                    <p>Looks like you've run out of credits!</p>
+                    <p>Looks like you&apos;ve run out of credits!</p>
                     <p
                       className="text-[#5627B0] underline cursor-pointer"
                       onClick={() => {
