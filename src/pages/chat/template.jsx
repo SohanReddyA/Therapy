@@ -5,7 +5,10 @@ import { BsFilter, BsEmojiSmile } from "react-icons/bs";
 import { ImAttachment } from "react-icons/im";
 import { IoMdSend } from "react-icons/io";
 import ChatCard from "./components/chat-card/template";
+
 import { MessageCard } from "./components/message-card";
+import { BASE_API_URL } from "@/src/utils/api";
+import { CookieUtil } from "@/src/utils";
 
 const Chat = () => {
   const router = useRouter();
@@ -22,6 +25,37 @@ const Chat = () => {
 
   const handleSearch = (e) => {
     setQuery(e);
+  };
+
+  const currentUser = () => async () => {
+    try {
+      const res = await fetch(`${BASE_API_URL}/api/users/profile`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
+        },
+      })
+      const resData = await res.json();
+      console.log("currentUser", resData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const searchUser = (data) => async () => {
+    try {
+      const res = await fetch(`${BASE_API_URL}/api/users/search?name=${data.keyword}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
+        },
+      })
+      const resData = await res.json();
+      console.log("searchUser", resData);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // const  [stompClient, setStompClient] = useState();
@@ -102,7 +136,7 @@ const Chat = () => {
                 router.push("/");
               }}
             >
-              Therap.ai
+              Friennly
             </h1>
           </div>
           {/* Chat Message Section */}
@@ -176,7 +210,7 @@ const Chat = () => {
                 <div className="space-y-2 py-2 flex flex-col justify-center ">
                   {[1, 1, 1, 1, 1].map((list, i) => (
                     <MessageCard
-                      isReqUserMessage={i%2===0}
+                      isReqUserMessage={i % 2 === 0}
                       content={`this is a sample message from ${i % 2}`}
                       time={"18:30"}
                     />
