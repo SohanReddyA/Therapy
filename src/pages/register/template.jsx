@@ -218,7 +218,7 @@ const Register = () => {
                 cursor: disabled ? 'not-allowed' : 'pointer',
               }}
               onClick={() => {
-                if (!disabled) router.push('/register');
+                if (!disabled) router.push('/login');
               }}>
               Login here
             </span>
