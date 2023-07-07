@@ -113,6 +113,13 @@ const LoginButton = styled.button`
   font-size: 20px;
   line-height: 140%;
   color: #ffffff;
+  ${(props) =>
+    props.disabled
+      ? `
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;`
+      : ``}
 `;
 
 const LoginText = styled.div`

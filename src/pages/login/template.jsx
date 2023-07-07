@@ -2,8 +2,7 @@ import { CookieUtil } from '@/src/utils';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { BASE_API_URL } from "@/src/utils/api";
-
+import { BASE_API_URL } from '@/src/utils/api';
 
 const { default: Styled } = require('./template.styled');
 
@@ -21,8 +20,11 @@ const Login = () => {
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+  const [disabled, setDisabled] = useState(false);
 
   const handleClick = () => {
+    toast.loading('Please Wait', { id: 'login' });
+    setDisabled(true);
     fetch(`${BASE_API_URL}/auth/login`, {
       method: 'POST',
       body: JSON.stringify({
@@ -40,7 +42,10 @@ const Login = () => {
           toast.success('Login Successful', { id: 'login' });
           router.push('/');
         } else {
-          toast.error('Login Failed', { id: 'login' });
+          toast.error('Login Failed, Please check your username / password', {
+            id: 'login',
+          });
+          setDisabled(false);
         }
       });
   };
@@ -114,13 +119,18 @@ const Login = () => {
           </Styled.InputBoxContainer>
         </Styled.InputBoxes>
         <Styled.LoginButtonContainer>
-          <Styled.LoginButton onClick={handleClick}>Login</Styled.LoginButton>
+          <Styled.LoginButton onClick={handleClick} disabled={disabled}>
+            Login
+          </Styled.LoginButton>
           <Styled.LoginText>
             Don’t have an account?{' '}
             <span
-              style={{ color: '#5627B0', cursor: 'pointer' }}
+              style={{
+                color: disabled ? '#27114f' : '#5627B0',
+                cursor: disabled ? 'not-allowed' : 'pointer',
+              }}
               onClick={() => {
-                router.push('/register');
+                if (!disabled) router.push('/register');
               }}>
               Register here
             </span>

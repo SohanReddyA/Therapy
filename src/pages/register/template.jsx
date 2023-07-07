@@ -2,8 +2,7 @@ import { CookieUtil } from '@/src/utils';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { BASE_API_URL } from "@/src/utils/api";
-
+import { BASE_API_URL } from '@/src/utils/api';
 
 const { default: Styled } = require('./template.styled');
 
@@ -15,6 +14,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const handleChange = (event) => {
     if (event.target.name == 'username') setUsername(event.target.value);
@@ -51,6 +51,8 @@ const Register = () => {
     } else if (password != confirmPassword) {
       toast.error('Passwords do not match');
     } else {
+      toast.loading('Please Wait', { id: 'signup' });
+      setDisabled(true);
       fetch(`${BASE_API_URL}/auth/signup`, {
         method: 'POST',
         body: JSON.stringify({
@@ -72,6 +74,7 @@ const Register = () => {
             ) {
               toast.error('Email already in use', { id: 'signup' });
             }
+            setDisabled(false);
           } else if (res.jwt) {
             CookieUtil.setCookie('FriennlyUser', res.jwt);
             toast.success('Signup Successful', { id: 'signup' });
@@ -204,15 +207,18 @@ const Register = () => {
           </Styled.InputBoxContainer>
         </Styled.InputBoxes>
         <Styled.LoginButtonContainer>
-          <Styled.LoginButton onClick={handleClick}>
+          <Styled.LoginButton onClick={handleClick} disabled={disabled}>
             Register
           </Styled.LoginButton>
           <Styled.LoginText>
             Already have an account?{' '}
             <span
-              style={{ color: '#5627B0', cursor: 'pointer' }}
+              style={{
+                color: disabled ? '#27114f' : '#5627B0',
+                cursor: disabled ? 'not-allowed' : 'pointer',
+              }}
               onClick={() => {
-                router.push('/login');
+                if (!disabled) router.push('/register');
               }}>
               Login here
             </span>
