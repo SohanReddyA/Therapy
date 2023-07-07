@@ -25,6 +25,7 @@ const Chat = () => {
 
   const handleSearch = (e) => {
     setQuery(e);
+    searchUser({e})
   };
 
   const currentUser = () => async () => {
@@ -39,9 +40,10 @@ const Chat = () => {
       const resData = await res.json();
       console.log("currentUser", resData);
     } catch (error) {
-      console.log(error);
+      console.log("currentUser error - ", error);
     }
   };
+
   const searchUser = (data) => async () => {
     try {
       const res = await fetch(`${BASE_API_URL}/api/users/search?name=${data.keyword}`, {
@@ -54,9 +56,82 @@ const Chat = () => {
       const resData = await res.json();
       console.log("searchUser", resData);
     } catch (error) {
-      console.log(error);
+      console.log("searchUser error - ", error);
     }
   };
+
+  const createChat = (chatData) => async () => {
+    try {
+        
+      const res = await fetch(`${BASE_API_URL}/api/chats/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
+        },
+        body:JSON.stringify(chatData.data)
+      })
+      const data = await res.json();
+      console.log("create chat", data);
+    } catch(error) {
+      console.log("createChat error - ", error);
+    }
+  }
+
+  const getUsersChat = (chatData) => async () => {
+    try {
+        
+      const res = await fetch(`${BASE_API_URL}/api/chats/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
+        }
+      })
+      const data = await res.json();
+      console.log("get user chat", data);
+
+    } catch(error) {
+      console.log("getUserChat error - ", error);
+    }
+  }
+
+  const createMessage = (messageData) => async () => {
+    try {
+        
+      const res = await fetch(`${BASE_API_URL}/api/messages/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
+        },
+        body: JSON.stringify(messageData.data),
+      })
+      const data = await res.json();
+      console.log("create message data - ", data);
+      
+    } catch(error) {
+      console.log("createMessage error - ", error);
+    }
+  }
+  const getAllMessages = (reqData) => async () => {
+    try {
+        
+      const res = await fetch(`${BASE_API_URL}/api/messages/chat/${reqData.chatId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
+        },
+        body: JSON.stringify(reqData.data),
+      })
+      const data = await res.json();
+      console.log("create message data - ", data);
+      
+    } catch(error) {
+      console.log("createMessage error - ", error);
+    }
+  }
 
   // const  [stompClient, setStompClient] = useState();
   // const [isConnect, setIsConnect] = useState(false);

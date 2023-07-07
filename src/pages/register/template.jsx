@@ -2,6 +2,8 @@ import { CookieUtil } from '@/src/utils';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { BASE_API_URL } from "@/src/utils/api";
+
 
 const { default: Styled } = require('./template.styled');
 
@@ -49,7 +51,7 @@ const Register = () => {
     } else if (password != confirmPassword) {
       toast.error('Passwords do not match');
     } else {
-      fetch('https://frennly.up.railway.app/auth/signup', {
+      fetch(`${BASE_API_URL}/auth/signup`, {
         method: 'POST',
         body: JSON.stringify({
           username,

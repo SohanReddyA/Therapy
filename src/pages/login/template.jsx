@@ -2,6 +2,8 @@ import { CookieUtil } from '@/src/utils';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { BASE_API_URL } from "@/src/utils/api";
+
 
 const { default: Styled } = require('./template.styled');
 
@@ -21,7 +23,7 @@ const Login = () => {
   };
 
   const handleClick = () => {
-    fetch('https://frennly.up.railway.app/auth/login', {
+    fetch(`${BASE_API_URL}/auth/login`, {
       method: 'POST',
       body: JSON.stringify({
         username,
