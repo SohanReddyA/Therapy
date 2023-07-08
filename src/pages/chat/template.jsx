@@ -4,6 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { BsFilter, BsEmojiSmile } from "react-icons/bs";
 import { ImAttachment } from "react-icons/im";
 import { IoMdSend } from "react-icons/io";
+import { toast } from "react-hot-toast";
 import ChatCard from "./components/chat-card/template";
 
 import { MessageCard } from "./components/message-card";
@@ -12,20 +13,23 @@ import { CookieUtil } from "@/src/utils";
 
 const Chat = () => {
   const router = useRouter();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [currentChat, setCurrentChat] = useState(null);
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const [paymentDone, setPaymentDone] = useState(false);
 
-  const handleClickOnChatCard = () => {
+  const [userList, setUserList] = useState([]);
+
+  const handleClickOnChatCard = (userId) => {
+    console.log(userId);
     setCurrentChat(true);
+    createChat(userId);
   };
 
   const handleCreateMessage = () => {};
 
   const handleSearch = (e) => {
-    setQuery(e);
-    searchUser({e})
+    searchUser(e);
   };
 
   const currentUser = () => async () => {
@@ -36,7 +40,7 @@ const Chat = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
         },
-      })
+      });
       const resData = await res.json();
       console.log("currentUser", resData);
     } catch (error) {
@@ -44,61 +48,61 @@ const Chat = () => {
     }
   };
 
-  const searchUser = (data) => async () => {
-    try {
-      const res = await fetch(`${BASE_API_URL}/api/users/search?name=${data.keyword}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
-        },
-      })
-      const resData = await res.json();
-      console.log("searchUser", resData);
-    } catch (error) {
-      console.log("searchUser error - ", error);
-    }
+  const searchUser = (keyword) => {
+    toast.loading("Please Wait", { id: "search" });
+    // setDisabled(true);
+    fetch(`${BASE_API_URL}/api/users/search/${keyword}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.length === 0) {
+          toast.error("No users found", { id: "search" });
+        } else {
+          toast.success("Found users", { id: "search" });
+        }
+        setUserList(res);
+      });
   };
 
-  const createChat = (chatData) => async () => {
-    try {
-        
-      const res = await fetch(`${BASE_API_URL}/api/chats/create`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
-        },
-        body:JSON.stringify(chatData.data)
-      })
-      const data = await res.json();
-      console.log("create chat", data);
-    } catch(error) {
-      console.log("createChat error - ", error);
-    }
-  }
+  const createChat = (userId) => {
+    fetch(`${BASE_API_URL}/api/chats/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
+      },
+      body: JSON.stringify({userId}),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("create chat", res);
+      });
+  };
 
   const getUsersChat = (chatData) => async () => {
     try {
-        
       const res = await fetch(`${BASE_API_URL}/api/chats/user`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
-        }
-      })
+        },
+      });
       const data = await res.json();
       console.log("get user chat", data);
-
-    } catch(error) {
+    } catch (error) {
       console.log("getUserChat error - ", error);
     }
-  }
+  };
 
   const createMessage = (messageData) => async () => {
     try {
-        
       const res = await fetch(`${BASE_API_URL}/api/messages/create`, {
         method: "POST",
         headers: {
@@ -106,32 +110,32 @@ const Chat = () => {
           Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
         },
         body: JSON.stringify(messageData.data),
-      })
+      });
       const data = await res.json();
       console.log("create message data - ", data);
-      
-    } catch(error) {
+    } catch (error) {
       console.log("createMessage error - ", error);
     }
-  }
+  };
   const getAllMessages = (reqData) => async () => {
     try {
-        
-      const res = await fetch(`${BASE_API_URL}/api/messages/chat/${reqData.chatId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
-        },
-        body: JSON.stringify(reqData.data),
-      })
+      const res = await fetch(
+        `${BASE_API_URL}/api/messages/chat/${reqData.chatId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
+          },
+          body: JSON.stringify(reqData.data),
+        }
+      );
       const data = await res.json();
       console.log("create message data - ", data);
-      
-    } catch(error) {
+    } catch (error) {
       console.log("createMessage error - ", error);
     }
-  }
+  };
 
   // const  [stompClient, setStompClient] = useState();
   // const [isConnect, setIsConnect] = useState(false);
@@ -208,8 +212,9 @@ const Chat = () => {
             <h1
               className="font-bold h-full text-[#5627B0] px-3 py-10 mx-7 text-3xl cursor-pointer"
               onClick={() => {
-                router.push('/');
-              }}>
+                router.push("/");
+              }}
+            >
               Therap.ai
             </h1>
           </div>
@@ -222,6 +227,7 @@ const Chat = () => {
                 type="text"
                 placeholder="Search or start new chat"
                 onChange={(e) => {
+                  setQuery(e.target.value);
                   handleSearch(e.target.value);
                 }}
                 value={query}
@@ -234,11 +240,17 @@ const Chat = () => {
 
             {/* Chat List */}
             <div className="bg-white overflow-auto h-[75vh] px-3">
-              {[1, 1, 1, 1, 1, 1, 1].map((list, index) => (
-                <div onClick={handleClickOnChatCard} key={index}>
-                  {query && <ChatCard />}
-                </div>
-              ))}
+              {userList.length > 0 &&
+                userList.map((listItem, index) => (
+                  <div
+                    onClick={() => {
+                      handleClickOnChatCard(listItem.id);
+                    }}
+                    key={index}
+                  >
+                    {query && <ChatCard username={listItem.username} />}
+                  </div>
+                ))}
             </div>
           </div>
         </div>
@@ -249,7 +261,7 @@ const Chat = () => {
             <div className="flex flex-col items-center text-center max-width-[70%]">
               <img className="w-52 h-52" src="/images/testLogo2.svg" alt="" />
               <p className="my-9 text-2xl font-medium text-[#5627B0]">
-                Chat with your favorite therapist now!{' '}
+                Chat with your favorite therapist now!{" "}
               </p>
             </div>
           )}
@@ -287,7 +299,7 @@ const Chat = () => {
                       key={i}
                       isReqUserMessage={i % 2 === 0}
                       content={`this is a sample message from ${i % 2}`}
-                      time={'18:30'}
+                      time={"18:30"}
                     />
                   ))}
                 </div>
@@ -309,9 +321,9 @@ const Chat = () => {
                         setContent(e.target.value);
                       }}
                       onKeyPress={(e) => {
-                        if (e.key === 'Enter') {
+                        if (e.key === "Enter") {
                           handleCreateMessage();
-                          setContent('');
+                          setContent("");
                         }
                       }}
                       value={content}
@@ -320,7 +332,7 @@ const Chat = () => {
                       className="text-[#5627B0] absolute left-[80%] cursor-pointer"
                       onClick={() => {
                         handleCreateMessage();
-                        setContent('');
+                        setContent("");
                       }}
                     />
                   </div>
@@ -335,7 +347,8 @@ const Chat = () => {
                       className="text-[#5627B0] underline cursor-pointer"
                       onClick={() => {
                         setPaymentDone(true);
-                      }}>
+                      }}
+                    >
                       Renew here
                     </p>
                   </span>

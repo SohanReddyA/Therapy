@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChatCard = () => {
+const ChatCard = ({ username }) => {
   return (
     <div className="flex items-center justify-center py-2 group cursor-pointer">
       {/* Profile Picture */}
@@ -14,7 +14,7 @@ const ChatCard = () => {
       {/* Chat items */}
       <div className="pl-5 w-[80%]">
         <div className="flex justify-between items-center">
-          <p className="text-lg font-semibold">Jessica Drew</p>
+          <p className="text-lg font-semibold">{username}</p>
           <p className="text-sm text-[#5F5F5F]">18:30</p>
         </div>
 
