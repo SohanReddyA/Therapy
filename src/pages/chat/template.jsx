@@ -266,8 +266,8 @@ const Chat = () => {
   }, []);
 
   return (
-    <div className="bg-[#E5E5E5] flex items-center justify-center h-screen">
-      <div className="flex items-center relative bg-white justify-center w-[95%] h-[95%] rounded-md">
+    <div className="bg-[url(/images/doodle.svg)] flex items-center justify-center h-screen">
+      <div className="flex items-center relative bg-white justify-center w-[95%] h-[95%] rounded-md border-[#D5C9EB] border-2">
         <div className="left w-[30%] border-[#D5C9EB] border-r-2 flex-col items-center justify-center">
           {/*Title of the page */}
           <div className="h-[10vh]">
@@ -277,7 +277,7 @@ const Chat = () => {
                 router.push("/");
               }}
             >
-              Therap.ai
+              Friennly
             </h1>
           </div>
           {/* Chat Message Section */}
