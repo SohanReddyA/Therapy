@@ -45,7 +45,7 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    if (currentChat !== null && messages.length === 0) getAllMessages(currentChat.id);
+    if (currentChat !== null) getAllMessages(currentChat.id);
   }, [currentChat, messageCreated]);
 
   const handleCreateMessage = () => {
