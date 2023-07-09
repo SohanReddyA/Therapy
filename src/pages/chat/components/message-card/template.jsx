@@ -4,10 +4,10 @@ const MessageCard = ({ isReqUserMessage, content, time }) => {
   return (
     <div
       className={`p-2 rounded-lg max-w-[50%] ${
-        isReqUserMessage ? "bg-[#DDD4EF] self-start" : "bg-[#EEE9F7] self-end"
-      } flex flex-col items-end justify-between`}
+        isReqUserMessage ? "bg-[#EEE9F7] self-end" : "bg-[#DDD4EF] self-start"
+      } flex flex-col items-end justify-between break-words`}
     >
-      <p>{content}</p>
+      <p className="w-full">{content}</p>
       <div
         className={`${
           !isReqUserMessage ? "text-[#5A585C]" : "text-black"
