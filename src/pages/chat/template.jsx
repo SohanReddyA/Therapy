@@ -25,6 +25,7 @@ const Chat = () => {
   const [allChats, setAllChats] = useState([]);
   const [messages, setMessages] = useState([]);
   const [messageCreated, setMessageCreated] = useState(null);
+  const [updateUserList, setUpdateUserList] = useState(null);
 
   const handleClickOnChatCard = (userId) => {
     console.log(userId);
@@ -209,14 +210,26 @@ const Chat = () => {
   useEffect(() => {
     if (messageCreated && stompClient) {
       stompClient.send("/app/message", {}, JSON.stringify(messageCreated));
+      const user =
+        reqUser.id !== messageCreated.chat.users[0].id
+          ? messageCreated.chat.users[0]
+          : messageCreated.chat.users[1];
+      stompClient.send("/app/user-list", {}, JSON.stringify({userId : user.id, chat : messageCreated.chat}));
     }
   }, [messageCreated]);
 
   const onMessageReceive = (payload) => {
     console.log("recieve message", JSON.parse(payload.body));
-
     const recievedMessage = JSON.parse(payload.body);
     setMessages([...messages, recievedMessage]);
+  };
+
+  const onUserMessageRecieve = (payload) => {
+    console.log("recieve message user ", JSON.parse(payload.body));
+
+
+    const recievedMessage = JSON.parse(payload.body);
+    setAllChats([...allChats, recievedMessage]);
   };
 
   useEffect(() => {
@@ -224,6 +237,15 @@ const Chat = () => {
       const subscription = stompClient.subscribe(
         "/group/" + currentChat.id,
         onMessageReceive
+      );
+      return () => {
+        subscription.unsubscribe();
+      };
+    }
+    if (isConnect && stompClient && reqUser) {
+      const subscription = stompClient.subscribe(
+        "/user/" + reqUser.id,
+        onUserMessageRecieve
       );
       return () => {
         subscription.unsubscribe();
