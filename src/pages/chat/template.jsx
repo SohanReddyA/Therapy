@@ -50,11 +50,13 @@ const Chat = () => {
   }, [currentChat, messageCreated]);
 
   const handleCreateMessage = () => {
-    createMessage({
-      userId: reqUser.id,
-      chatId: currentChat.id,
-      content: content,
-    });
+    if (content !== "") {
+      createMessage({
+        userId: reqUser.id,
+        chatId: currentChat.id,
+        content: content,
+      });
+    }
   };
 
   const handleSearch = (e) => {
@@ -214,7 +216,11 @@ const Chat = () => {
         reqUser.id !== messageCreated.chat.users[0].id
           ? messageCreated.chat.users[0]
           : messageCreated.chat.users[1];
-      stompClient.send("/app/user-list", {}, JSON.stringify({userId : user.id, chat : messageCreated.chat}));
+      stompClient.send(
+        "/app/user-list",
+        {},
+        JSON.stringify({ userId: user.id, chat: messageCreated.chat })
+      );
     }
   }, [messageCreated]);
 
@@ -226,7 +232,6 @@ const Chat = () => {
 
   const onUserMessageRecieve = (payload) => {
     console.log("recieve message user ", JSON.parse(payload.body));
-
 
     const recievedMessage = JSON.parse(payload.body);
     setAllChats([...allChats, recievedMessage]);
@@ -242,6 +247,9 @@ const Chat = () => {
         subscription.unsubscribe();
       };
     }
+  });
+
+  useEffect(() => {
     if (isConnect && stompClient && reqUser) {
       const subscription = stompClient.subscribe(
         "/user/" + reqUser.id,
