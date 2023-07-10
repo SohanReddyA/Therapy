@@ -51,6 +51,7 @@ const Chat = () => {
 
   const handleCreateMessage = () => {
     if (content !== "") {
+      console.log("createMessage data - ",reqUser.id, currentChat.id, content);
       createMessage({
         userId: reqUser.id,
         chatId: currentChat.id,
@@ -386,7 +387,7 @@ const Chat = () => {
                         key={i}
                         isReqUserMessage={reqUser.id === item.user.id}
                         content={item.content}
-                        time={"18:30"}
+                        time={item.time}
                       />
                     ))}
                 </div>
