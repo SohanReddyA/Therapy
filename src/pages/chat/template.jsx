@@ -14,6 +14,7 @@ import { BASE_API_URL } from '@/src/utils/api';
 import { CookieUtil } from '@/src/utils';
 import ChatLoader from './components/loader/template';
 import useSlowValueChange from './template.utils';
+import notificationSound from '@/public/sounds/notification-sound.mp3';
 
 const Chat = () => {
   const router = useRouter();
@@ -243,7 +244,10 @@ const Chat = () => {
     console.log('recieve message user ', JSON.parse(payload.body));
 
     const recievedMessage = JSON.parse(payload.body);
-    console.log(allChats, recievedMessage, 'Added');
+    if (document.visibilityState === 'hidden') {
+      const audio = new Audio(notificationSound);
+      audio.play();
+    }
     if (!allChats.find((obj) => obj.id === recievedMessage.id))
       setAllChats([...allChats, recievedMessage]);
   };
