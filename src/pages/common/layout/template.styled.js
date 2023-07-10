@@ -8,7 +8,7 @@ const Container = styled.div`
   right: 60px;
   border-radius: 40px;
   background: #5627b0;
-  padding: 16px 32px;
+  padding: 16px;
   justify-content: center;
   align-items: center;
   gap: 24px;
@@ -16,8 +16,7 @@ const Container = styled.div`
 
 const ButtonText = styled.div`
   color: #fff;
-  font-size: 36px;
-
+  font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: 140%;

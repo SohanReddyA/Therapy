@@ -15,8 +15,8 @@ const Layout = ({ children, executeScroll = null, isLoggedIn }) => {
         <Styled.Container>
           <img
             src="/images/message-circle-dots.png"
-            height="40px"
-            width="40px"
+            height="20px"
+            width="20px"
             alt="Message"
           />
           <Styled.ButtonText

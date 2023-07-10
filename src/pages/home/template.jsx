@@ -8,6 +8,8 @@ import { QuizModal } from './components/quiz-modal';
 import HomeController from './template.controller';
 import { useState, useEffect } from 'react';
 import { CookieUtil } from '@/src/utils';
+import { ColorRing } from 'react-loader-spinner';
+import { BASE_API_URL } from '@/src/utils/api';
 
 const Home = ({ ADHDQuiz, AnxietyQuiz, depressionQuiz }) => {
   const {
@@ -21,10 +23,37 @@ const Home = ({ ADHDQuiz, AnxietyQuiz, depressionQuiz }) => {
     setDepressionOpen,
   } = HomeController();
 
+  const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   useEffect(() => {
     setIsLoggedIn(CookieUtil.getCookie('FriennlyUser'));
   }, [CookieUtil.getCookie('FriennlyUser')]);
+  useEffect(() => {
+    fetch(BASE_API_URL).then((res) => {
+      console.log(res, 'Init');
+      setLoading(false);
+    });
+  }, []);
+  if (loading)
+    return (
+      <div
+        style={{
+          margin: 'auto',
+          width: '100vw',
+          height: '100vh',
+          display: 'flex',
+        }}>
+        <ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={['#b8c480']}
+        />
+      </div>
+    );
   return (
     <Layout executeScroll={executeScroll} isLoggedIn={isLoggedIn}>
       <div
