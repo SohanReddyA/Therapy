@@ -67,18 +67,26 @@ const Logo = styled.p`
   color: #5627b0;
 `;
 
-const LogoutButton = styled.button`
-  border: 1px solid #5627b0;
-  background-color: #fff;
-  height: 52px;
-  position: absolute;
-  bottom: -50px;
+const LogoutButton = styled.p`
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 140%;
+  cursor: pointer;
   color: #5627b0;
-  padding: 12px 20px;
+`;
+
+const ProfileContainer = styled.div`
+  border-radius: 16px;
+  background: #d5cce7;
+  display: flex;
+  position: absolute;
+  bottom: -80px;
+  padding: 12px 16px;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  gap: 8px;
 `;
 
 const Styled = {
@@ -89,6 +97,7 @@ const Styled = {
   LogoutButton,
   NavLinks,
   Logo,
+  ProfileContainer,
 };
 
 export default Styled;
