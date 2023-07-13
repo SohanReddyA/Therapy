@@ -324,9 +324,9 @@ const Chat = () => {
     if (messageCreated && stompClient) {
       stompClient.send('/app/message', {}, JSON.stringify(messageCreated));
       const user =
-        reqUser.id !== messageCreated.chat.users[0].id
-          ? messageCreated.chat.users[0]
-          : messageCreated.chat.users[1];
+        reqUser.id !== messageCreated.chat.user.id
+          ? messageCreated.chat.user
+          : messageCreated.chat.therapist;
       stompClient.send(
         '/app/user-list',
         {},
