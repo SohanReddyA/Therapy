@@ -1,11 +1,29 @@
 import { useRouter } from 'next/router';
 import Styled from './template.styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CookieUtil } from '@/src/utils';
+import { BASE_API_URL } from '@/src/utils/api';
 
 const Navbar = ({ executeScroll, isLoggedIn }) => {
   const router = useRouter();
   const [isButtonOpen, setButtonOpen] = useState(false);
+  const [username, setUsername] = useState('');
+  useEffect(() => {
+    if (CookieUtil.getCookie('FriennlyUser')) {
+      fetch(`${BASE_API_URL}/api/users/profile`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          // console.log('currentUser - ', res);
+          setUsername(res.username);
+        });
+    }
+  }, []);
   return (
     <Styled.Container>
       <Styled.Logo
@@ -38,19 +56,27 @@ const Navbar = ({ executeScroll, isLoggedIn }) => {
               }}
             />
             {isButtonOpen && (
-              <Styled.LogoutButton
-                onClick={() => {
-                  CookieUtil.removeCookie('FriennlyUser');
-                  router.push('/');
-                }}>
-                Logout
-              </Styled.LogoutButton>
+              <Styled.ProfileContainer>
+                <p>{username}</p>
+                <Styled.LogoutButton
+                  onClick={() => {
+                    CookieUtil.removeCookie('FriennlyUser');
+                    router.push('/');
+                  }}>
+                  Logout
+                </Styled.LogoutButton>
+              </Styled.ProfileContainer>
             )}
           </div>
         ) : (
-          <Styled.SignUpButton onClick={() => router.push('register')}>
-            Sign Up
-          </Styled.SignUpButton>
+          <>
+            <Styled.SignUpButton onClick={() => router.push('/register')}>
+              Sign Up
+            </Styled.SignUpButton>
+            <Styled.SignUpButton onClick={() => router.push('/login')}>
+              Login
+            </Styled.SignUpButton>
+          </>
         )}
       </Styled.FlexContainer>
     </Styled.Container>

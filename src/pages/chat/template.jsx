@@ -9,19 +9,21 @@ import ChatCard from "./components/chat-card/template";
 import SockJS, { load, log } from "sockjs-client/dist/sockjs";
 import { over } from "stompjs";
 
-import { MessageCard } from "./components/message-card";
-import { BASE_API_URL } from "@/src/utils/api";
-import { CookieUtil } from "@/src/utils";
-import ChatLoader from "./components/loader/template";
-import useSlowValueChange from "./template.utils";
-import notificationSound from "@/public/sounds/notification-sound.mp3";
+import { MessageCard } from './components/message-card';
+import { BASE_API_URL } from '@/src/utils/api';
+import { CookieUtil } from '@/src/utils';
+import ChatLoader from './components/loader/template';
+import useSlowValueChange from './template.utils';
+import notificationSound from '@/public/sounds/notification-sound.mp3';
+import UserTimingsPopup from './components/timings-popup/user/template';
+import OtherTimingsPopup from './components/timings-popup/other/template';
 
 const Chat = () => {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [currentChat, setCurrentChat] = useState(null);
-  const [content, setContent] = useState("");
-  const [paymentDone, setPaymentDone] = useState(false);
+  const [content, setContent] = useState('');
+  const [paymentDone, setPaymentDone] = useState(true);
   const [chatCreated, setChatCreated] = useState(null);
   const [userList, setUserList] = useState([]);
   const [reqUser, setReqUser] = useState(null);
@@ -29,6 +31,16 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [messageCreated, setMessageCreated] = useState(null);
   const [loaderValue, setLoaderValue] = useState(0);
+  const [openUserModal, setOpenUserModal] = useState(false);
+  const [userTimes, setUserTimes] = useState([
+    { start: '7 AM', end: '12 PM' },
+    { start: '3 PM', end: '7 PM' },
+  ]);
+  const [openOtherModal, setOpenOtherModal] = useState(false);
+  const [otherTimes, setOtherTimes] = useState([
+    { start: '7 AM', end: '12 PM' },
+    { start: '3 PM', end: '7 PM' },
+  ]);
 
   const handleClickOnChatCard = (userId) => {
     console.log(userId);
@@ -270,6 +282,17 @@ const Chat = () => {
   };
 
   useEffect(() => {
+    connect();
+  }, []);
+
+  useEffect(() => {
+    getUsersChat();
+  }, [chatCreated]);
+
+  useEffect(() => {
+    currentUser();
+  }, []);
+  useEffect(() => {
     if (isConnect && stompClient && reqUser && currentChat) {
       const subscription = stompClient.subscribe(
         "/group/" + currentChat.id,
@@ -292,21 +315,25 @@ const Chat = () => {
       };
     }
   });
-  useEffect(() => {
-    getUsersChat();
-  }, [chatCreated]);
-
-  useEffect(() => {
-    currentUser();
-  }, []);
 
   useEffect(() => {
     if (currentChat !== null) getAllMessages(currentChat.id);
   }, [currentChat]);
 
   useEffect(() => {
-    connect();
-  }, []);
+    if (messageCreated && stompClient) {
+      stompClient.send('/app/message', {}, JSON.stringify(messageCreated));
+      const user =
+        reqUser.id !== messageCreated.chat.users[0].id
+          ? messageCreated.chat.users[0]
+          : messageCreated.chat.users[1];
+      stompClient.send(
+        '/app/user-list',
+        {},
+        JSON.stringify({ userId: user.id, chat: messageCreated.chat })
+      );
+    }
+  }, [messageCreated]);
 
   return (
     <div className="bg-[url(/images/doodle.svg)] flex items-center justify-center h-screen">
@@ -315,6 +342,19 @@ const Chat = () => {
           <ChatLoader value={loaderValue} />
         ) : (
           <>
+            {openUserModal && (
+              <UserTimingsPopup
+                handleClose={() => setOpenUserModal(false)}
+                time={userTimes}
+                setTime={setUserTimes}
+              />
+            )}
+            {openOtherModal && (
+              <OtherTimingsPopup
+                handleClose={() => setOpenOtherModal(false)}
+                time={otherTimes}
+              />
+            )}
             <div className="left w-[30%] border-[#D5C9EB] border-r-2 flex-col items-center justify-center">
               {/*Title of the page */}
               <div className="h-[10vh]">
@@ -348,7 +388,7 @@ const Chat = () => {
                 </div>
 
                 {/* Chat List */}
-                <div className="bg-white overflow-auto h-[75vh] px-3">
+                <div className="bg-white overflow-auto h-[75vh] px-3 relative">
                   {query &&
                     userList.length > 0 &&
                     userList.map((listItem, index) => (
@@ -369,8 +409,7 @@ const Chat = () => {
                         onClick={() => {
                           handleClickonAllChat(index);
                         }}
-                        key={chatItem}
-                      >
+                        key={index}>
                         <ChatCard
                           username={
                             reqUser.id !== chatItem.user.id
@@ -390,6 +429,13 @@ const Chat = () => {
                         />
                       </div>
                     ))}
+                  <div
+                    className=" absolute bottom-[20px] w-[-webkit-fill-available] box-border flex items-center justify-center"
+                    onClick={() => setOpenUserModal(true)}>
+                    <p className="bg-[#E6E1EF] p-2 rounded-[16px] select-none cursor-pointer">
+                      Edit Your Preferred Timings
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -431,9 +477,11 @@ const Chat = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="p-3 rounded-3xl mx-10 bg-[#EEE9F7]">
+                      <div
+                        className="p-3 rounded-3xl mx-10 bg-[#EEE9F7] cursor-pointer"
+                        onClick={() => setOpenOtherModal(true)}>
                         <p className="text-[#5627B0] font-semibold">
-                          Time left: 17hrs 30min
+                          Preferred Timings
                         </p>
                       </div>
                     </div>
