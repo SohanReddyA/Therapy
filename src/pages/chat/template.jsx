@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { AiOutlineSearch } from 'react-icons/ai';
-import { BsFilter, BsEmojiSmile } from 'react-icons/bs';
-import { ImAttachment } from 'react-icons/im';
-import { IoMdSend } from 'react-icons/io';
-import { toast } from 'react-hot-toast';
-import ChatCard from './components/chat-card/template';
-import SockJS, { load, log } from 'sockjs-client/dist/sockjs';
-import { over } from 'stompjs';
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { AiOutlineSearch } from "react-icons/ai";
+import { BsFilter, BsEmojiSmile } from "react-icons/bs";
+import { ImAttachment } from "react-icons/im";
+import { IoMdSend } from "react-icons/io";
+import { toast } from "react-hot-toast";
+import ChatCard from "./components/chat-card/template";
+import SockJS, { load, log } from "sockjs-client/dist/sockjs";
+import { over } from "stompjs";
 
-import { MessageCard } from './components/message-card';
-import { BASE_API_URL } from '@/src/utils/api';
-import { CookieUtil } from '@/src/utils';
-import ChatLoader from './components/loader/template';
-import useSlowValueChange from './template.utils';
-import notificationSound from '@/public/sounds/notification-sound.mp3';
+import { MessageCard } from "./components/message-card";
+import { BASE_API_URL } from "@/src/utils/api";
+import { CookieUtil } from "@/src/utils";
+import ChatLoader from "./components/loader/template";
+import useSlowValueChange from "./template.utils";
+import notificationSound from "@/public/sounds/notification-sound.mp3";
 
 const Chat = () => {
   const router = useRouter();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [currentChat, setCurrentChat] = useState(null);
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const [paymentDone, setPaymentDone] = useState(false);
   const [chatCreated, setChatCreated] = useState(null);
   const [userList, setUserList] = useState([]);
@@ -28,12 +28,12 @@ const Chat = () => {
   const [allChats, setAllChats] = useState([]);
   const [messages, setMessages] = useState([]);
   const [messageCreated, setMessageCreated] = useState(null);
-  const [updateUserList, setUpdateUserList] = useState(null);
   const [loaderValue, setLoaderValue] = useState(0);
+
   const handleClickOnChatCard = (userId) => {
     console.log(userId);
     createChat(userId);
-    setQuery('');
+    setQuery("");
   };
 
   const handleClickonAllChat = (index) => {
@@ -41,8 +41,8 @@ const Chat = () => {
   };
 
   const handleCreateMessage = () => {
-    if (content !== '') {
-      console.log('createMessage data - ', reqUser.id, currentChat.id, content);
+    if (content !== "") {
+      console.log("createMessage data - ", reqUser.id, currentChat.id, content);
       createMessage({
         userId: reqUser.id,
         chatId: currentChat.id,
@@ -57,55 +57,56 @@ const Chat = () => {
 
   const currentUser = () => {
     fetch(`${BASE_API_URL}/api/users/profile`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
       },
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log('currentUser - ', res);
+        console.log("currentUser - ", res);
         setReqUser(res);
       });
   };
 
   const searchUser = (keyword) => {
-    toast.loading('Please Wait', { id: 'search' });
-    // setDisabled(true);
     fetch(`${BASE_API_URL}/api/users/search/${keyword}`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
       },
     })
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
         if (res.length === 0) {
-          toast.error('No users found', { id: 'search' });
-        } else {
-          toast.success('Found users', { id: 'search' });
-        }
+          toast.error("No Therapists found", { id: "search" });
+        }else {
         setUserList(res);
+        }
       });
   };
 
   const createChat = (userId) => {
     fetch(`${BASE_API_URL}/api/chats/create`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
       },
       body: JSON.stringify({ userId }),
     })
       .then((res) => res.json())
       .then((res) => {
-        setChatCreated(res.id);
-        setCurrentChat(res);
-        console.log('create chat', res);
+        if (res.error) {
+          toast.error(res.error, { id: "createChat" });
+        } else {
+          setChatCreated(res.id);
+          setCurrentChat(res);
+          console.log("create chat", res);
+        }
       });
   };
 
@@ -127,32 +128,30 @@ const Chat = () => {
   };
 
   const getUsersChat = () => {
-    toast.loading('loading chats', { id: 'chats' });
     fetch(`${BASE_API_URL}/api/chats/user`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
       },
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.length === 0) toast.error('No chats found', { id: 'chats' });
+        if (res.error) toast.error(res.error, { id: "getUsersChat" });
         else {
-          toast.success('Found chats', { id: 'chats' });
-          console.log('get user chat', res);
+          console.log("get user chat", res);
           setAllChats(res);
+          startSlowValueChange();
         }
-        startSlowValueChange();
       });
   };
 
   const createMessage = ({ userId, chatId, content }) => {
     fetch(`${BASE_API_URL}/api/messages/create`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
       },
       body: JSON.stringify({
         userId,
@@ -162,28 +161,30 @@ const Chat = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log('create message data - ', res);
+        console.log("create message data - ", res);
         setMessageCreated(res);
       });
   };
   const getAllMessages = (chatId) => {
-    toast.loading('fetching messages', { id: 'messages' });
+    toast.loading("fetching messages", { id: "messages" });
     fetch(`${BASE_API_URL}/api/messages/chat/${chatId}`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
       },
     })
       .then((res) => res.json())
       .then((res) => {
         if (res.length === 0)
-          toast.success('no messages yet. you can start by sending one', {
-            id: 'messages',
+          toast.success("no messages yet. you can start by sending one", {
+            id: "messages",
           });
-        toast.success('found messages', { id: 'messages' });
-        console.log('get messages data - ', res);
-        setMessages(res);
+        else {
+          toast.success("found messages", { id: "messages" });
+          console.log("get messages data - ", res);
+          setMessages(res);
+        }
       });
   };
 
@@ -196,8 +197,8 @@ const Chat = () => {
     setStompClient(temp);
 
     const headers = {
-      Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
-      'X-XSRF-TOKEN': getCookie('XSRF-TOKEN'),
+      Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
+      "X-XSRF-TOKEN": getCookie("XSRF-TOKEN"),
     };
 
     temp.connect(headers, onConnect, onError);
@@ -207,12 +208,12 @@ const Chat = () => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) {
-      return parts.pop().split(';').shift();
+      return parts.pop().split(";").shift();
     }
   }
 
   const onError = (error) => {
-    console.log('on error - ', error);
+    console.log("on error - ", error);
   };
 
   const onConnect = () => {
@@ -221,13 +222,22 @@ const Chat = () => {
 
   useEffect(() => {
     if (messageCreated && stompClient) {
-      stompClient.send('/app/message', {}, JSON.stringify(messageCreated));
+      setMessages([...messages, messageCreated]);
+      if (!allChats.find((obj) => obj.id === messageCreated.chat.id)) {
+        setAllChats([...allChats, messageCreated.chat]);
+      } else {
+        const updatedChats = allChats.map((chat) =>
+          chat.id === messageCreated.chat.id ? messageCreated.chat : chat
+        );
+        setAllChats(updatedChats);
+      }
+      stompClient.send("/app/message", {}, JSON.stringify(messageCreated));
       const user =
-        reqUser.id !== messageCreated.chat.users[0].id
-          ? messageCreated.chat.users[0]
-          : messageCreated.chat.users[1];
+        reqUser.id !== messageCreated.chat.user.id
+          ? messageCreated.chat.user
+          : messageCreated.chat.therapist;
       stompClient.send(
-        '/app/user-list',
+        "/app/user-list",
         {},
         JSON.stringify({ userId: user.id, chat: messageCreated.chat })
       );
@@ -235,27 +245,34 @@ const Chat = () => {
   }, [messageCreated]);
 
   const onMessageReceive = (payload) => {
-    console.log('recieve message', JSON.parse(payload.body));
+    console.log("recieve message", JSON.parse(payload.body));
     const recievedMessage = JSON.parse(payload.body);
     setMessages([...messages, recievedMessage]);
   };
 
   const onUserMessageRecieve = (payload) => {
-    console.log('recieve message user ', JSON.parse(payload.body));
+    console.log("recieve message user ", JSON.parse(payload.body));
 
     const recievedMessage = JSON.parse(payload.body);
-    if (document.visibilityState === 'hidden') {
+    if (document.visibilityState === "hidden") {
       const audio = new Audio(notificationSound);
       audio.play();
     }
-    if (!allChats.find((obj) => obj.id === recievedMessage.id))
+
+    if (!allChats.find((obj) => obj.id === recievedMessage.id)) {
       setAllChats([...allChats, recievedMessage]);
+    } else {
+      const updatedChats = allChats.map((chat) =>
+        chat.id === recievedMessage.id ? recievedMessage : chat
+      );
+      setAllChats(updatedChats);
+    }
   };
 
   useEffect(() => {
     if (isConnect && stompClient && reqUser && currentChat) {
       const subscription = stompClient.subscribe(
-        '/group/' + currentChat.id,
+        "/group/" + currentChat.id,
         onMessageReceive
       );
       return () => {
@@ -267,7 +284,7 @@ const Chat = () => {
   useEffect(() => {
     if (isConnect && stompClient && reqUser) {
       const subscription = stompClient.subscribe(
-        '/user/' + reqUser.id,
+        "/users/" + reqUser.id,
         onUserMessageRecieve
       );
       return () => {
@@ -285,7 +302,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (currentChat !== null) getAllMessages(currentChat.id);
-  }, [currentChat, messageCreated]);
+  }, [currentChat]);
 
   useEffect(() => {
     connect();
@@ -304,8 +321,9 @@ const Chat = () => {
                 <h1
                   className="font-bold h-full text-[#5627B0] px-3 py-10 mx-7 text-3xl cursor-pointer"
                   onClick={() => {
-                    router.push('/');
-                  }}>
+                    router.push("/");
+                  }}
+                >
                   Friennly
                 </h1>
               </div>
@@ -338,7 +356,8 @@ const Chat = () => {
                         onClick={() => {
                           handleClickOnChatCard(listItem.id);
                         }}
-                        key={index}>
+                        key={index}
+                      >
                         {<ChatCard username={listItem.username} />}
                       </div>
                     ))}
@@ -350,12 +369,23 @@ const Chat = () => {
                         onClick={() => {
                           handleClickonAllChat(index);
                         }}
-                        key={chatItem}>
+                        key={chatItem}
+                      >
                         <ChatCard
                           username={
-                            reqUser.id !== chatItem.users[0].id
-                              ? chatItem.users[0].username
-                              : chatItem.users[1].username
+                            reqUser.id !== chatItem.user.id
+                              ? chatItem.user.username
+                              : chatItem.therapist.username
+                          }
+                          content={
+                            chatItem.latestMessage
+                              ? chatItem.latestMessage.content
+                              : null
+                          }
+                          time={
+                            chatItem.latestMessage
+                              ? chatItem.latestMessage.time
+                              : null
                           }
                         />
                       </div>
@@ -374,7 +404,7 @@ const Chat = () => {
                     alt=""
                   />
                   <p className="my-9 text-2xl font-medium text-[#5627B0]">
-                    Chat with your favorite therapist now!{' '}
+                    Chat with your favorite therapist now!{" "}
                   </p>
                 </div>
               )}
@@ -391,9 +421,9 @@ const Chat = () => {
                       />
                       <div className="flex flex-col items-start justify-center">
                         <p className="font-semibold text-lg">
-                          {reqUser.id !== currentChat.users[0].id
-                            ? currentChat.users[0].username
-                            : currentChat.users[1].username}
+                          {reqUser.id !== currentChat.user.id
+                            ? currentChat.user.username
+                            : currentChat.therapist.username}
                         </p>
                         <p className="text-[#5F5F5F] text-sm">
                           last seen 5 min ago
@@ -417,7 +447,7 @@ const Chat = () => {
                             key={i}
                             index={i}
                             length={messages.length}
-                            isReqUserMessage={reqUser.id === item.user.id}
+                            isReqUserMessage={reqUser.id === item.sender.id}
                             content={item.content}
                             time={item.time}
                           />
@@ -441,9 +471,9 @@ const Chat = () => {
                             setContent(e.target.value);
                           }}
                           onKeyPress={(e) => {
-                            if (e.key === 'Enter') {
+                            if (e.key === "Enter") {
                               handleCreateMessage();
-                              setContent('');
+                              setContent("");
                             }
                           }}
                           value={content}
@@ -452,7 +482,7 @@ const Chat = () => {
                           className="text-[#5627B0] absolute left-[80%] cursor-pointer"
                           onClick={() => {
                             handleCreateMessage(reqUser.id);
-                            setContent('');
+                            setContent("");
                           }}
                         />
                       </div>
@@ -467,7 +497,8 @@ const Chat = () => {
                           className="text-[#5627B0] underline cursor-pointer"
                           onClick={() => {
                             setPaymentDone(true);
-                          }}>
+                          }}
+                        >
                           Renew here
                         </p>
                       </span>

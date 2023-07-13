@@ -59,6 +59,7 @@ const Register = () => {
           username,
           password,
           email,
+          userType:"USER",
         }),
         headers: {
           'Content-Type': 'application/json',
