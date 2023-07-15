@@ -374,7 +374,9 @@ const Chat = () => {
     <div className=" select-none bg-[url(/images/doodle.svg)] flex items-center justify-center h-screen">
       <div className=" select-none grid grid-cols-4 items-center relative bg-white justify-center w-[95%] h-[95%] rounded-md border-[#D5C9EB] border-2 m-auto">
         {loaderValue < 100 ? (
-          <ChatLoader className="col-span-4" value={loaderValue} />
+          <div className="col-span-4">
+            <ChatLoader value={loaderValue} />
+          </div>
         ) : (
           <>
             {openUserModal && (

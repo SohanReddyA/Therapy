@@ -24,7 +24,11 @@ const ChatCard = ({ username, content, time, curUser }) => {
           <div className="flex justify-between items-center">
             <div className="flex items-center">
               {curUser && <HiCheck className="text-sm font-thin" />}
-              <p className="text-[#5F5F5F]">{content}</p>
+              <p className="text-[#5F5F5F]">
+                {content.length > 15
+                  ? content.substring(0, 15) + '...'
+                  : content}
+              </p>
             </div>
             <div className="flex space-x-2 items-center">
               <p className="text-xs p-1 px-2 text-white bg-[#5627B0] rounded-full">
