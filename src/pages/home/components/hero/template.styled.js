@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+  user-select: none;
   display: flex;
   height: 100vh;
   width: 100%;
@@ -8,6 +9,7 @@ const Container = styled.div`
 `;
 
 const HeroContainer = styled.div`
+  user-select: none;
   display: flex;
   flex-direction: column;
   margin-top: 100px;
@@ -15,6 +17,7 @@ const HeroContainer = styled.div`
 `;
 
 const HeroTitle = styled.div`
+  user-select: none;
   color: #1a1a1a;
   font-size: 64px;
 
@@ -23,6 +26,7 @@ const HeroTitle = styled.div`
 `;
 
 const HeroText1 = styled.div`
+  user-select: none;
   color: #1a1a1a;
   font-size: 30px;
 
@@ -31,6 +35,7 @@ const HeroText1 = styled.div`
   text-transform: capitalize;
 `;
 const HeroText2 = styled.li`
+  user-select: none;
   color: rgba(26, 26, 26, 0.7);
   font-size: 28px;
 
@@ -39,6 +44,7 @@ const HeroText2 = styled.li`
 `;
 
 const HeroButton = styled.button`
+  user-select: none;
   background: #5627b0;
   border-radius: 30px;
   padding: 12px 24px;

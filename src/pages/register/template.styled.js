@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+  user-select: none;
   display: flex;
   height: 100vh;
   justify-content: space-between;
 `;
 
 const MainContainer = styled.div`
+  user-select: none;
   display: flex;
   margin: auto;
   width: 35%;
@@ -14,12 +16,14 @@ const MainContainer = styled.div`
   gap: 20px;
 `;
 const TextContainer = styled.div`
+  user-select: none;
   flex-direction: column;
   display: flex;
   gap: 14px;
 `;
 
 const SignInTitle = styled.div`
+  user-select: none;
   color: #1a1a1a;
   font-size: 36px;
 
@@ -27,16 +31,19 @@ const SignInTitle = styled.div`
 `;
 
 const SignInText = styled.div`
+  user-select: none;
   color: #1a1a1a;
   font-size: 24px;
 `;
 const InputBoxes = styled.div`
+  user-select: none;
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
 
 const InputBoxContainer = styled.div`
+  user-select: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,15 +53,18 @@ const InputBoxContainer = styled.div`
 `;
 
 const InputLabel = styled.div`
+  user-select: none;
   color: #1a1a1a;
   font-size: 16px;
 `;
 
 const BoxContainer = styled.div`
+  user-select: none;
   position: relative;
   width: 100%;
 `;
 const InputContainer = styled.div`
+  user-select: none;
   box-sizing: unset;
   position: relative;
 
@@ -77,12 +87,14 @@ const InputContainer = styled.div`
 `;
 
 const ShowPassword = styled.span`
+  user-select: none;
   display: flex;
   align-items: center;
   cursor: pointer;
 `;
 
 const InputField = styled.input`
+  user-select: none;
   flex: 1;
 
   font-style: normal;
@@ -95,6 +107,7 @@ const InputField = styled.input`
 `;
 
 const LoginButtonContainer = styled.div`
+  user-select: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,6 +115,7 @@ const LoginButtonContainer = styled.div`
 `;
 
 const LoginButton = styled.button`
+  user-select: none;
   background: #5627b0;
   border-radius: 30px;
   padding: 12px 20px;
@@ -123,6 +137,7 @@ const LoginButton = styled.button`
 `;
 
 const LoginText = styled.div`
+  user-select: none;
   color: rgba(26, 26, 26, 0.7);
   font-size: 16px;
 
@@ -130,6 +145,7 @@ const LoginText = styled.div`
 `;
 
 const Logo = styled.div`
+  user-select: none;
   position: fixed;
   top: 48px;
   left: 80px;

@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 const SelectWrapper = styled.div`
+  user-select: none;
   position: relative;
   display: inline-block;
 `;
 
 const SelectButton = styled.button`
+  user-select: none;
   border-radius: 16px;
   background: #5627b0;
   min-width: 173px;
@@ -13,6 +15,7 @@ const SelectButton = styled.button`
   min-height: 40px;
   padding: 10px 10px;
   text-align: center;
+  user-select: none;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -21,6 +24,7 @@ const SelectButton = styled.button`
 `;
 
 const DropdownList = styled.ul`
+  user-select: none;
   position: absolute;
   top: 100%;
   left: 0;
@@ -38,6 +42,7 @@ const DropdownList = styled.ul`
 `;
 
 const DropdownItem = styled.li`
+  user-select: none;
   padding: 8px 16px;
   cursor: pointer;
 

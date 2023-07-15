@@ -10,8 +10,10 @@ import { useState, useEffect } from 'react';
 import { CookieUtil } from '@/src/utils';
 import { ColorRing } from 'react-loader-spinner';
 import { BASE_API_URL } from '@/src/utils/api';
+import { useRouter } from 'next/router';
 
 const Home = ({ ADHDQuiz, AnxietyQuiz, depressionQuiz }) => {
+  const router = useRouter();
   const {
     myRef,
     executeScroll,
@@ -34,6 +36,15 @@ const Home = ({ ADHDQuiz, AnxietyQuiz, depressionQuiz }) => {
       setLoading(false);
     });
   }, []);
+  useEffect(() => {
+    if (router.isReady && !loading) {
+      console.log(router.query, 'Testlog');
+      if (router.query.quiz) {
+        executeScroll();
+      }
+    }
+  }, [router, loading]);
+
   if (loading)
     return (
       <div

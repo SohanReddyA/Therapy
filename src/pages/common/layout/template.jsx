@@ -12,19 +12,17 @@ const Layout = ({ children, executeScroll = null, isLoggedIn }) => {
       <Navbar executeScroll={executeScroll} isLoggedIn={isLoggedIn} />
       {children}
       {isLoggedIn && (
-        <Styled.Container>
+        <Styled.Container
+          onClick={() => {
+            router.push('/chat');
+          }}>
           <img
             src="/images/message-circle-dots.png"
             height="20px"
             width="20px"
             alt="Message"
           />
-          <Styled.ButtonText
-            onClick={() => {
-              router.push('/chat');
-            }}>
-            Chat with an expert
-          </Styled.ButtonText>
+          <Styled.ButtonText>Chat with an expert</Styled.ButtonText>
         </Styled.Container>
       )}
     </div>

@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+  user-select: none;
   display: flex;
   width: 100%;
   gap: 40px;
 `;
 
 const CardContainer = styled.div`
+  user-select: none;
   position: relative;
   border: 2px solid ${(props) => props.color};
   border-radius: 24px;
@@ -19,16 +21,19 @@ const CardContainer = styled.div`
 `;
 
 const image = styled.img`
+  user-select: none;
   width: 100%;
 `;
 
 const InfoBox = styled.div`
+  user-select: none;
   background: ${(props) => props.color};
   border-radius: 12px;
   padding: 15px;
 `;
 
 const InfoText = styled.p`
+  user-select: none;
   display: inline;
   font-style: normal;
 
@@ -39,12 +44,14 @@ const InfoText = styled.p`
 `;
 
 const InfoIcon = styled.img`
+  user-select: none;
   height: 24px;
   width: 24px;
   display: inline;
 `;
 
 const CardTitle = styled.p`
+  user-select: none;
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
@@ -54,6 +61,7 @@ const CardTitle = styled.p`
 `;
 
 const CardText = styled.p`
+  user-select: none;
   font-style: normal;
   padding-bottom: 20px;
   font-weight: 400;
@@ -63,6 +71,7 @@ const CardText = styled.p`
 `;
 
 const CardButton = styled.button`
+  user-select: none;
   position: absolute;
   bottom: 0%;
   left: 50%;

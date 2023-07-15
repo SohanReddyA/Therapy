@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+  user-select: none;
   display: flex;
   width: 50vw;
   position: fixed;
@@ -18,6 +19,7 @@ const Container = styled.div`
 `;
 
 const OuterBackground = styled.div`
+  user-select: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -28,15 +30,18 @@ const OuterBackground = styled.div`
 `;
 
 const TitleText = styled.div`
+  user-select: none;
   color: #1a1a1a;
   text-align: center;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
+  user-select: none;
   line-height: 28.571px;
 `;
 
 const TimeSelectionContainer = styled.div`
+  user-select: none;
   display: flex;
   gap: 120px;
   justify-content: center;
@@ -44,13 +49,15 @@ const TimeSelectionContainer = styled.div`
 `;
 
 const TimeSelection = styled.div`
+  user-select: none;
   border-radius: 16px;
   background: #5627b0;
   min-width: 173px;
-  min-height: 40px;
   color: #fff;
+  cursor: pointer;
   padding: 10px 10px;
   text-align: center;
+  user-select: none;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;

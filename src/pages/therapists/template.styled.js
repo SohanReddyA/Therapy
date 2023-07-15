@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+  user-select: none;
   display: flex;
   gap: 40px;
   width: 100%;
@@ -10,6 +11,7 @@ const Container = styled.div`
 `;
 
 const CardContainer = styled.div`
+  user-select: none;
   display: flex;
   width: 320px;
   padding-bottom: 0px;
@@ -22,11 +24,13 @@ const CardContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
+  user-select: none;
   position: relative;
   width: 100%;
 `;
 
 const ImageText = styled.div`
+  user-select: none;
   background: rgba(26, 26, 17, 0.25);
   position: absolute;
   bottom: 0px;
@@ -41,6 +45,7 @@ const ImageText = styled.div`
 `;
 
 const TextContainer = styled.div`
+  user-select: none;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -48,6 +53,7 @@ const TextContainer = styled.div`
 `;
 
 const Text1 = styled.div`
+  user-select: none;
   color: #1a1a1a;
   font-size: 14px;
 
@@ -58,6 +64,7 @@ const Text1 = styled.div`
 `;
 
 const Text2 = styled.div`
+  user-select: none;
   color: #284e4f;
   font-size: 14px;
 

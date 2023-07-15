@@ -1,18 +1,21 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+  user-select: none;
   width: 100%;
   padding: 6vw 180px;
   background: rgba(86, 39, 176, 0.1);
 `;
 
 const InnerContainer = styled.div`
+  user-select: none;
   display: flex;
   width: 100%;
   justify-content: space-between;
 `;
 
 const LogoContainer = styled.div`
+  user-select: none;
   display: flex;
   flex-direction: column;
   max-width: 450px;
@@ -20,6 +23,7 @@ const LogoContainer = styled.div`
 `;
 
 const Logo = styled.div`
+  user-select: none;
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
@@ -28,6 +32,7 @@ const Logo = styled.div`
 `;
 
 const Text = styled.div`
+  user-select: none;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -36,10 +41,12 @@ const Text = styled.div`
 `;
 
 const MainContainer = styled.div`
+  user-select: none;
   display: flex;
   gap: 5.2vw;
 `;
 const GroupContainer = styled.div`
+  user-select: none;
   display: flex;
   flex-direction: column;
   max-width: 450px;
@@ -47,6 +54,7 @@ const GroupContainer = styled.div`
 `;
 
 const LinksContainer = styled.div`
+  user-select: none;
   display: flex;
   flex-direction: column;
   max-width: 450px;
@@ -54,6 +62,7 @@ const LinksContainer = styled.div`
 `;
 
 const Links = styled.div`
+  user-select: none;
   font-style: normal;
 
   font-weight: 400;
@@ -64,6 +73,7 @@ const Links = styled.div`
 `;
 
 const Heading = styled.div`
+  user-select: none;
   font-style: normal;
   font-weight: 600;
   font-size: 24px;

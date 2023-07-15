@@ -1,13 +1,18 @@
 import { useRouter } from 'next/router';
 import Styled from './template.styled';
 import { useEffect, useState } from 'react';
-import { CookieUtil } from '@/src/utils';
+import { CookieUtil, useClick } from '@/src/utils';
 import { BASE_API_URL } from '@/src/utils/api';
+import { toast } from 'react-hot-toast';
 
 const Navbar = ({ executeScroll, isLoggedIn }) => {
   const router = useRouter();
   const [isButtonOpen, setButtonOpen] = useState(false);
   const [username, setUsername] = useState('');
+  const handleClickOutside = () => {
+    setButtonOpen(false);
+  };
+  const clickRef = useClick(handleClickOutside);
   useEffect(() => {
     if (CookieUtil.getCookie('FriennlyUser')) {
       fetch(`${BASE_API_URL}/api/users/profile`, {
@@ -20,6 +25,11 @@ const Navbar = ({ executeScroll, isLoggedIn }) => {
         .then((res) => res.json())
         .then((res) => {
           // console.log('currentUser - ', res);
+          if (res.error) {
+            CookieUtil.removeCookie('FriennlyUser');
+            toast.error('You have been logged out, please login again.');
+            router.push('/');
+          }
           setUsername(res.username);
         });
     }
@@ -38,11 +48,16 @@ const Navbar = ({ executeScroll, isLoggedIn }) => {
           Therapists
         </Styled.NavLinks>
         <Styled.NavLinks> Contact Us</Styled.NavLinks>
-        <Styled.TakeQuizButton onClick={executeScroll}>
+        <Styled.TakeQuizButton
+          onClick={(event) => {
+            if (router.pathname != '/')
+              router.push({ pathname: '/', query: { quiz: true } });
+            else executeScroll(event);
+          }}>
           Take The Quiz
         </Styled.TakeQuizButton>
         {isLoggedIn ? (
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }} ref={clickRef}>
             <img
               src="/images/defaultAvatar.png"
               height="60px"

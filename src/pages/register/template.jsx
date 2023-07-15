@@ -59,7 +59,7 @@ const Register = () => {
           username,
           password,
           email,
-          userType:"USER",
+          userType: 'USER',
         }),
         headers: {
           'Content-Type': 'application/json',
@@ -117,6 +117,11 @@ const Register = () => {
                   placeholder="Enter your email/phone number"
                   name="email"
                   value={email}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      handleClick();
+                    }
+                  }}
                   onChange={handleChange}
                 />
               </Styled.Input.InputContainer>
@@ -131,6 +136,11 @@ const Register = () => {
                   placeholder="Enter a username"
                   name="username"
                   value={username}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      handleClick();
+                    }
+                  }}
                   onChange={handleChange}
                 />
               </Styled.Input.InputContainer>
@@ -145,6 +155,11 @@ const Register = () => {
                   name="password"
                   placeholder="Enter your Password"
                   value={password}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      handleClick();
+                    }
+                  }}
                   onChange={handleChange}
                 />
                 {!showPassword && (
@@ -179,6 +194,11 @@ const Register = () => {
                   name="confirm password"
                   placeholder="Enter your Password"
                   value={confirmPassword}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      handleClick();
+                    }
+                  }}
                   onChange={handleChange}
                 />
                 {!showConfirmPassword && (

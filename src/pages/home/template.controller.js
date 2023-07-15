@@ -5,9 +5,11 @@ const HomeController = () => {
   const [ADHDOpen, setADHDOpen] = useState(false);
   const [AnxietyOpen, setAnxietyOpen] = useState(false);
   const [DepressionOpen, setDepressionOpen] = useState(false);
-  const executeScroll = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const executeScroll = (e = null) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     myRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
   };
 

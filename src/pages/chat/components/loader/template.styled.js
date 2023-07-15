@@ -1,6 +1,7 @@
 const { styled } = require('styled-components');
 
 const Container = styled.div`
+  user-select: none;
   width: 100%;
   height: 100%;
   display: flex;
@@ -11,6 +12,7 @@ const Container = styled.div`
 `;
 
 const Logo = styled.p`
+  user-select: none;
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -19,6 +21,7 @@ const Logo = styled.p`
 `;
 
 const ProgressBar = styled.progress`
+  user-select: none;
   height: 8px;
   width: 20vw;
   border: none;

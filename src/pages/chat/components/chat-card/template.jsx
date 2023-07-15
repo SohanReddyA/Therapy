@@ -1,6 +1,8 @@
-import React from "react";
+import React from 'react';
+import { HiCheck } from 'react-icons/hi';
 
-const ChatCard = ({ username, content, time }) => {
+const ChatCard = ({ username, content, time, curUser }) => {
+  // console.log(curUser, 'USerCHoasj');
   return (
     <div className="flex items-center justify-center py-2 group cursor-pointer">
       {/* Profile Picture */}
@@ -18,12 +20,19 @@ const ChatCard = ({ username, content, time }) => {
           <p className="text-sm text-[#5F5F5F]">{time}</p>
         </div>
 
-        {content && <div className="flex justify-between items-center">
-          <p className="text-[#5F5F5F]">{content}</p>
-          <div className="flex space-x-2 items-center">
-            <p className="text-xs p-1 px-2 text-white bg-[#5627B0] rounded-full">5</p>
+        {content && (
+          <div className="flex justify-between items-center">
+            <div className="flex items-center">
+              {curUser && <HiCheck className="text-sm font-thin" />}
+              <p className="text-[#5F5F5F]">{content}</p>
+            </div>
+            <div className="flex space-x-2 items-center">
+              <p className="text-xs p-1 px-2 text-white bg-[#5627B0] rounded-full">
+                5
+              </p>
+            </div>
           </div>
-        </div>}
+        )}
       </div>
     </div>
   );

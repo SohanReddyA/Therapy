@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
+  user-select: none;
   width: 25vw;
   position: fixed;
   top: 50%;
@@ -19,6 +20,7 @@ const Container = styled.div`
 
 const OuterBackground = styled.div`
   position: fixed;
+  user-select: none;
   top: 0;
   left: 0;
   right: 0;
@@ -29,8 +31,10 @@ const OuterBackground = styled.div`
 
 const TitleText = styled.div`
   color: #1a1a1a;
+  user-select: none;
   text-align: center;
   font-size: 24px;
+  user-select: none;
   font-style: normal;
   font-weight: 700;
   line-height: 28.571px;
@@ -38,6 +42,7 @@ const TitleText = styled.div`
 
 const TimeSelectionContainer = styled.div`
   display: flex;
+  user-select: none;
   gap: 120px;
   justify-content: center;
   align-items: center;
@@ -45,9 +50,11 @@ const TimeSelectionContainer = styled.div`
 
 const TimeSelection = styled.div`
   border-radius: 16px;
+  user-select: none;
   background: #5627b0;
   min-width: 173px;
   color: #fff;
+  user-select: none;
   padding: 10px 10px;
   text-align: center;
   font-size: 16px;

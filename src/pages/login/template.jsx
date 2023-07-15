@@ -78,6 +78,11 @@ const Login = () => {
                   name="username"
                   value={username}
                   onChange={handleChange}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      handleClick();
+                    }
+                  }}
                 />
               </Styled.Input.InputContainer>
             </Styled.Input.BoxContainer>
@@ -92,6 +97,11 @@ const Login = () => {
                   placeholder="Enter your Password"
                   value={password}
                   onChange={handleChange}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      handleClick();
+                    }
+                  }}
                 />
                 {!showPassword && (
                   <Styled.Input.ShowPassword onClick={toggleShowPassword}>

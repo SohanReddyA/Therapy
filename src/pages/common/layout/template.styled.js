@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+  user-select: none;
   display: flex;
   position: fixed;
   cursor: pointer;
@@ -15,6 +16,7 @@ const Container = styled.div`
 `;
 
 const ButtonText = styled.div`
+  user-select: none;
   color: #fff;
   font-size: 18px;
   font-style: normal;

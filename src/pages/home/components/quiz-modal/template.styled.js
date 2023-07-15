@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+  user-select: none;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -23,6 +24,7 @@ const getLabel = (type) => {
 };
 
 const Label = styled.div`
+  user-select: none;
   display: inline-flex;
   width: fit-content;
   padding: 12px 24px;
@@ -37,12 +39,14 @@ const Label = styled.div`
 `;
 
 const QuestionContainer = styled.div`
+  user-select: none;
   display: flex;
   flex-direction: column;
   gap: 16px;
 `;
 
 const QuestionNumber = styled.div`
+  user-select: none;
   color: #1a1a1a;
   font-size: 32px;
 
@@ -51,6 +55,7 @@ const QuestionNumber = styled.div`
 `;
 
 const QuestionText = styled.div`
+  user-select: none;
   color: #1a1a1a;
   font-size: 24px;
 
@@ -59,6 +64,7 @@ const QuestionText = styled.div`
 `;
 
 const QuizOptionsContainer = styled.div`
+  user-select: none;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
@@ -80,6 +86,7 @@ const getColor = (type) => {
 };
 
 const QuizOption = styled.div`
+  user-select: none;
   grid-column: span 1 / span 1;
   cursor: pointer;
   display: inline-flex;
@@ -95,6 +102,7 @@ const getOptionTextColor = (type) => {
   return '#0F60A0';
 };
 const QuizOptionText = styled.div`
+  user-select: none;
   color: ${(props) =>
     props.checked ? getOptionTextColor(props.quiztype) : '#1a1a1a'};
   ${(props) => (props.checked ? 'font-weight: 600' : '')};
@@ -105,6 +113,7 @@ const QuizOptionText = styled.div`
 `;
 
 const ButtonFlex = styled.div`
+  user-select: none;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -148,6 +157,7 @@ const getBackButton = (type) => {
 };
 
 const BackButton = styled.button`
+  user-select: none;
   ${(props) => getBackButton(props.quiztype)}
 `;
 
@@ -186,6 +196,7 @@ const getNextButton = (type) => {
 };
 
 const NextButton = styled.button`
+  user-select: none;
   ${(props) => getNextButton(props.quiztype)}
 `;
 

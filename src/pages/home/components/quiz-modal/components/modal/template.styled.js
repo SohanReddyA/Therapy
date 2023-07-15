@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const ModalOverlay = styled.div`
+  user-select: none;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -16,6 +17,7 @@ const ModalOverlay = styled.div`
   align-items: center;
 `;
 const OuterBackground = styled.div`
+  user-select: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -25,6 +27,7 @@ const OuterBackground = styled.div`
   z-index: 9998;
 `;
 const ModalContent = styled.div`
+  user-select: none;
   background-color: white;
   width: 100%;
   padding: 20px;
@@ -33,6 +36,7 @@ const ModalContent = styled.div`
 
 const CloseButton = styled.button`
   position: absolute;
+  user-select: none;
   top: 40px;
   right: 40px;
   border: none;

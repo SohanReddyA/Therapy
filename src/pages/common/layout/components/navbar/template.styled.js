@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+  user-select: none;
   box-sizing: border-box;
   position: absolute;
   display: flex;
@@ -15,6 +16,7 @@ const Container = styled.div`
 `;
 
 const FlexContainer = styled.div`
+  user-select: none;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -24,6 +26,7 @@ const FlexContainer = styled.div`
 `;
 
 const TakeQuizButton = styled.button`
+  user-select: none;
   border: 1px solid #5627b0;
   border-radius: 30px;
   height: 52px;
@@ -37,6 +40,7 @@ const TakeQuizButton = styled.button`
 `;
 
 const SignUpButton = styled.button`
+  user-select: none;
   background: #5627b0;
   border-radius: 30px;
   padding: 12px 20px;
@@ -50,6 +54,7 @@ const SignUpButton = styled.button`
 `;
 
 const NavLinks = styled.p`
+  user-select: none;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -59,6 +64,7 @@ const NavLinks = styled.p`
   color: #111111;
 `;
 const Logo = styled.p`
+  user-select: none;
   font-style: normal;
   cursor: pointer;
   font-weight: 700;
@@ -68,6 +74,7 @@ const Logo = styled.p`
 `;
 
 const LogoutButton = styled.p`
+  user-select: none;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -77,6 +84,7 @@ const LogoutButton = styled.p`
 `;
 
 const ProfileContainer = styled.div`
+  user-select: none;
   border-radius: 16px;
   background: #d5cce7;
   display: flex;
