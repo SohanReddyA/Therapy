@@ -372,9 +372,9 @@ const Chat = () => {
 
   return (
     <div className=" select-none bg-[url(/images/doodle.svg)] flex items-center justify-center h-screen">
-      <div className=" select-none grid grid-cols-10 items-center relative bg-white justify-center w-[95%] h-[95%] rounded-md border-[#D5C9EB] border-2 m-auto">
+      <div className=" select-none grid grid-cols-4 items-center relative bg-white justify-center w-[95%] h-[95%] rounded-md border-[#D5C9EB] border-2 m-auto">
         {loaderValue < 100 ? (
-          <ChatLoader value={loaderValue} />
+          <ChatLoader className="col-span-4" value={loaderValue} />
         ) : (
           <>
             {openUserModal && (
@@ -390,7 +390,7 @@ const Chat = () => {
                 time={otherTimes}
               />
             )}
-            <div className=" col-span-3 select-none left border-[#D5C9EB] border-r-2 flex-col items-center justify-center">
+            <div className=" col-span-1 select-none left border-[#D5C9EB] border-r-2 flex-col items-center justify-center">
               {/*Title of the page */}
               <div className=" select-none h-[10vh]">
                 <h1
@@ -478,7 +478,7 @@ const Chat = () => {
               </div>
             </div>
 
-            <div className=" col-span-7 select-none right flex-col relative justify-between w-full h-full">
+            <div className=" col-span-3 select-none right flex-col relative justify-between w-full h-full">
               {/* Default start page */}
               {!currentChat && (
                 <div className=" select-none flex flex-col items-center text-center max-width-[70%] m-auto h-full justify-center w-auto">
