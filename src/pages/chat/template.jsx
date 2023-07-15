@@ -277,7 +277,10 @@ const Chat = () => {
     console.log('recieve message', JSON.parse(payload.body));
     const recievedMessage = JSON.parse(payload.body);
     console.log(reqUser.id, 'Received message log', recievedMessage.sender.id);
-    if (reqUser.id !== recievedMessage.sender.id) {
+    if (
+      messages.length &&
+      messages[messages.length - 1].id === recievedMessage.id
+    ) {
       console.log(messages, 'MEssages log');
       setMessages([...messages, recievedMessage]);
     }
