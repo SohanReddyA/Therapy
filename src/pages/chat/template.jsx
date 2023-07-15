@@ -251,7 +251,6 @@ const Chat = () => {
 
   useEffect(() => {
     if (messageCreated && stompClient) {
-      setMessages([...messages, messageCreated]);
       if (!allChats.find((obj) => obj.id === messageCreated.chat.id)) {
         setAllChats([...allChats, messageCreated.chat]);
       } else {
