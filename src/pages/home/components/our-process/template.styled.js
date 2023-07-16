@@ -39,7 +39,7 @@ const MainTitle = styled.p`
   user-select: none;
   font-style: normal;
   font-weight: 700;
-  font-size: 48px;
+  font-size: 2.5rem;
   line-height: 58px;
   color: #1a1a1a;
 `;
@@ -47,7 +47,7 @@ const MainDesc = styled.p`
   user-select: none;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 160%;
   color: rgba(17, 17, 17, 0.7);
 `;
@@ -76,7 +76,7 @@ const ProcessTitle = styled.p`
   user-select: none;
   font-style: normal;
   font-weight: 600;
-  font-size: 32px;
+  font-size: 2rem;
   line-height: 160%;
   letter-spacing: 0.02em;
   color: #111111;
@@ -86,7 +86,7 @@ const ProcessDesc = styled.p`
   user-select: none;
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 1rem;
   line-height: 160%;
   color: rgba(17, 17, 17, 0.5);
 `;
