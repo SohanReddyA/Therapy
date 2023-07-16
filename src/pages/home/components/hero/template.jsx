@@ -9,9 +9,8 @@ const Hero = ({ executeScroll }) => {
         </Styled.HeroTitle>
         <Styled.HeroText1>
           Chat-Based Sessions to{' '}
-          <span style={{ color: '#5627B0' }}>Connect</span> with Your
-          <br />
-          Therapist and{' '}
+          <span style={{ color: '#5627B0' }}>Connect</span> with Your Therapist
+          and{' '}
           <span style={{ color: '#5627B0' }}>Begin Your Path to Healing</span>
         </Styled.HeroText1>
         <ul style={{ listStyleType: 'disc' }}>

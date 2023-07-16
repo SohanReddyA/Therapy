@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   user-select: none;
+  background-image: url('/images/doodle.svg');
   display: flex;
   gap: 40px;
   justify-content: center;
