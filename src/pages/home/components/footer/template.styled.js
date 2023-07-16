@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   user-select: none;
   width: 100%;
-  padding: 6vw 180px;
+  padding: 6vw 100px;
   background: rgba(86, 39, 176, 0.1);
 `;
 
@@ -18,7 +18,7 @@ const LogoContainer = styled.div`
   user-select: none;
   display: flex;
   flex-direction: column;
-  max-width: 450px;
+  max-width: 40vw;
   gap: 16px;
 `;
 
@@ -43,7 +43,7 @@ const Text = styled.div`
 const MainContainer = styled.div`
   user-select: none;
   display: flex;
-  gap: 5.2vw;
+  gap: 20px;
 `;
 const GroupContainer = styled.div`
   user-select: none;

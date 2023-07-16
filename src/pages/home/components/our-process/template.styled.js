@@ -5,14 +5,15 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
+  gap: 50px;
 `;
 
 const imageContainer = styled.div`
   user-select: none;
-  padding: 50px;
   flex-basis: 80%;
 `;
 const Image = styled.img`
+  margin-top: 2rem;
   user-select: none;
   width: 100%;
   height: 100vh;
