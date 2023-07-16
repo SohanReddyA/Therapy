@@ -8,50 +8,61 @@ const OurProcess = () => {
       </Styled.imageContainer>
       <Styled.MainContainer>
         <Styled.MainFlex>
-          <Styled.MainTitle>Our Process</Styled.MainTitle>
+          <Styled.MainTitle>Your Journey to Healing</Styled.MainTitle>
           <Styled.MainDesc>
-            Sit arcu, egestas nunc, eros dignissim nunc, pretium malesuada.
-            Tristique est tellus non maecenas in egestas aliquam. Eget dolor
-            pellentesque consequat donec lectus nisl ligula. Ut sed nisi amet.
+            Keep calm, we are here to help you. Navigating with Care, Our
+            Process is Designed to Empower You on Your Path to Healing and
+            Well-being.
           </Styled.MainDesc>
         </Styled.MainFlex>
         <Styled.ProcessContainer>
           <Styled.ProcessImage src="/images/Process1.png" />
           <Styled.ProcessFlex>
-            <Styled.ProcessTitle>Discovery</Styled.ProcessTitle>
+            <Styled.ProcessTitle>Take the Quiz</Styled.ProcessTitle>
             <Styled.ProcessDesc>
-              User takes the standardized quiz. Advised to take it more than
-              once to normalise the results.
+              Begin your journey towards self-discovery and understanding by
+              taking our caring quiz. Gain valuable insights into your mental
+              well-being and embark on a path of personal growth.
             </Styled.ProcessDesc>
           </Styled.ProcessFlex>
         </Styled.ProcessContainer>
         <Styled.ProcessContainer>
           <Styled.ProcessImage src="/images/Process2.png" />
           <Styled.ProcessFlex>
-            <Styled.ProcessTitle>Plan</Styled.ProcessTitle>
+            <Styled.ProcessTitle>Chat Anonymously</Styled.ProcessTitle>
             <Styled.ProcessDesc>
-              Look at the therapist suggestion given by us or look at the other
-              available therapists.
+              Engage in meaningful, confidential conversations with our
+              compassionate professionals who provide a safe space for you to
+              express yourself. Feel heard, supported, and validated as you
+              navigate your challenges.
             </Styled.ProcessDesc>
           </Styled.ProcessFlex>
         </Styled.ProcessContainer>
         <Styled.ProcessContainer>
           <Styled.ProcessImage src="/images/Process3.png" />
           <Styled.ProcessFlex>
-            <Styled.ProcessTitle>Execute</Styled.ProcessTitle>
+            <Styled.ProcessTitle>
+              Find the right therapist for you
+            </Styled.ProcessTitle>
             <Styled.ProcessDesc>
-              Start talking to the therapists by a simple messaging option and
-              that’s how we start
+              Explore our diverse community of therapists, each with their
+              unique expertise and approach. We&apos;ll help you find the
+              therapist who resonates with you, ensuring a strong therapeutic
+              connection.
             </Styled.ProcessDesc>
           </Styled.ProcessFlex>
         </Styled.ProcessContainer>
         <Styled.ProcessContainer>
           <Styled.ProcessImage src="/images/Process4.png" />
           <Styled.ProcessFlex>
-            <Styled.ProcessTitle>Deliver</Styled.ProcessTitle>
+            <Styled.ProcessTitle>
+              Proceed to classic therapy sessions
+            </Styled.ProcessTitle>
             <Styled.ProcessDesc>
-              Look at the blogs and content created by us, will keep you on
-              track!
+              Transition to traditional therapy sessions, where you&apos;ll
+              receive the personalized care and attention you deserve. Together
+              with your dedicated therapist, embark on a transformative journey
+              towards healing and empowerment.
             </Styled.ProcessDesc>
           </Styled.ProcessFlex>
         </Styled.ProcessContainer>
@@ -62,10 +73,9 @@ const OurProcess = () => {
 
 export default OurProcess;
 
-
 // Blog(Decide site and check if it has integrations)
 // Database
 // Login
-// 
-// 
-// 
+//
+//
+//

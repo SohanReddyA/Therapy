@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   user-select: none;
   display: flex;
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   justify-content: space-between;
 `;
@@ -13,13 +13,14 @@ const HeroContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 100px;
+  max-width: 40vw;
   gap: 50px;
 `;
 
 const HeroTitle = styled.div`
   user-select: none;
   color: #1a1a1a;
-  font-size: 64px;
+  font-size: 50px;
 
   font-weight: 700;
   text-transform: capitalize;
@@ -28,16 +29,17 @@ const HeroTitle = styled.div`
 const HeroText1 = styled.div`
   user-select: none;
   color: #1a1a1a;
-  font-size: 30px;
+  font-size: 25px;
 
   font-weight: 700;
   line-height: 48px;
   text-transform: capitalize;
 `;
 const HeroText2 = styled.li`
+  margin-left: 1.5rem;
   user-select: none;
   color: rgba(26, 26, 26, 0.7);
-  font-size: 28px;
+  font-size: 22px;
 
   font-weight: 700;
   line-height: 150%;
@@ -51,7 +53,7 @@ const HeroButton = styled.button`
   width: fit-content;
 
   color: #fff;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 140%;
 `;

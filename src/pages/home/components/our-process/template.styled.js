@@ -4,7 +4,7 @@ const Container = styled.div`
   user-select: none;
   display: flex;
   width: 100%;
-  gap: 40px;
+  height: 100vh;
 `;
 
 const imageContainer = styled.div`
@@ -15,14 +15,15 @@ const imageContainer = styled.div`
 const Image = styled.img`
   user-select: none;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 `;
 
 const MainContainer = styled.div`
   user-select: none;
   display: flex;
   width: 100%;
-  gap: 80px;
+  gap: 15px;
+  justify-content: space-between;
   flex-direction: column;
 `;
 const MainFlex = styled.div`

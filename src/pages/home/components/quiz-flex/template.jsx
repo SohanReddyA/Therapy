@@ -14,12 +14,12 @@ const QuizFlex = ({ innerRef, ADHD, Anxiety, Depression }) => {
         </Styled.InfoBox>
         <Styled.CardTitle color="#284E4F">Depression</Styled.CardTitle>
         <Styled.CardText>
-          Depression is a mental health condition that can affect a
-          person&apos;s mood, behavior, and overall quality of life. People with
-          depression may feel sad, hopeless, or anxious for an extended period
-          of time. In addition to emotional symptoms, depression can also cause
-          physical symptoms, such as changes in appetite or sleep patterns,
-          fatigue, and unexplained aches and pains.
+          Depression is like having a heavy cloud that follows you, casting a
+          shadow on your thoughts and emotions. It can make everyday tasks feel
+          overwhelming and drain your energy. With the right support and
+          treatment, you can find relief and regain control. Embracing
+          self-care, therapy, and the love of your support network can help you
+          break free from the grip of depression.
         </Styled.CardText>
         <Styled.CardButton color="#284E4F" onClick={() => Depression(true)}>
           Take the Quiz
@@ -53,7 +53,7 @@ const QuizFlex = ({ innerRef, ADHD, Anxiety, Depression }) => {
           <Styled.InfoIcon src="/images/info-circle-3.png"></Styled.InfoIcon>
           <Styled.InfoText color="#0F60A0">
             {' '}
-            Over 32% of India’s population suffers from depression{' '}
+            Millions of children and adults suffer from ADHD in India{' '}
           </Styled.InfoText>
         </Styled.InfoBox>
         <Styled.CardTitle color="#0F60A0">ADHD</Styled.CardTitle>

@@ -7,9 +7,8 @@ const Footer = () => {
         <Styled.LogoContainer>
           <Styled.Logo>Friennly</Styled.Logo>
           <Styled.Text>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry&apos;s standard. Lorem
-            Ipsum has been the industry&apos;s standard.
+            Our mission is to provide accessible and affordable mental care for
+            students and young professionals.
           </Styled.Text>
         </Styled.LogoContainer>
         <Styled.MainContainer>

@@ -100,7 +100,7 @@ const Home = ({ ADHDQuiz, AnxietyQuiz, depressionQuiz }) => {
           Quiz={depressionQuiz}
           type="Depression"
         />
-        <Blog />
+        {/* <Blog /> */}
       </div>
       <Footer />
     </Layout>
