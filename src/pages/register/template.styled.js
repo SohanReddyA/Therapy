@@ -149,7 +149,7 @@ const Logo = styled.div`
   position: fixed;
   top: 48px;
   left: 80px;
-  color: #fff;
+  color: #5627b0;
   font-size: 32px;
 
   font-weight: 700;
