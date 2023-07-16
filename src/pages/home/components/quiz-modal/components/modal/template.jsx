@@ -1,6 +1,6 @@
 const { default: Styled } = require('./template.styled');
 
-const Modal = ({ onClose, children }) => {
+const Modal = ({ onClose, children, quizType }) => {
   return (
     <>
       <Styled.OuterBackground />
@@ -8,6 +8,7 @@ const Modal = ({ onClose, children }) => {
         <Styled.ModalContent>
           {children}
           <Styled.CloseButton
+            quizType={quizType}
             onClick={() => {
               onClose();
             }}>

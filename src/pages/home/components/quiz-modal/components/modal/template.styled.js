@@ -7,8 +7,8 @@ const ModalOverlay = styled.div`
   left: 50%;
   padding: 80px 120px;
   transform: translate(-50%, -50%);
-  width: 75vw;
-  height: 75vh;
+  min-width: 75vw;
+  min-height: 75vh;
   background: #ffffff;
   border-radius: 64px;
   display: flex;
@@ -34,14 +34,31 @@ const ModalContent = styled.div`
   border-radius: 4px;
 `;
 
+const getColorClose = (type) => {
+  if (type == 'Depression') {
+    return `
+      background: rgba(166, 198, 199, 0.2);
+      color: #284e4f;`;
+  } else if (type == 'Anxiety') {
+    return `
+      background: rgba(255, 204, 142, 0.20);
+      color: #FE981C;`;
+  }
+  return `
+    background: rgba(158, 213, 226, 0.20);
+    color: #0F60A0;`;
+};
+
 const CloseButton = styled.button`
   position: absolute;
   user-select: none;
-  top: 40px;
-  right: 40px;
+  top: 60px;
+  padding: 0px 15px;
+  right: 60px;
   border: none;
-  background-color: transparent;
-  font-size: 18px;
+  ${(props) => getColorClose(props.quizType)}
+  border-radius: 50%;
+  font-size: 2rem;
   cursor: pointer;
 `;
 

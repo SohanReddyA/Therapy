@@ -20,7 +20,7 @@ const QuizModal = ({ isOpen, setOpen, Quiz, type }) => {
     return null;
   }
   return (
-    <Modal onClose={handleCloseModal}>
+    <Modal onClose={handleCloseModal} quizType={type}>
       {type == 'Depression' && <DepressionQuiz Quiz={Quiz} />}
       {type == 'Anxiety' && <AnxietyQuiz Quiz={Quiz} />}
       {type == 'ADHD' && <ADHDQuiz Quiz={Quiz} />}
