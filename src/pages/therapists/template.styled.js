@@ -4,6 +4,7 @@ const Container = styled.div`
   user-select: none;
   display: flex;
   gap: 40px;
+  justify-content: center;
   width: 100%;
   padding: 50px;
   flex-wrap: wrap;

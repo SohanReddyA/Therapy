@@ -320,6 +320,7 @@ const Chat = () => {
   useEffect(() => {
     console.log(currentChat, 'CurrentChat');
     if (currentChat !== null) {
+      setMessages([]);
       getAllMessages(currentChat.id);
     }
   }, [currentChat]);
