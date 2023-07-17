@@ -138,11 +138,10 @@ const LoginButton = styled.button`
 
 const LoginText = styled.div`
   user-select: none;
-  color: #5627b0;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  color: rgba(26, 26, 26, 0.7);
+  font-size: 0.85rem;
+
+  font-weight: 500;
 `;
 const Logo = styled.div`
   user-select: none;
