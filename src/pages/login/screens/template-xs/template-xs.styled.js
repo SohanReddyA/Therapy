@@ -6,16 +6,19 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  width: 100vw;
+  justify-content: center;
 `;
 
 const MainContainer = styled.div`
   user-select: none;
   display: flex;
-  padding: 0px 2rem;
+  padding: 0px 10vw;
   width: 100%;
   flex-direction: column;
   gap: 1rem;
+  align-items: center;
+  justify-content: center;
 `;
 
 const TextContainer = styled.div`
@@ -108,7 +111,7 @@ const ShowPassword = styled.span`
 const InputField = styled.input`
   user-select: none;
   flex: 1;
-
+  width: 100%;
   font-style: normal;
   font-weight: 400;
   font-size: 1rem;
@@ -131,7 +134,7 @@ const LoginButton = styled.button`
   background: #5627b0;
   border-radius: 30px;
   height: 3rem;
-  min-width: 15rem;
+  min-width: 10rem;
 
   font-style: normal;
   font-weight: 500;

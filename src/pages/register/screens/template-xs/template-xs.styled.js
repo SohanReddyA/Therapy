@@ -4,18 +4,21 @@ const Container = styled.div`
   margin: 2rem 0px;
   user-select: none;
   display: flex;
+  width: 100vw;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const MainContainer = styled.div`
   user-select: none;
   display: flex;
-  padding: 0px 2rem;
+  padding: 0px 10vw;
   width: 100%;
   flex-direction: column;
   gap: 1rem;
+  align-items: center;
+  justify-content: center;
 `;
 const TextContainer = styled.div`
   user-select: none;

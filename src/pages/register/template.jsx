@@ -1,4 +1,4 @@
-import ResponsiveRender from '../common/render/template';
+import { ResponsiveRender } from '../common';
 import { RegisterLg, RegisterXs } from './screens';
 
 const Register = () => {
