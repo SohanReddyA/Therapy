@@ -44,7 +44,7 @@ const SignInText = styled.div`
 const InputBoxes = styled.div`
   user-select: none;
   display: flex;
-  width: 80%;
+  width: 100%;
   flex-direction: column;
   gap: 1rem;
 `;
@@ -52,7 +52,7 @@ const InputBoxes = styled.div`
 const InputBoxContainer = styled.div`
   user-select: none;
   display: flex;
-  width: 80%;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -69,14 +69,14 @@ const InputLabel = styled.div`
 const BoxContainer = styled.div`
   user-select: none;
   position: relative;
-  width: 80%;
+  width: 100%;
 `;
 const InputContainer = styled.div`
   user-select: none;
-  box-sizing: unset;
+  box-sizing: border-box;
   position: relative;
 
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;

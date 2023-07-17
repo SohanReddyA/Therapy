@@ -47,15 +47,17 @@ const InputBoxes = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 `;
 
 const InputBoxContainer = styled.div`
   user-select: none;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 80%;
+  width: 100%;
   gap: 1rem;
   flex-shrink: 0;
 `;
@@ -73,7 +75,8 @@ const BoxContainer = styled.div`
 `;
 const InputContainer = styled.div`
   user-select: none;
-  box-sizing: unset;
+  box-sizing: border-box;
+
   position: relative;
 
   display: flex;
@@ -81,7 +84,7 @@ const InputContainer = styled.div`
   align-items: center;
   padding: 0px 20px;
   gap: 1rem;
-  width: 80%;
+  width: 100%;
   height: 2.5rem;
   border-radius: 8px;
   border: 0.6px solid rgba(86, 39, 176, 0.5);
