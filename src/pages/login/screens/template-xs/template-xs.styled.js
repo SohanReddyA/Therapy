@@ -5,7 +5,6 @@ const Container = styled.div`
   user-select: none;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   align-items: center;
   justify-content: space-between;
 `;
@@ -18,6 +17,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   gap: 2rem;
 `;
+
 const TextContainer = styled.div`
   user-select: none;
   flex-direction: column;
@@ -29,7 +29,6 @@ const SignInTitle = styled.div`
   user-select: none;
   color: #1a1a1a;
   font-size: 2rem;
-
   font-weight: 700;
 `;
 
