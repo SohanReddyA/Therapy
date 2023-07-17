@@ -12,8 +12,8 @@ const Container = styled.div`
 const MainContainer = styled.div`
   user-select: none;
   display: flex;
-  margin: auto;
-  width: 80%;
+  padding: 0px 2rem;
+  width: 100%;
   flex-direction: column;
   gap: 1rem;
 `;
