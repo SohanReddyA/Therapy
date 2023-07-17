@@ -15,14 +15,14 @@ const MainContainer = styled.div`
   margin: auto;
   width: 80%;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 `;
 
 const TextContainer = styled.div`
   user-select: none;
   flex-direction: column;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 `;
 
 const SignInTitle = styled.div`
@@ -44,7 +44,7 @@ const InputBoxes = styled.div`
   user-select: none;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 `;
 
 const InputBoxContainer = styled.div`
@@ -116,7 +116,7 @@ const LoginButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 1rem;
 `;
 
 const LoginButton = styled.button`
@@ -143,7 +143,7 @@ const LoginButton = styled.button`
 const LoginText = styled.div`
   user-select: none;
   color: rgba(26, 26, 26, 0.7);
-  font-size: 1rem;
+  font-size: 0.85rem;
 
   font-weight: 500;
 `;
