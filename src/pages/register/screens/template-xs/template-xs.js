@@ -93,12 +93,7 @@ const RegisterXs = () => {
         }}>
         Friennly
       </Styled.Logo>
-      <img
-        src="/images/LoginPage.svg"
-        width="50%"
-        height={'100vh !important'}
-        alt="Image"
-      />
+      <img src="/images/LoginPage.svg" alt="Image" />
       <Styled.MainContainer>
         <Styled.TextContainer>
           <Styled.SignInTitle>Sign Up</Styled.SignInTitle>
