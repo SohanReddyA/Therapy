@@ -131,7 +131,7 @@ const LoginButton = styled.button`
   background: #5627b0;
   border-radius: 30px;
   height: 3rem;
-  width: 100%;
+  min-width: 15rem;
 
   font-style: normal;
   font-weight: 500;
