@@ -103,8 +103,8 @@ const Register = () => {
         <Styled.TextContainer>
           <Styled.SignInTitle>Sign Up</Styled.SignInTitle>
           <Styled.SignInText>
-            blah blah blah blah blah blah blah blah blah blah blah blah blah
-            blah blah blah
+            Take the first step towards healing and discover the support you
+            deserve on your journey to mental well-being.
           </Styled.SignInText>
         </Styled.TextContainer>
         <Styled.InputBoxes>

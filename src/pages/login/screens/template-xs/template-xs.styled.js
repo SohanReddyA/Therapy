@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+  padding-top: 1rem;
   user-select: none;
   display: flex;
+  flex-direction: column;
   height: 100vh;
+  align-items: center;
   justify-content: space-between;
 `;
 
@@ -11,35 +14,38 @@ const MainContainer = styled.div`
   user-select: none;
   display: flex;
   margin: auto;
-  width: 35%;
+  width: 80%;
   flex-direction: column;
-  gap: 20px;
+  gap: 2rem;
 `;
 const TextContainer = styled.div`
   user-select: none;
   flex-direction: column;
   display: flex;
-  gap: 14px;
+  gap: 2rem;
 `;
 
 const SignInTitle = styled.div`
   user-select: none;
   color: #1a1a1a;
-  font-size: 36px;
+  font-size: 2rem;
 
   font-weight: 700;
 `;
 
 const SignInText = styled.div`
   user-select: none;
-  color: #1a1a1a;
-  font-size: 24px;
+  color: #5627b0;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 const InputBoxes = styled.div`
   user-select: none;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 2rem;
 `;
 
 const InputBoxContainer = styled.div`
@@ -48,14 +54,14 @@ const InputBoxContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 10px;
+  gap: 1rem;
   flex-shrink: 0;
 `;
 
 const InputLabel = styled.div`
   user-select: none;
   color: #1a1a1a;
-  font-size: 16px;
+  font-size: 1rem;
 `;
 
 const BoxContainer = styled.div`
@@ -72,8 +78,8 @@ const InputContainer = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 0px 20px;
-  gap: 12px;
-  height: 44px;
+  gap: 1rem;
+  height: 2.5rem;
   border-radius: 8px;
   border: 0.6px solid rgba(86, 39, 176, 0.5);
   background: #fff;
@@ -99,8 +105,8 @@ const InputField = styled.input`
 
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1rem;
   color: #111111;
   border: none;
   outline: none;
@@ -118,13 +124,12 @@ const LoginButton = styled.button`
   user-select: none;
   background: #5627b0;
   border-radius: 30px;
-  padding: 12px 20px;
-  height: 52px;
+  height: 3rem;
   width: 100%;
 
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 1.2rem;
   line-height: 140%;
   color: #ffffff;
   ${(props) =>
@@ -138,20 +143,16 @@ const LoginButton = styled.button`
 
 const LoginText = styled.div`
   user-select: none;
-  color: #5627b0;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  color: rgba(26, 26, 26, 0.7);
+  font-size: 1rem;
+
+  font-weight: 500;
 `;
+
 const Logo = styled.div`
   user-select: none;
-  position: fixed;
-  top: 48px;
-  left: 80px;
   color: #5627b0;
-  font-size: 32px;
-
+  font-size: 2rem;
   font-weight: 700;
   line-height: 140%;
   cursor: pointer;
