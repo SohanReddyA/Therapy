@@ -8,7 +8,7 @@ import { toast } from 'react-hot-toast';
 const Navbar = ({ executeScroll, isLoggedIn }) => {
   const router = useRouter();
   const [isButtonOpen, setButtonOpen] = useState(false);
-  const [username, setUsername] = useState('');
+  const [user, setUser] = useState(null);
   const handleClickOutside = () => {
     setButtonOpen(false);
   };
@@ -30,7 +30,7 @@ const Navbar = ({ executeScroll, isLoggedIn }) => {
             toast.error('You have been logged out, please login again.');
             router.push('/');
           }
-          setUsername(res.username);
+          setUser(res);
         });
     }
   }, []);
@@ -43,10 +43,10 @@ const Navbar = ({ executeScroll, isLoggedIn }) => {
         Friennly
       </Styled.Logo>
       <Styled.FlexContainer>
-        <Styled.NavLinks onClick={() => router.push('/therapists')}>
+        {/* <Styled.NavLinks onClick={() => router.push('/therapists')}>
           {' '}
           Therapists
-        </Styled.NavLinks>
+        </Styled.NavLinks> */}
         <Styled.NavLinks> Contact Us</Styled.NavLinks>
         <Styled.TakeQuizButton
           onClick={(event) => {
@@ -59,9 +59,10 @@ const Navbar = ({ executeScroll, isLoggedIn }) => {
         {isLoggedIn ? (
           <div style={{ position: 'relative' }} ref={clickRef}>
             <img
-              src="/images/defaultAvatar.png"
+              src={user?user.profileImage:"defaultAvatar.png"}
               height="60px"
               width="60px"
+              className='rounded-full border-2 border-[#434143]'
               alt="Message"
               onClick={() => {
                 setButtonOpen(!isButtonOpen);
@@ -72,7 +73,7 @@ const Navbar = ({ executeScroll, isLoggedIn }) => {
             />
             {isButtonOpen && (
               <Styled.ProfileContainer>
-                <p>{username}</p>
+                <p>{user.username}</p>
                 <Styled.LogoutButton
                   onClick={() => {
                     CookieUtil.removeCookie('FriennlyUser');

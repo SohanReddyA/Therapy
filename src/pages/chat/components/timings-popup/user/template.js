@@ -9,7 +9,12 @@ const UserTimingsPopup = ({ handleClose, time, setTime }) => {
     setTime(temp);
   };
   const CreateNew = () => {
-    if (time[time.length - 1].start && time[time.length - 1].end) {
+    if(!time.length) {
+      const temp = [...time];
+      temp.push({ start: '', end: '' });
+      setTime(temp);
+    }
+    else if (time[time.length - 1].start && time[time.length - 1].end) {
       const temp = [...time];
       temp.push({ start: '', end: '' });
       setTime(temp);
@@ -18,7 +23,7 @@ const UserTimingsPopup = ({ handleClose, time, setTime }) => {
     }
   };
   const onClose = () => {
-    if (!(time[time.length - 1].start && time[time.length - 1].end)) {
+    if (!(time.length && time[time.length - 1].start && time[time.length - 1].end)) {
       const temp = [...time];
       temp.pop();
       setTime(temp);

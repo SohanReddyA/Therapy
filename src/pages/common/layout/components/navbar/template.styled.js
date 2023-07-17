@@ -5,13 +5,14 @@ const Container = styled.div`
   box-sizing: border-box;
   position: absolute;
   display: flex;
+  background: #EEEFFF; 
   justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 100px;
   padding: 0px 100px;
   top: 0px;
-  background: #ffffff;
+  // background: #ffffff;
   border-bottom: 0.25px solid rgba(86, 39, 176, 0.25);
 `;
 

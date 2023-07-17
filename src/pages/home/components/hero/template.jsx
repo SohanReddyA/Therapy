@@ -25,7 +25,7 @@ const Hero = ({ executeScroll }) => {
           Take the Quiz
         </Styled.HeroButton>
       </Styled.HeroContainer>
-      <img src="/images/HeroImage.png" alt="HeroImage" width={'50%'} />
+      <img src="/images/HeroImage2.svg" alt="HeroImage" width={'50%'} />
     </Styled.Container>
   );
 };

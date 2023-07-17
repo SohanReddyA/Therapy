@@ -1,15 +1,15 @@
 import React from 'react';
 import { HiCheck } from 'react-icons/hi';
 
-const ChatCard = ({ username, content, time, curUser }) => {
+const ChatCard = ({ username, content, time, curUser, profileImage }) => {
   // console.log(curUser, 'USerCHoasj');
   return (
     <div className="flex items-center justify-center py-2 group cursor-pointer">
       {/* Profile Picture */}
       <div className="w-[20%]">
         <img
-          className="h-14 w-14 rounded-full"
-          src="/images/testLogo2.svg"
+          className="h-14 w-14 rounded-full border-2 border-[#434143]"
+          src={profileImage}
           alt=""
         />
       </div>

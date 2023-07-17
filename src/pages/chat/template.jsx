@@ -1,28 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
-import { AiOutlineSearch } from 'react-icons/ai';
-import { BsFilter, BsEmojiSmile } from 'react-icons/bs';
-import { ImAttachment } from 'react-icons/im';
-import { IoMdSend } from 'react-icons/io';
-import { toast } from 'react-hot-toast';
-import ChatCard from './components/chat-card/template';
-import SockJS from 'sockjs-client/dist/sockjs';
-import { over } from 'stompjs';
+import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
+import { AiOutlineSearch } from "react-icons/ai";
+import { BsFilter, BsEmojiSmile } from "react-icons/bs";
+import { ImAttachment } from "react-icons/im";
+import { IoMdSend } from "react-icons/io";
+import { toast } from "react-hot-toast";
+import ChatCard from "./components/chat-card/template";
+import SockJS from "sockjs-client/dist/sockjs";
+import { over } from "stompjs";
 
-import { MessageCard } from './components/message-card';
-import { BASE_API_URL } from '@/src/utils/api';
-import { CookieUtil } from '@/src/utils';
-import ChatLoader from './components/loader/template';
-import notificationSound from '@/public/sounds/notification-sound.mp3';
-import UserTimingsPopup from './components/timings-popup/user/template';
-import OtherTimingsPopup from './components/timings-popup/other/template';
-import EmojiPickerInput from './components/emoji-picker/template';
+import { MessageCard } from "./components/message-card";
+import { BASE_API_URL } from "@/src/utils/api";
+import { CookieUtil } from "@/src/utils";
+import ChatLoader from "./components/loader/template";
+import notificationSound from "@/public/sounds/notification-sound.mp3";
+import UserTimingsPopup from "./components/timings-popup/user/template";
+import OtherTimingsPopup from "./components/timings-popup/other/template";
+import EmojiPickerInput from "./components/emoji-picker/template";
 
 const Chat = () => {
   const router = useRouter();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [currentChat, setCurrentChat] = useState(null);
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const [paymentDone, setPaymentDone] = useState(true);
   const [chatCreated, setChatCreated] = useState(null);
   const [userList, setUserList] = useState([]);
@@ -33,15 +33,9 @@ const Chat = () => {
   const [messageCreated, setMessageCreated] = useState(null);
   const [loaderValue, setLoaderValue] = useState(0);
   const [openUserModal, setOpenUserModal] = useState(false);
-  const [userTimes, setUserTimes] = useState([
-    { start: '7 AM', end: '12 PM' },
-    { start: '3 PM', end: '7 PM' },
-  ]);
+  const [userTimes, setUserTimes] = useState(null);
   const [openOtherModal, setOpenOtherModal] = useState(false);
-  const [otherTimes, setOtherTimes] = useState([
-    { start: '7 AM', end: '12 PM' },
-    { start: '3 PM', end: '7 PM' },
-  ]);
+  const [otherTimes, setOtherTimes] = useState([]);
   const [AllChatSubscription, setACS] = useState(false);
   const [showPicker, setShowPicker] = useState(false);
 
@@ -50,16 +44,21 @@ const Chat = () => {
   const handleClickOnChatCard = (userId) => {
     console.log(userId);
     createChat(userId);
-    setQuery('');
+    setQuery("");
   };
 
   const handleClickonAllChat = (index) => {
     setCurrentChat(allChats[index]);
   };
 
+  const handleAddPreferredTiming = (e) => {
+    addPreferredTiming({ e });
+    setUserTimes(e);
+  };
+
   const handleCreateMessage = () => {
-    if (content !== '') {
-      console.log('createMessage data - ', reqUser.id, currentChat.id, content);
+    if (content !== "") {
+      console.log("createMessage data - ", reqUser.id, currentChat.id, content);
       createMessage({
         userId: reqUser.id,
         chatId: currentChat.id,
@@ -73,24 +72,27 @@ const Chat = () => {
   };
 
   const currentUser = () => {
-    if (!CookieUtil.getCookie('FriennlyUser')) router.push('/');
+    if (!CookieUtil.getCookie("FriennlyUser")) router.push("/");
     else {
       fetch(`${BASE_API_URL}/api/users/profile`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
         },
       })
         .then((res) => res.json())
         .then((res) => {
           if (res.error) {
-            CookieUtil.removeCookie('FriennlyUser');
-            toast.error('You have been logged out, please login again.');
-            router.push('/login');
+            CookieUtil.removeCookie("FriennlyUser");
+            toast.error("You have been logged out, please login again.");
+            router.push("/login");
           } else {
-            console.log('currentUser - ', res);
+            console.log("currentUser - ", res);
             setReqUser(res);
+            if (res.preferredTimings)
+              setUserTimes(JSON.parse(res.preferredTimings).e);
+            else setUserTimes([]);
           }
         });
     }
@@ -98,17 +100,17 @@ const Chat = () => {
 
   const searchUser = (keyword) => {
     fetch(`${BASE_API_URL}/api/users/search/${keyword}`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
       },
     })
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
         if (res.length === 0) {
-          toast.error('No Therapists found', { id: 'search' });
+          toast.error("No Therapists found", { id: "search" });
         } else {
           setUserList(res);
         }
@@ -117,21 +119,21 @@ const Chat = () => {
 
   const createChat = (userId) => {
     fetch(`${BASE_API_URL}/api/chats/create`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
       },
       body: JSON.stringify({ userId }),
     })
       .then((res) => res.json())
       .then((res) => {
         if (res.error) {
-          toast.error(res.error, { id: 'createChat' });
+          toast.error(res.error, { id: "createChat" });
         } else {
           setChatCreated(res.id);
           setCurrentChat(res);
-          console.log('create chat', res);
+          console.log("create chat", res);
         }
       });
   };
@@ -155,17 +157,17 @@ const Chat = () => {
 
   const getUsersChat = () => {
     fetch(`${BASE_API_URL}/api/chats/user`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
       },
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.error) toast.error(res.error, { id: 'getUsersChat' });
+        if (res.error) toast.error(res.error, { id: "getUsersChat" });
         else {
-          console.log('get user chat', res);
+          console.log("get user chat", res);
           setAllChats(res);
           startSlowValueChange();
         }
@@ -174,10 +176,10 @@ const Chat = () => {
 
   const createMessage = ({ userId, chatId, content }) => {
     fetch(`${BASE_API_URL}/api/messages/create`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
       },
       body: JSON.stringify({
         userId,
@@ -187,30 +189,49 @@ const Chat = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log('create message data - ', res);
+        console.log("create message data - ", res);
         setMessageCreated(res);
       });
   };
   const getAllMessages = (chatId) => {
-    toast.loading('fetching messages', { id: 'messages' });
+    toast.loading("fetching messages", { id: "messages" });
     fetch(`${BASE_API_URL}/api/messages/chat/${chatId}`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
       },
     })
       .then((res) => res.json())
       .then((res) => {
         if (res.length === 0)
-          toast.success('no messages yet. you can start by sending one', {
-            id: 'messages',
+          toast.success("no messages yet. you can start by sending one", {
+            id: "messages",
           });
         else {
-          toast.success('found messages', { id: 'messages' });
-          console.log('get messages data - ', res);
+          toast.success("found messages", { id: "messages" });
+          console.log("get messages data - ", res);
           setMessages(res);
         }
+      });
+  };
+
+  const addPreferredTiming = (req) => {
+    fetch(`${BASE_API_URL}/api/users/set-preferred-timings`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
+      },
+      body: JSON.stringify({
+        req: JSON.stringify(req),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          toast.error("could not add preferred timings");
+        } else console.log("update User data - ", res);
       });
   };
 
@@ -223,8 +244,8 @@ const Chat = () => {
     setStompClient(temp);
 
     const headers = {
-      Authorization: `Bearer ${CookieUtil.getCookie('FriennlyUser')}`,
-      'X-XSRF-TOKEN': getCookie('XSRF-TOKEN'),
+      Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
+      "X-XSRF-TOKEN": getCookie("XSRF-TOKEN"),
     };
 
     temp.connect(headers, onConnect, onError);
@@ -234,19 +255,19 @@ const Chat = () => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) {
-      return parts.pop().split(';').shift();
+      return parts.pop().split(";").shift();
     }
   }
 
   const onError = (error) => {
-    console.log('on error - ', error);
+    console.log("on error - ", error);
   };
 
   const onConnect = () => {
     setIsConnect(true);
   };
   useEffect(() => {
-    console.log(messages, 'modified');
+    console.log(messages, "modified");
   }, [messages]);
 
   useEffect(() => {
@@ -260,13 +281,13 @@ const Chat = () => {
         );
         setAllChats(updatedChats);
       }
-      stompClient.send('/app/message', {}, JSON.stringify(messageCreated));
+      stompClient.send("/app/message", {}, JSON.stringify(messageCreated));
       const user =
         reqUser.id !== messageCreated.chat.user.id
           ? messageCreated.chat.user
           : messageCreated.chat.therapist;
       stompClient.send(
-        '/app/user-list',
+        "/app/user-list",
         {},
         JSON.stringify({ userId: user.id, chat: messageCreated.chat })
       );
@@ -274,23 +295,23 @@ const Chat = () => {
   }, [messageCreated]);
 
   const onMessageReceive = (payload, messages) => {
-    console.log('recieve message', JSON.parse(payload.body));
+    console.log("recieve message", JSON.parse(payload.body));
     const recievedMessage = JSON.parse(payload.body);
-    console.log(reqUser.id, 'Received message log', recievedMessage.sender.id);
+    console.log(reqUser.id, "Received message log", recievedMessage.sender.id);
     if (
       messages.length &&
       messages[messages.length - 1].id !== recievedMessage.id
     ) {
-      console.log(messages, 'MEssages log');
+      console.log(messages, "MEssages log");
       setMessages([...messages, recievedMessage]);
     }
   };
 
   const onUserMessageRecieve = (payload, allChats) => {
-    console.log('recieve message user ', JSON.parse(payload.body));
+    console.log("recieve message user ", JSON.parse(payload.body));
 
     const recievedMessage = JSON.parse(payload.body);
-    if (document.visibilityState === 'hidden') {
+    if (document.visibilityState === "hidden") {
       const audio = new Audio(notificationSound);
       audio.play();
     }
@@ -318,21 +339,27 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    console.log(currentChat, 'CurrentChat');
+    console.log(currentChat, "CurrentChat");
     if (currentChat !== null) {
       setMessages([]);
       getAllMessages(currentChat.id);
+      const times = JSON.parse(
+        reqUser.userType !== "USER"
+          ? currentChat.user.preferredTimings
+          : currentChat.therapist.preferredTimings
+      );
+      setOtherTimes(times ? times.e : []);
     }
   }, [currentChat]);
 
   useEffect(() => {
     if (isConnect && stompClient && reqUser && currentChat) {
       const subscription = stompClient.subscribe(
-        '/group/' + currentChat.id,
+        "/group/" + currentChat.id,
         (payload) => {
           onMessageReceive(payload, messages);
         },
-        { id: 'currentChat' }
+        { id: "currentChat" }
       );
       return () => {
         subscription.unsubscribe();
@@ -343,11 +370,11 @@ const Chat = () => {
   useEffect(() => {
     if (isConnect && stompClient && reqUser && !AllChatSubscription) {
       const subscription = stompClient.subscribe(
-        '/users/' + reqUser.id,
+        "/users/" + reqUser.id,
         (payload) => {
           onUserMessageRecieve(payload, allChats);
         },
-        { id: 'allChats' }
+        { id: "allChats" }
       );
       setACS(true);
       // return () => {
@@ -358,13 +385,13 @@ const Chat = () => {
 
   useEffect(() => {
     if (messageCreated && stompClient) {
-      stompClient.send('/app/message', {}, JSON.stringify(messageCreated));
+      stompClient.send("/app/message", {}, JSON.stringify(messageCreated));
       const user =
         reqUser.id !== messageCreated.chat.user.id
           ? messageCreated.chat.user
           : messageCreated.chat.therapist;
       stompClient.send(
-        '/app/user-list',
+        "/app/user-list",
         {},
         JSON.stringify({ userId: user.id, chat: messageCreated.chat })
       );
@@ -384,7 +411,7 @@ const Chat = () => {
               <UserTimingsPopup
                 handleClose={() => setOpenUserModal(false)}
                 time={userTimes}
-                setTime={setUserTimes}
+                setTime={handleAddPreferredTiming}
               />
             )}
             {openOtherModal && (
@@ -395,14 +422,22 @@ const Chat = () => {
             )}
             <div className=" col-span-1 select-none left border-[#D5C9EB] border-r-2 flex-col items-center justify-center">
               {/*Title of the page */}
-              <div className=" select-none h-[10vh]">
+              <div className=" select-none h-[10vh] flex justify-between items-center">
                 <h1
                   className=" select-none font-bold h-full text-[#5627B0] px-3 py-10 mx-7 text-3xl cursor-pointer"
                   onClick={() => {
-                    router.push('/');
-                  }}>
+                    router.push("/");
+                  }}
+                >
                   Friennly
                 </h1>
+                <div className="mt-5 px-5">
+                  <img
+                    src={reqUser.profileImage}
+                    className="h-14 w-14 rounded-full border-2 border-[#434143]"
+                    alt=""
+                  />
+                </div>
               </div>
               {/* Chat Message Section */}
               <div className=" select-none h-[85vh]">
@@ -433,8 +468,9 @@ const Chat = () => {
                         onClick={() => {
                           handleClickOnChatCard(listItem.id);
                         }}
-                        key={index}>
-                        {<ChatCard username={listItem.username} />}
+                        key={index}
+                      >
+                        {<ChatCard username={listItem.username} profileImage={listItem.profileImage}/>}
                       </div>
                     ))}
 
@@ -445,7 +481,8 @@ const Chat = () => {
                         onClick={() => {
                           handleClickonAllChat(index);
                         }}
-                        key={index}>
+                        key={index}
+                      >
                         <ChatCard
                           curUser={
                             chatItem.latestMessage
@@ -467,12 +504,18 @@ const Chat = () => {
                               ? chatItem.latestMessage.time
                               : null
                           }
+                          profileImage={
+                            reqUser.id === chatItem.user.id
+                              ? chatItem.therapist.profileImage
+                              : chatItem.user.profileImage
+                          }
                         />
                       </div>
                     ))}
                   <div
                     className=" select-none  absolute bottom-[20px] w-[-webkit-fill-available] box-border flex items-center justify-center"
-                    onClick={() => setOpenUserModal(true)}>
+                    onClick={() => setOpenUserModal(true)}
+                  >
                     <p className=" select-none bg-[#E6E1EF] p-2 rounded-[16px] cursor-pointer">
                       Edit Your Preferred Timings
                     </p>
@@ -486,12 +529,12 @@ const Chat = () => {
               {!currentChat && (
                 <div className=" select-none flex flex-col items-center text-center max-width-[70%] m-auto h-full justify-center w-auto">
                   <img
-                    className=" select-none w-52 h-52"
-                    src="/images/testLogo2.svg"
+                    className=" select-none w-1/2 h-1/2"
+                    src="/images/chat-default.svg"
                     alt=""
                   />
                   <p className=" select-none my-9 text-2xl font-medium text-[#5627B0]">
-                    Chat with your favorite therapist now!{' '}
+                    Chat with your favorite therapist now!{" "}
                   </p>
                 </div>
               )}
@@ -502,8 +545,12 @@ const Chat = () => {
                   <div className=" select-none h-[10vh] border-b-2 border-[#D5C9EB] flex items-center justify-between">
                     <div className=" select-none flex items-center p-3 space-x-4">
                       <img
-                        src="/images/testLogo2.svg"
-                        className=" select-none w-14 h-14 rounded-full"
+                        src={
+                          reqUser.id !== currentChat.user.id
+                            ? currentChat.user.profileImage
+                            : currentChat.therapist.profileImage
+                        }
+                        className=" select-none w-14 h-14 rounded-full border-2 border-[#434143]"
                         alt=""
                       />
                       <div className=" select-none flex flex-col items-start justify-center">
@@ -520,7 +567,8 @@ const Chat = () => {
                     <div>
                       <div
                         className=" select-none p-3 rounded-3xl mx-10 bg-[#EEE9F7] cursor-pointer"
-                        onClick={() => setOpenOtherModal(true)}>
+                        onClick={() => setOpenOtherModal(true)}
+                      >
                         <p className=" select-none text-[#5627B0] font-semibold">
                           Preferred Timings
                         </p>
@@ -561,9 +609,9 @@ const Chat = () => {
                             setContent(e.target.value);
                           }}
                           onKeyPress={(e) => {
-                            if (e.key === 'Enter') {
+                            if (e.key === "Enter") {
                               handleCreateMessage();
-                              setContent('');
+                              setContent("");
                             }
                           }}
                           value={content}
@@ -586,7 +634,7 @@ const Chat = () => {
                             className=" select-none text-[#5627B0] cursor-pointer"
                             onClick={() => {
                               handleCreateMessage(reqUser.id);
-                              setContent('');
+                              setContent("");
                             }}
                           />
                         </div>
@@ -602,7 +650,8 @@ const Chat = () => {
                           className=" select-none text-[#5627B0] underline cursor-pointer"
                           onClick={() => {
                             setPaymentDone(true);
-                          }}>
+                          }}
+                        >
                           Renew here
                         </p>
                       </span>
