@@ -1,3 +1,5 @@
+import { toast } from 'react-hot-toast';
+
 const { useState } = require('react');
 
 const DepressionController = (Quiz) => {
@@ -61,7 +63,7 @@ const DepressionController = (Quiz) => {
       sr += Number(score[key].value);
     });
     console.log(sr);
-    alert('Your score is ' + sr);
+    toast.success('Your score is ' + sr);
   }
   return {
     prev,
