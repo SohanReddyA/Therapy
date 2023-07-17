@@ -30,6 +30,7 @@ const SignInTitle = styled.div`
   color: #1a1a1a;
   font-size: 2rem;
   font-weight: 700;
+  text-align: center;
 `;
 
 const SignInText = styled.div`
@@ -39,6 +40,7 @@ const SignInText = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-align: center;
 `;
 const InputBoxes = styled.div`
   user-select: none;
@@ -53,6 +55,7 @@ const InputBoxContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  width: 100%;
   gap: 1rem;
   flex-shrink: 0;
 `;
@@ -78,6 +81,7 @@ const InputContainer = styled.div`
   align-items: center;
   padding: 0px 20px;
   gap: 1rem;
+  width: 100%;
   height: 2.5rem;
   border-radius: 8px;
   border: 0.6px solid rgba(86, 39, 176, 0.5);
