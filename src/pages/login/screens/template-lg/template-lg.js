@@ -58,7 +58,7 @@ const LoginLg = () => {
         }}>
         Friennly
       </Styled.Logo>
-      <img src="/images/LoginPage.png" width="50%" alt="Image" />
+      <img src="/images/LoginPage.svg" width="50%" alt="Image" />
       <Styled.MainContainer>
         <Styled.TextContainer>
           <Styled.SignInTitle>Sign In</Styled.SignInTitle>

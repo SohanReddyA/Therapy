@@ -94,7 +94,7 @@ const Register = () => {
         Friennly
       </Styled.Logo>
       <img
-        src="/images/LoginPage.png"
+        src="/images/LoginPage.svg"
         width="50%"
         height={'100vh !important'}
         alt="Image"
