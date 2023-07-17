@@ -77,14 +77,15 @@ const BoxContainer = styled.div`
 const InputContainer = styled.div`
   user-select: none;
   box-sizing: border-box;
+
   position: relative;
 
-  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 0px 20px;
-  gap: 0rem;
+  gap: 1rem;
+  width: 100%;
   height: 2.5rem;
   border-radius: 8px;
   border: 0.6px solid rgba(86, 39, 176, 0.5);
@@ -109,6 +110,7 @@ const InputField = styled.input`
   user-select: none;
   flex: 1;
 
+  width: 100%;
   font-style: normal;
   font-weight: 400;
   font-size: 1rem;
@@ -131,7 +133,7 @@ const LoginButton = styled.button`
   background: #5627b0;
   border-radius: 30px;
   height: 3rem;
-  min-width: 15rem;
+  min-width: 10rem;
   font-style: normal;
   font-weight: 500;
   font-size: 1.2rem;
