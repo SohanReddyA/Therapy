@@ -55,7 +55,7 @@ const InputBoxContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 100%;
+  width: 80%;
   gap: 1rem;
   flex-shrink: 0;
 `;
@@ -81,7 +81,7 @@ const InputContainer = styled.div`
   align-items: center;
   padding: 0px 20px;
   gap: 1rem;
-  width: 100%;
+  width: 80%;
   height: 2.5rem;
   border-radius: 8px;
   border: 0.6px solid rgba(86, 39, 176, 0.5);
