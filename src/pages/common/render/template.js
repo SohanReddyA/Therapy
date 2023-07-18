@@ -9,7 +9,7 @@ const Container = styled.div`
 
 const ChildMobile = styled.div`
   display: none;
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     display: block;
   }
 `;
@@ -17,7 +17,7 @@ const ChildMobile = styled.div`
 const ChildTablet = styled.div`
   display: none;
 
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (min-width: 768px) and (max-width: 1024px) {
     display: block;
   }
 `;
@@ -30,9 +30,9 @@ const ChildDesktop = styled.div`
   }
 `;
 
-function ResponsiveRender({ children }) {
+function ResponsiveRender({ children, innerRef = null }) {
   return (
-    <Container>
+    <Container ref={innerRef}>
       <ChildMobile>{children.mobile}</ChildMobile>
       <ChildTablet>{children.tablet}</ChildTablet>
       <ChildDesktop>{children.desktop}</ChildDesktop>

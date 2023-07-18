@@ -5,12 +5,13 @@ const HomeController = () => {
   const [ADHDOpen, setADHDOpen] = useState(false);
   const [AnxietyOpen, setAnxietyOpen] = useState(false);
   const [DepressionOpen, setDepressionOpen] = useState(false);
+  const [contactsOpen, setContactsOpen] = useState(false);
   const executeScroll = (e = null) => {
     if (e) {
       e.preventDefault();
       e.stopPropagation();
     }
-    myRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
+    myRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   return {
@@ -22,6 +23,8 @@ const HomeController = () => {
     setAnxietyOpen,
     DepressionOpen,
     setDepressionOpen,
+    contactsOpen,
+    setContactsOpen,
   };
 };
 

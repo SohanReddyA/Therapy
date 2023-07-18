@@ -3,7 +3,8 @@ import styled from 'styled-components';
 const Container = styled.div`
   user-select: none;
   width: 100%;
-  padding: 6vw 100px;
+  margin-top: 100px;
+  padding: 6vw 30px;
   background: rgba(86, 39, 176, 0.1);
 `;
 
@@ -18,7 +19,7 @@ const LogoContainer = styled.div`
   user-select: none;
   display: flex;
   flex-direction: column;
-  max-width: 40vw;
+  max-width: 100%;
   gap: 16px;
 `;
 
@@ -26,7 +27,8 @@ const Logo = styled.div`
   user-select: none;
   font-style: normal;
   font-weight: 700;
-  font-size: 48px;
+  text-align: center;
+  font-size: 24px;
   line-height: 160%;
   color: #5627b0;
 `;
@@ -35,7 +37,8 @@ const Text = styled.div`
   user-select: none;
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 14px;
+  text-align: center;
   line-height: 160%;
   color: #1a1a1a;
 `;
@@ -43,7 +46,10 @@ const Text = styled.div`
 const MainContainer = styled.div`
   user-select: none;
   display: flex;
+  margin-top: 40px;
+  justify-content: space-between;
   gap: 20px;
+  padding: 0px 10px;
 `;
 const GroupContainer = styled.div`
   user-select: none;
@@ -76,7 +82,7 @@ const Heading = styled.div`
   user-select: none;
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 160%;
   text-transform: capitalize;
   color: #5627b0;

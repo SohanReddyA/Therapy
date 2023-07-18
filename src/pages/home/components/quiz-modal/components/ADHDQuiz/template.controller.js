@@ -1,6 +1,8 @@
+import { toast } from 'react-hot-toast';
+
 const { useState } = require('react');
 
-const ADHDController = (Quiz) => {
+const ADHDController = (Quiz, onClose) => {
   const [checked, setChecked] = useState(0);
   const [count, setCount] = useState(0);
   const [current, setCurrent] = useState(Quiz[count]);
@@ -57,7 +59,12 @@ const ADHDController = (Quiz) => {
       sr += Number(score[key].value);
     });
     console.log(sr);
-    alert('Your score is ' + sr);
+    toast.success('Your score is ' + sr, {
+      style: {
+        zIndex: 10000,
+      },
+    });
+    onClose();
   }
   return {
     prev,

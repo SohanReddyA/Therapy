@@ -2,9 +2,9 @@ import DepressionController from './template.controller';
 
 const { default: Styled } = require('../../template.styled');
 
-const DepressionQuiz = ({ Quiz }) => {
+const DepressionQuiz = ({ Quiz, onClose }) => {
   const { prev, next, submit, current, count, checked, setChecked } =
-    DepressionController(Quiz);
+    DepressionController(Quiz, onClose);
   return (
     <Styled.Container>
       <Styled.Label quiztype="Depression">Depression Quiz</Styled.Label>

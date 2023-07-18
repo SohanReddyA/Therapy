@@ -3,9 +3,9 @@ import ADHDController from './template.controller';
 
 const { default: Styled } = require('../../template.styled');
 
-const ADHDQuiz = ({ Quiz }) => {
+const ADHDQuiz = ({ Quiz, onClose }) => {
   const { prev, next, submit, current, count, checked, setChecked } =
-    ADHDController(Quiz);
+    ADHDController(Quiz, onClose);
   return (
     <Styled.Container>
       <Styled.Label quiztype="ADHD">ADHD Quiz</Styled.Label>

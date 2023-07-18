@@ -4,27 +4,22 @@ const Container = styled.div`
   user-select: none;
   display: flex;
   width: 100%;
-  height: 100vh;
   gap: 50px;
 `;
 
-const imageContainer = styled.div`
-  user-select: none;
-  flex-basis: 80%;
-`;
 const Image = styled.img`
   margin-top: 2rem;
   user-select: none;
-  width: 100%;
-  height: 100vh;
+  width: 100vw;
+  min-width: 450px;
+  max-width: 600px;
 `;
 
 const MainContainer = styled.div`
   user-select: none;
   display: flex;
   width: 100%;
-  gap: 15px;
-  justify-content: space-between;
+  gap: 60px;
   flex-direction: column;
 `;
 const MainFlex = styled.div`
@@ -39,7 +34,15 @@ const MainTitle = styled.p`
   user-select: none;
   font-style: normal;
   font-weight: 700;
-  font-size: 2.5rem;
+  @media (min-width: 1024px) and (max-width: 1400px) {
+    font-size: 2rem;
+  }
+  @media (min-width: 1401px) and (max-width: 1600px) {
+    font-size: 2.2rem;
+  }
+  @media (min-width: 1601px) {
+    font-size: 2.5rem;
+  }
   line-height: 58px;
   color: #1a1a1a;
 `;
@@ -47,7 +50,15 @@ const MainDesc = styled.p`
   user-select: none;
   font-style: normal;
   font-weight: 500;
-  font-size: 1.5rem;
+  @media (min-width: 1024px) and (max-width: 1400px) {
+    font-size: 1rem;
+  }
+  @media (min-width: 1401px) and (max-width: 1600px) {
+    font-size: 1.2rem;
+  }
+  @media (min-width: 1601px) {
+    font-size: 1.5rem;
+  }
   line-height: 160%;
   color: rgba(17, 17, 17, 0.7);
 `;
@@ -76,7 +87,15 @@ const ProcessTitle = styled.p`
   user-select: none;
   font-style: normal;
   font-weight: 600;
-  font-size: 2rem;
+  @media (min-width: 1024px) and (max-width: 1400px) {
+    font-size: 1.5rem;
+  }
+  @media (min-width: 1401px) and (max-width: 1600px) {
+    font-size: 1.8rem;
+  }
+  @media (min-width: 1601px) {
+    font-size: 2rem;
+  }
   line-height: 160%;
   letter-spacing: 0.02em;
   color: #111111;
@@ -86,14 +105,21 @@ const ProcessDesc = styled.p`
   user-select: none;
   font-style: normal;
   font-weight: 400;
-  font-size: 1rem;
+  @media (min-width: 1024px) and (max-width: 1400px) {
+    font-size: 0.8rem;
+  }
+  @media (min-width: 1401px) and (max-width: 1600px) {
+    font-size: 1.1rem;
+  }
+  @media (min-width: 1601px) {
+    font-size: 1.4rem;
+  }
   line-height: 160%;
   color: rgba(17, 17, 17, 0.5);
 `;
 const Styled = {
   Container,
   Image,
-  imageContainer,
   MainContainer,
   MainFlex,
   MainTitle,

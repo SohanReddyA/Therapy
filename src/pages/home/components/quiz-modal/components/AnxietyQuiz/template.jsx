@@ -3,9 +3,9 @@ import AnxietyController from './template.controller';
 
 const { default: Styled } = require('../../template.styled');
 
-const AnxietyQuiz = ({ Quiz }) => {
+const AnxietyQuiz = ({ Quiz, onClose }) => {
   const { prev, next, submit, current, count, checked, setChecked } =
-    AnxietyController(Quiz);
+    AnxietyController(Quiz, onClose);
   return (
     <Styled.Container>
       <Styled.Label quiztype="Anxiety">Anxiety Quiz</Styled.Label>
