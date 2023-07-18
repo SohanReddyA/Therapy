@@ -1,7 +1,7 @@
 import React from 'react';
 import { HiCheck } from 'react-icons/hi';
 
-const ChatCard = ({ username, content, time, curUser, profileImage }) => {
+const ChatCardMd = ({ username, content, time, curUser, profileImage }) => {
   // console.log(curUser, 'USerCHoasj');
   return (
     <div className="flex items-center justify-center py-2 group cursor-pointer">
@@ -14,17 +14,17 @@ const ChatCard = ({ username, content, time, curUser, profileImage }) => {
         />
       </div>
       {/* Chat items */}
-      <div className="pl-5 w-[80%]">
+      <div className="pl-3 w-[80%]">
         <div className="flex justify-between items-center">
-          <p className="text-lg font-semibold">{username}</p>
-          <p className="text-sm text-[#5F5F5F]">{time}</p>
+          <p className="text-md font-semibold">{username}</p>
+          <p className="text-xs text-[#5F5F5F]">{time}</p>
         </div>
 
         {content && (
           <div className="flex justify-between items-center">
             <div className="flex items-center">
               {curUser && <HiCheck className="text-sm font-thin" />}
-              <p className="text-[#5F5F5F]">
+              <p className="text-[#5F5F5F] text-xs">
                 {content.length > 10
                   ? content.substring(0, 10) + '...'
                   : content}
@@ -42,4 +42,4 @@ const ChatCard = ({ username, content, time, curUser, profileImage }) => {
   );
 };
 
-export default ChatCard;
+export default ChatCardMd;

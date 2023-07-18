@@ -43,7 +43,7 @@ const TitleText = styled.div`
 const TimeSelectionContainer = styled.div`
   user-select: none;
   display: flex;
-  gap: 120px;
+  gap: 2rem;
   justify-content: center;
   align-items: center;
 `;

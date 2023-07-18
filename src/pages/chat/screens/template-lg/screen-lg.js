@@ -457,13 +457,13 @@ const ChatLg = () => {
                 >
                   Friennly
                 </h1>
-                <div className="mt-5 px-5">
+                {/* <div className="mt-auto px-5">
                   <img
                     src={reqUser.profileImage}
-                    className="h-14 w-14 rounded-full border-2 border-[#434143]"
+                    className="h-1/2 w-1/2 rounded-full border-2 border-[#434143]"
                     alt=""
                   />
-                </div>
+                </div> */}
               </div>
               {/* Chat Message Section */}
               <div className=" select-none h-[85vh]">
@@ -547,7 +547,7 @@ const ChatLg = () => {
                     className=" select-none  absolute bottom-[20px] w-[-webkit-fill-available] box-border flex items-center justify-center"
                     onClick={() => setOpenUserModal(true)}
                   >
-                    <p className=" select-none bg-[#E6E1EF] p-2 rounded-[16px] cursor-pointer">
+                    <p className=" select-none bg-[#E6E1EF] p-2 rounded-[16px] font-semibold text-[#5627B0] cursor-pointer">
                       Edit Your Preferred Timings
                     </p>
                   </div>
@@ -565,7 +565,7 @@ const ChatLg = () => {
                     alt=""
                   />
                   <p className=" select-none my-9 text-2xl font-medium text-[#5627B0]">
-                    Chat with your favorite therapist now!{" "}
+                  {reqUser.userType==='USER'?"Chat with your favorite therapist now!":"Chat with your patients here!"}
                   </p>
                 </div>
               )}
