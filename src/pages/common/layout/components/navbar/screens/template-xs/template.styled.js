@@ -90,7 +90,7 @@ const ProfileContainer = styled.div`
   background: #fff;
   display: flex;
   position: absolute;
-  right: -50px;
+  right: -40px;
   width: max-content;
   padding: 12px 16px;
   flex-direction: column;
