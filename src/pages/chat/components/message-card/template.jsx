@@ -16,7 +16,7 @@ const MessageCard = ({
     }
   }, []);
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mt-auto">
       {date!=prevDate && (
         <div className="bg-[#5627B0] rounded-2xl text-white p-2 my-12 ">
           <p>{date}</p>
