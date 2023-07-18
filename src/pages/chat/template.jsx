@@ -38,7 +38,7 @@ const Chat = () => {
   const [otherTimes, setOtherTimes] = useState([]);
   const [AllChatSubscription, setACS] = useState(false);
   const [showPicker, setShowPicker] = useState(false);
-
+  const [date, setDate] = useState(null);
   const inputRef = useRef();
 
   const handleClickOnChatCard = (userId) => {
@@ -70,6 +70,10 @@ const Chat = () => {
   const handleSearch = (e) => {
     searchUser(e);
   };
+
+  const handleDateChange = (e) => {
+    setDate(e);
+  }
 
   const currentUser = () => {
     if (!CookieUtil.getCookie("FriennlyUser")) router.push("/");
@@ -398,6 +402,9 @@ const Chat = () => {
     }
   }, [messageCreated]);
 
+  useEffect(() => {
+    console.log(date, "date");
+  }, [date])
   return (
     <div className=" select-none bg-[url(/images/doodle.svg)] flex items-center justify-center h-screen">
       <div className=" select-none grid grid-cols-4 items-center relative bg-white justify-center w-[95%] h-[95%] rounded-md border-[#D5C9EB] border-2 m-auto">
@@ -470,7 +477,12 @@ const Chat = () => {
                         }}
                         key={index}
                       >
-                        {<ChatCard username={listItem.username} profileImage={listItem.profileImage}/>}
+                        {
+                          <ChatCard
+                            username={listItem.username}
+                            profileImage={listItem.profileImage}
+                          />
+                        }
                       </div>
                     ))}
 
@@ -580,14 +592,16 @@ const Chat = () => {
                     <div className=" select-none space-y-2 py-2 flex flex-col overflow-auto h-full">
                       {messages.length > 0 &&
                         messages.map((item, i) => (
-                          <MessageCard
-                            key={i}
-                            index={i}
-                            length={messages.length}
-                            isReqUserMessage={reqUser.id === item.sender.id}
-                            content={item.content}
-                            time={item.time}
-                          />
+                            <MessageCard
+                              key={i}
+                              index={i}
+                              length={messages.length}
+                              isReqUserMessage={reqUser.id === item.sender.id}
+                              content={item.content}
+                              time={item.time}
+                              prevDate={messages[i-1]?messages[i-1].date:null}
+                              date={item.date}
+                            />
                         ))}
                     </div>
                   </div>
