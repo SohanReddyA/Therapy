@@ -9,7 +9,7 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 100px;
-  padding: 0px 100px;
+  padding: 0px 40px;
   top: 0px;
   background: #ffffff;
   border-bottom: 0.25px solid rgba(86, 39, 176, 0.25);
