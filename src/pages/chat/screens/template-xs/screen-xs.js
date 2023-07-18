@@ -436,7 +436,7 @@ const ChatXs = () => {
   }, [date]);
   return (
     <div className=" select-none h-screen">
-      <div className=" select-none grid grid-cols-1 items-center relative bg-white justify-center m-auto">
+      <div className=" select-none grid grid-cols-1 items-center relative bg-white justify-center m-auto h-full">
         {loaderValue < 100 ? (
           <div className="col-span-1">
             <ChatLoader value={loaderValue} />
@@ -589,7 +589,7 @@ const ChatXs = () => {
                         />
                       </div>
                       <div className=" select-none flex flex-col items-start justify-center w-[40%]">
-                        <p className=" select-none font-semibold text-lg">
+                        <p className=" select-none font-semibold text-sm">
                           {reqUser.id !== currentChat.user.id
                             ? currentChat.user.username
                             : currentChat.therapist.username}
@@ -604,7 +604,7 @@ const ChatXs = () => {
                         className=" select-none p-3 rounded-3xl mx-5 bg-[#EEE9F7] cursor-pointer flex items-center justify-center"
                         onClick={() => setOpenOtherModal(true)}
                       >
-                        <p className=" select-none text-[#5627B0] text-sm font-semibold">
+                        <p className="select-none text-center text-[#5627B0] text-sm font-semibold">
                           Preferred Timings
                         </p>
                       </div>
