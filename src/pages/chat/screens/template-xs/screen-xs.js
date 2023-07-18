@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { AiOutlineSearch } from "react-icons/ai";
-import { BsFilter} from "react-icons/bs";
+import { BsFilter } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 import { toast } from "react-hot-toast";
 import ChatCard from "@/src/pages/chat/components/chat-card/template";
 import SockJS from "sockjs-client/dist/sockjs";
@@ -67,13 +68,17 @@ const ChatXs = () => {
     }
   };
 
+  const handleBackArrow = () => {
+    setCurrentChat(null);
+  }
+
   const handleSearch = (e) => {
     searchUser(e);
   };
 
   const handleDateChange = (e) => {
     setDate(e);
-  }
+  };
 
   const currentUser = () => {
     if (!CookieUtil.getCookie("FriennlyUser")) router.push("/");
@@ -160,7 +165,6 @@ const ChatXs = () => {
         }
       });
   };
-
 
   const startSlowValueChange = () => {
     const duration = 2000;
@@ -373,9 +377,11 @@ const ChatXs = () => {
           : currentChat.therapist.preferredTimings
       );
       setOtherTimes(times ? times.e : []);
-      getLastSeen(reqUser.userType !== "USER"
-      ? currentChat.user.id
-      : currentChat.therapist.id)
+      getLastSeen(
+        reqUser.userType !== "USER"
+          ? currentChat.user.id
+          : currentChat.therapist.id
+      );
     }
   }, [currentChat]);
 
@@ -427,12 +433,12 @@ const ChatXs = () => {
 
   useEffect(() => {
     console.log(date, "date");
-  }, [date])
+  }, [date]);
   return (
-    <div className=" select-none bg-[url(/images/doodle.svg)] flex items-center justify-center h-screen">
-      <div className=" select-none grid grid-cols-4 items-center relative bg-white justify-center w-[95%] h-[95%] rounded-md border-[#D5C9EB] border-2 m-auto">
+    <div className=" select-none h-screen">
+      <div className=" select-none grid grid-cols-1 items-center relative bg-white justify-center m-auto">
         {loaderValue < 100 ? (
-          <div className="col-span-4">
+          <div className="col-span-1">
             <ChatLoader value={loaderValue} />
           </div>
         ) : (
@@ -450,188 +456,184 @@ const ChatXs = () => {
                 time={otherTimes}
               />
             )}
-            <div className=" col-span-1 select-none left border-[#D5C9EB] border-r-2 flex-col items-center justify-center">
-              {/*Title of the page */}
-              <div className=" select-none h-[10vh] flex justify-between items-center">
-                <h1
-                  className=" select-none font-bold h-full text-[#5627B0] px-3 py-10 mx-7 text-3xl cursor-pointer"
-                  onClick={() => {
-                    router.push("/");
-                  }}
-                >
-                  Friennly
-                </h1>
-                <div className="mt-5 px-5">
-                  <img
-                    src={reqUser.profileImage}
-                    className="h-14 w-14 rounded-full border-2 border-[#434143]"
-                    alt=""
-                  />
-                </div>
-              </div>
-              {/* Chat Message Section */}
-              <div className=" select-none h-[85vh]">
-                {/* Input */}
-                <div className=" select-none relative flex justify-center items-center bg-white py-4 px-3">
-                  <input
-                    className=" select-none border-none outline-none bg-slate-200 rounded-md w-[93%] pl-9 py-2"
-                    type="text"
-                    placeholder="Search or start new chat"
-                    onChange={(e) => {
-                      setQuery(e.target.value);
-                      handleSearch(e.target.value);
+            {!currentChat && (
+              <div className=" col-span-1 select-none left flex-col items-center justify-center">
+                {/*Title of the page */}
+                <div className=" select-none h-[10vh] flex justify-between items-center">
+                  <h1
+                    className=" select-none font-bold h-full text-[#5627B0] px-3 py-10 mx-5 text-3xl cursor-pointer"
+                    onClick={() => {
+                      router.push("/");
                     }}
-                    value={query}
-                  />
-                  <AiOutlineSearch className=" select-none left-5 top-7 absolute" />
-                  <div>
-                    <BsFilter className=" select-none ml-4 text-3xl" />
+                  >
+                    Friennly
+                  </h1>
+                  <div className="mt-5 px-5">
+                    <img
+                      src={reqUser.profileImage}
+                      className="h-10 w-10 rounded-full border-2 border-[#434143]"
+                      alt=""
+                    />
                   </div>
                 </div>
+                {/* Chat Message Section */}
+                <div className=" select-none h-[85vh]">
+                  {/* Input */}
+                  <div className=" select-none relative flex justify-center items-center bg-white py-4 px-3">
+                    <input
+                      className=" select-none border-none outline-none bg-slate-200 rounded-md w-[93%] pl-9 py-2"
+                      type="text"
+                      placeholder="Search or start new chat"
+                      onChange={(e) => {
+                        setQuery(e.target.value);
+                        handleSearch(e.target.value);
+                      }}
+                      value={query}
+                    />
+                    <AiOutlineSearch className=" select-none left-5 top-7 absolute" />
+                    <div>
+                      <BsFilter className=" select-none ml-4 text-3xl" />
+                    </div>
+                  </div>
 
-                {/* Chat List */}
-                <div className=" select-none bg-white overflow-auto h-[75vh] px-3 relative">
-                  {query &&
-                    userList.length > 0 &&
-                    userList.map((listItem, index) => (
-                      <div
-                        onClick={() => {
-                          handleClickOnChatCard(listItem.id);
-                        }}
-                        key={index}
-                      >
-                        {
+                  {/* Chat List */}
+                  <div className=" select-none bg-white overflow-auto h-[80vh] px-3 relative">
+                    {query &&
+                      userList.length > 0 &&
+                      userList.map((listItem, index) => (
+                        <div
+                          onClick={() => {
+                            handleClickOnChatCard(listItem.id);
+                          }}
+                          key={index}
+                        >
+                          {
+                            <ChatCard
+                              username={listItem.username}
+                              profileImage={listItem.profileImage}
+                            />
+                          }
+                        </div>
+                      ))}
+
+                    {allChats.length > 0 &&
+                      !query &&
+                      allChats.map((chatItem, index) => (
+                        <div
+                          onClick={() => {
+                            handleClickonAllChat(index);
+                          }}
+                          key={index}
+                        >
                           <ChatCard
-                            username={listItem.username}
-                            profileImage={listItem.profileImage}
+                            curUser={
+                              chatItem.latestMessage
+                                ? reqUser.id ===
+                                  chatItem.latestMessage.sender.id
+                                : null
+                            }
+                            username={
+                              reqUser.id !== chatItem.user.id
+                                ? chatItem.user.username
+                                : chatItem.therapist.username
+                            }
+                            content={
+                              chatItem.latestMessage
+                                ? chatItem.latestMessage.content
+                                : null
+                            }
+                            time={
+                              chatItem.latestMessage
+                                ? chatItem.latestMessage.time
+                                : null
+                            }
+                            profileImage={
+                              reqUser.id === chatItem.user.id
+                                ? chatItem.therapist.profileImage
+                                : chatItem.user.profileImage
+                            }
                           />
-                        }
-                      </div>
-                    ))}
-
-                  {allChats.length > 0 &&
-                    !query &&
-                    allChats.map((chatItem, index) => (
-                      <div
-                        onClick={() => {
-                          handleClickonAllChat(index);
-                        }}
-                        key={index}
-                      >
-                        <ChatCard
-                          curUser={
-                            chatItem.latestMessage
-                              ? reqUser.id === chatItem.latestMessage.sender.id
-                              : null
-                          }
-                          username={
-                            reqUser.id !== chatItem.user.id
-                              ? chatItem.user.username
-                              : chatItem.therapist.username
-                          }
-                          content={
-                            chatItem.latestMessage
-                              ? chatItem.latestMessage.content
-                              : null
-                          }
-                          time={
-                            chatItem.latestMessage
-                              ? chatItem.latestMessage.time
-                              : null
-                          }
-                          profileImage={
-                            reqUser.id === chatItem.user.id
-                              ? chatItem.therapist.profileImage
-                              : chatItem.user.profileImage
-                          }
-                        />
-                      </div>
-                    ))}
-                  <div
-                    className=" select-none  absolute bottom-[20px] w-[-webkit-fill-available] box-border flex items-center justify-center"
-                    onClick={() => setOpenUserModal(true)}
-                  >
-                    <p className=" select-none bg-[#E6E1EF] p-2 rounded-[16px] cursor-pointer">
-                      Edit Your Preferred Timings
-                    </p>
+                        </div>
+                      ))}
+                    <div
+                      className=" select-none  absolute bottom-[10px] w-[-webkit-fill-available] box-border flex items-center justify-center"
+                      onClick={() => setOpenUserModal(true)}
+                    >
+                      <p className=" select-none bg-[#E6E1EF] font-semibold text-[#5627B0] p-2 rounded-[16px] cursor-pointer">
+                        Edit Your Preferred Timings
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
-            <div className=" col-span-3 select-none right flex-col relative justify-between w-full h-full">
-              {/* Default start page */}
-              {!currentChat && (
-                <div className=" select-none flex flex-col items-center text-center max-width-[70%] m-auto h-full justify-center w-auto">
-                  <img
-                    className=" select-none w-1/2 h-1/2"
-                    src="/images/chat-default.svg"
-                    alt=""
-                  />
-                  <p className=" select-none my-9 text-2xl font-medium text-[#5627B0]">
-                    Chat with your favorite therapist now!{" "}
-                  </p>
-                </div>
-              )}
-              {/* Message Part */}
-              {currentChat && (
+            {/* Default start page */}
+            {/* Message Part */}
+            {currentChat && (
+              <div className=" col-span-1 select-none right flex-col relative justify-between w-full h-full">
                 <div className=" select-none flex flex-col gap-1 relative ">
                   {/* Header */}
                   <div className=" select-none h-[10vh] border-b-2 border-[#D5C9EB] flex items-center justify-between">
                     <div className=" select-none flex items-center p-3 space-x-4">
-                      <img
-                        src={
-                          reqUser.id !== currentChat.user.id
-                            ? currentChat.user.profileImage
-                            : currentChat.therapist.profileImage
-                        }
-                        className=" select-none w-14 h-14 rounded-full border-2 border-[#434143]"
-                        alt=""
-                      />
-                      <div className=" select-none flex flex-col items-start justify-center">
+                      <div className='select-none flex items-center justify-center space-x-2' onClick={handleBackArrow}>
+                        <AiOutlineArrowLeft className="text-2xl text-[#5627B0]" />
+                        <img
+                          src={
+                            reqUser.id !== currentChat.user.id
+                              ? currentChat.user.profileImage
+                              : currentChat.therapist.profileImage
+                          }
+                          className=" select-none w-14 h-14 rounded-full border-2 border-[#434143]"
+                          alt=""
+                        />
+                      </div>
+                      <div className=" select-none flex flex-col items-start justify-center w-[40%]">
                         <p className=" select-none font-semibold text-lg">
                           {reqUser.id !== currentChat.user.id
                             ? currentChat.user.username
                             : currentChat.therapist.username}
                         </p>
-                        <p className=" select-none text-[#5F5F5F] text-sm">
+                        <p className=" select-none text-[#5F5F5F] text-xs">
                           {lastSeen}
                         </p>
                       </div>
                     </div>
                     <div>
                       <div
-                        className=" select-none p-3 rounded-3xl mx-10 bg-[#EEE9F7] cursor-pointer"
+                        className=" select-none p-3 rounded-3xl mx-5 bg-[#EEE9F7] cursor-pointer flex items-center justify-center"
                         onClick={() => setOpenOtherModal(true)}
                       >
-                        <p className=" select-none text-[#5627B0] font-semibold">
+                        <p className=" select-none text-[#5627B0] text-sm font-semibold">
                           Preferred Timings
                         </p>
                       </div>
                     </div>
                   </div>
                   {/* Message Section */}
-                  <div className=" select-none px-10 h-[75vh] ">
+                  <div className=" select-none px-10 h-[80vh] ">
                     <div className=" select-none space-y-2 py-2 flex flex-col overflow-auto h-full">
                       {messages.length > 0 &&
                         messages.map((item, i) => (
-                            <MessageCard
-                              key={i}
-                              index={i}
-                              length={messages.length}
-                              isReqUserMessage={reqUser.id === item.sender.id}
-                              content={item.content}
-                              time={item.time}
-                              prevDate={messages[i-1]?messages[i-1].date:null}
-                              date={item.date}
-                            />
+                          <MessageCard
+                            key={i}
+                            index={i}
+                            length={messages.length}
+                            isReqUserMessage={reqUser.id === item.sender.id}
+                            content={item.content}
+                            time={item.time}
+                            prevDate={
+                              messages[i - 1] ? messages[i - 1].date : null
+                            }
+                            date={item.date}
+                          />
                         ))}
                     </div>
                   </div>
                   {/* Footer part */}
                   {paymentDone && (
                     <div className=" select-none text-lg w-full bg-white flex justify-center items-center">
-                      <div className=" select-none flex items-center px-5 relative bg-[#F8F8F9] w-[70%]">
+                      <div className=" select-none flex items-center px-5 relative rounded-md bg-[#F8F8F9] w-[90%]">
                         <input
                           type="text"
                           placeholder="Message"
@@ -654,7 +656,7 @@ const ChatXs = () => {
                           value={content}
                         />
                         <div className=" select-none flex items-center justify-center space-x-4 px-4 right-[3%] text-[#5D5D5D]">
-                          <EmojiPickerInput
+                          {/* <EmojiPickerInput
                             handleChange={(e) => {
                               const start = inputRef.current.selectionStart;
                               const end = inputRef.current.selectionEnd;
@@ -666,7 +668,7 @@ const ChatXs = () => {
                             }}
                             showPicker={showPicker}
                             setShowPicker={setShowPicker}
-                          />
+                          /> */}
                           <IoMdSend
                             className=" select-none text-[#5627B0] cursor-pointer"
                             onClick={() => {
@@ -695,8 +697,8 @@ const ChatXs = () => {
                     </div>
                   )}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </>
         )}
       </div>

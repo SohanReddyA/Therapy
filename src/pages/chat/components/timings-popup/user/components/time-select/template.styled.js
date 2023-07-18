@@ -10,7 +10,7 @@ const SelectButton = styled.button`
   user-select: none;
   border-radius: 16px;
   background: #5627b0;
-  min-width: 173px;
+  min-width: 130px;
   color: #fff;
   min-height: 40px;
   padding: 10px 10px;

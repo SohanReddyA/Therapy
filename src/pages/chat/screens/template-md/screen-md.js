@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { AiOutlineSearch } from "react-icons/ai";
-import { BsFilter} from "react-icons/bs";
+import { BsFilter } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
 import { toast } from "react-hot-toast";
 import ChatCard from "@/src/pages/chat/components/chat-card/template";
@@ -16,6 +16,8 @@ import notificationSound from "@/public/sounds/notification-sound.mp3";
 import UserTimingsPopup from "@/src/pages/chat/components/timings-popup/user/template";
 import OtherTimingsPopup from "@/src/pages/chat/components/timings-popup/other/template";
 import EmojiPickerInput from "@/src/pages/chat/components/emoji-picker/template";
+import ChatCardMd from "../../components/chat-card/template-md";
+import MessageCardMd from "../../components/message-card/template-md";
 
 const ChatMd = () => {
   const router = useRouter();
@@ -73,7 +75,7 @@ const ChatMd = () => {
 
   const handleDateChange = (e) => {
     setDate(e);
-  }
+  };
 
   const currentUser = () => {
     if (!CookieUtil.getCookie("FriennlyUser")) router.push("/");
@@ -160,7 +162,6 @@ const ChatMd = () => {
         }
       });
   };
-
 
   const startSlowValueChange = () => {
     const duration = 2000;
@@ -373,9 +374,11 @@ const ChatMd = () => {
           : currentChat.therapist.preferredTimings
       );
       setOtherTimes(times ? times.e : []);
-      getLastSeen(reqUser.userType !== "USER"
-      ? currentChat.user.id
-      : currentChat.therapist.id)
+      getLastSeen(
+        reqUser.userType !== "USER"
+          ? currentChat.user.id
+          : currentChat.therapist.id
+      );
     }
   }, [currentChat]);
 
@@ -427,10 +430,10 @@ const ChatMd = () => {
 
   useEffect(() => {
     console.log(date, "date");
-  }, [date])
+  }, [date]);
   return (
-    <div className=" select-none bg-[url(/images/doodle.svg)] flex items-center justify-center h-screen">
-      <div className=" select-none grid grid-cols-4 items-center relative bg-white justify-center w-[95%] h-[95%] rounded-md border-[#D5C9EB] border-2 m-auto">
+    <div className="flex items-center justify-center h-screen">
+      <div className="select-none grid grid-cols-4 items-center relative bg-white justify-center m-auto">
         {loaderValue < 100 ? (
           <div className="col-span-4">
             <ChatLoader value={loaderValue} />
@@ -454,27 +457,27 @@ const ChatMd = () => {
               {/*Title of the page */}
               <div className=" select-none h-[10vh] flex justify-between items-center">
                 <h1
-                  className=" select-none font-bold h-full text-[#5627B0] px-3 py-10 mx-7 text-3xl cursor-pointer"
+                  className=" select-none font-bold h-full text-[#5627B0] px-3 py-10 mx-7 text-2xl cursor-pointer"
                   onClick={() => {
                     router.push("/");
                   }}
                 >
                   Friennly
                 </h1>
-                <div className="mt-5 px-5">
-                  <img
-                    src={reqUser.profileImage}
-                    className="h-14 w-14 rounded-full border-2 border-[#434143]"
-                    alt=""
-                  />
-                </div>
+                {/* <div className="mt-5 px-5">
+                <img
+                  src={reqUser.profileImage}
+                  className="h-14 w-14 rounded-full border-2 border-[#434143]"
+                  alt=""
+                />
+              </div> */}
               </div>
               {/* Chat Message Section */}
-              <div className=" select-none h-[85vh]">
+              <div className=" select-none h-[90vh]">
                 {/* Input */}
                 <div className=" select-none relative flex justify-center items-center bg-white py-4 px-3">
                   <input
-                    className=" select-none border-none outline-none bg-slate-200 rounded-md w-[93%] pl-9 py-2"
+                    className=" select-none border-none outline-none bg-slate-200 rounded-md w-[93%] text-sm pl-9 py-2"
                     type="text"
                     placeholder="Search or start new chat"
                     onChange={(e) => {
@@ -490,7 +493,7 @@ const ChatMd = () => {
                 </div>
 
                 {/* Chat List */}
-                <div className=" select-none bg-white overflow-auto h-[75vh] px-3 relative">
+                <div className=" select-none bg-white overflow-auto h-[80vh] px-3 relative">
                   {query &&
                     userList.length > 0 &&
                     userList.map((listItem, index) => (
@@ -501,7 +504,7 @@ const ChatMd = () => {
                         key={index}
                       >
                         {
-                          <ChatCard
+                          <ChatCardMd
                             username={listItem.username}
                             profileImage={listItem.profileImage}
                           />
@@ -518,7 +521,7 @@ const ChatMd = () => {
                         }}
                         key={index}
                       >
-                        <ChatCard
+                        <ChatCardMd
                           curUser={
                             chatItem.latestMessage
                               ? reqUser.id === chatItem.latestMessage.sender.id
@@ -548,10 +551,10 @@ const ChatMd = () => {
                       </div>
                     ))}
                   <div
-                    className=" select-none  absolute bottom-[20px] w-[-webkit-fill-available] box-border flex items-center justify-center"
+                    className=" select-none  absolute bottom-[5px] px-3 w-[-webkit-fill-available] box-border flex items-center justify-center"
                     onClick={() => setOpenUserModal(true)}
                   >
-                    <p className=" select-none bg-[#E6E1EF] p-2 rounded-[16px] cursor-pointer">
+                    <p className=" select-none bg-[#E6E1EF] p-2 rounded-[16px] font-semibold text-[#5627B0] cursor-pointer text-sm">
                       Edit Your Preferred Timings
                     </p>
                   </div>
@@ -568,8 +571,8 @@ const ChatMd = () => {
                     src="/images/chat-default.svg"
                     alt=""
                   />
-                  <p className=" select-none my-9 text-2xl font-medium text-[#5627B0]">
-                    Chat with your favorite therapist now!{" "}
+                  <p className=" select-none my-9 text-xl font-medium text-[#5627B0]">
+                    {reqUser.userType==='USER'?"Chat with your favorite therapist now!":"Chat with your patients here!"}
                   </p>
                 </div>
               )}
@@ -611,20 +614,22 @@ const ChatMd = () => {
                     </div>
                   </div>
                   {/* Message Section */}
-                  <div className=" select-none px-10 h-[75vh] ">
+                  <div className=" select-none px-10 h-[80vh] ">
                     <div className=" select-none space-y-2 py-2 flex flex-col overflow-auto h-full">
                       {messages.length > 0 &&
                         messages.map((item, i) => (
-                            <MessageCard
-                              key={i}
-                              index={i}
-                              length={messages.length}
-                              isReqUserMessage={reqUser.id === item.sender.id}
-                              content={item.content}
-                              time={item.time}
-                              prevDate={messages[i-1]?messages[i-1].date:null}
-                              date={item.date}
-                            />
+                          <MessageCardMd
+                            key={i}
+                            index={i}
+                            length={messages.length}
+                            isReqUserMessage={reqUser.id === item.sender.id}
+                            content={item.content}
+                            time={item.time}
+                            prevDate={
+                              messages[i - 1] ? messages[i - 1].date : null
+                            }
+                            date={item.date}
+                          />
                         ))}
                     </div>
                   </div>
