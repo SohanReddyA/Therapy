@@ -39,6 +39,7 @@ const Chat = () => {
   const [AllChatSubscription, setACS] = useState(false);
   const [showPicker, setShowPicker] = useState(false);
   const [date, setDate] = useState(null);
+  const [lastSeen, setLastSeen] = useState("");
   const inputRef = useRef();
 
   const handleClickOnChatCard = (userId) => {
@@ -141,6 +142,26 @@ const Chat = () => {
         }
       });
   };
+
+  const getLastSeen = (userId) => {
+    fetch(`${BASE_API_URL}/api/users/lastActive/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${CookieUtil.getCookie("FriennlyUser")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          toast.error(res.error);
+        } else {
+          console.log(res, "lastSeen");
+          setLastSeen(res.message);
+        }
+      });
+  };
+
 
   const startSlowValueChange = () => {
     const duration = 2000;
@@ -353,6 +374,9 @@ const Chat = () => {
           : currentChat.therapist.preferredTimings
       );
       setOtherTimes(times ? times.e : []);
+      getLastSeen(reqUser.userType !== "USER"
+      ? currentChat.user.id
+      : currentChat.therapist.id)
     }
   }, [currentChat]);
 
@@ -572,7 +596,7 @@ const Chat = () => {
                             : currentChat.therapist.username}
                         </p>
                         <p className=" select-none text-[#5F5F5F] text-sm">
-                          last seen 5 min ago
+                          {lastSeen}
                         </p>
                       </div>
                     </div>
