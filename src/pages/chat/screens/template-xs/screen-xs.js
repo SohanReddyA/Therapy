@@ -435,7 +435,7 @@ const ChatXs = () => {
     console.log(date, "date");
   }, [date]);
   return (
-    <div className=" select-none h-screen">
+    <div className=" select-none h-[100vh]">
       <div className=" select-none grid grid-cols-1 items-center relative bg-white justify-center h-full">
         {loaderValue < 100 ? (
           <div className="col-span-1">
@@ -479,7 +479,7 @@ const ChatXs = () => {
                 {/* Chat Message Section */}
                 <div className=" select-none h-[85vh]">
                   {/* Input */}
-                  <div className=" select-none relative flex justify-center items-center bg-white py-4 px-3">
+                  <div className=" select-none relative flex justify-center items-center h-[10vh] bg-white py-4 px-3">
                     <input
                       className=" select-none border-none outline-none bg-slate-200 rounded-md w-[93%] pl-9 py-2 text-sm"
                       type="text"
@@ -497,7 +497,7 @@ const ChatXs = () => {
                   </div>
 
                   {/* Chat List */}
-                  <div className=" select-none bg-white overflow-auto h-[80vh] px-3 relative">
+                  <div className=" select-none bg-white overflow-auto h-[75vh] px-3 relative">
                     {query &&
                       userList.length > 0 &&
                       userList.map((listItem, index) => (
@@ -556,7 +556,7 @@ const ChatXs = () => {
                         </div>
                       ))}
                     <div
-                      className=" select-none  absolute bottom-[10px] w-[-webkit-fill-available] box-border flex items-center justify-center"
+                      className=" select-none h-[5vh] absolute bottom-[10px] w-[-webkit-fill-available] box-border flex items-center justify-center"
                       onClick={() => setOpenUserModal(true)}
                     >
                       <p className=" select-none bg-[#E6E1EF] font-semibold text-[#5627B0] text-sm p-2 rounded-[16px] cursor-pointer">
