@@ -37,7 +37,8 @@ const ChatXs = () => {
   const [openOtherModal, setOpenOtherModal] = useState(false);
   const [otherTimes, setOtherTimes] = useState([]);
   const [AllChatSubscription, setACS] = useState(false);
-  const [showPicker, setShowPicker] = useState(false);
+  // const [showPicker, setShowPicker] = useState(false);
+  const [windowHeight, setWindowHeight] = useState('');
   const [date, setDate] = useState(null);
   const [lastSeen, setLastSeen] = useState('');
   const inputRef = useRef();
@@ -197,7 +198,7 @@ const ChatXs = () => {
         else {
           console.log('get user chat', res);
           setAllChats(res);
-          startSlowValueChange();
+          // startSlowValueChange();
         }
       });
   };
@@ -356,6 +357,7 @@ const ChatXs = () => {
 
   useEffect(() => {
     connect();
+    setWindowHeight(window.innerHeight);
   }, []);
 
   useEffect(() => {
@@ -434,8 +436,9 @@ const ChatXs = () => {
   useEffect(() => {
     console.log(date, 'date');
   }, [date]);
+  if (!windowHeight) return null;
   return (
-    <div className=" select-none h-screen">
+    <div className={'select-none'} style={{ height: windowHeight + 'px' }}>
       <div className=" select-none grid grid-cols-1 items-center relative bg-white justify-center h-full">
         {loaderValue < 100 ? (
           <div className="col-span-1 h-full">
