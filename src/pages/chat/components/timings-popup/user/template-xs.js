@@ -1,8 +1,9 @@
 import { toast } from 'react-hot-toast';
 import DropdownSelect from './components/time-select/template';
-import Styled from './template.styled';
+import StyledXs from './template-xs.styled';
+import DropdownSelectXs from './components/time-select/template-xs';
 
-const UserTimingsPopup = ({ handleClose, time, setTime }) => {
+const UserTimingsPopupXs = ({ handleClose, time, setTime }) => {
   const handleChange = (index, value, type) => {
     const temp = [...time];
     temp[index][type] = value;
@@ -33,33 +34,33 @@ const UserTimingsPopup = ({ handleClose, time, setTime }) => {
   };
   return (
     <>
-      <Styled.Container>
-        <Styled.TitleText>
+      <StyledXs.Container>
+        <StyledXs.TitleText>
           Select preferred time based on your availability
-        </Styled.TitleText>
+        </StyledXs.TitleText>
         {time.map((element, index) => (
-          <Styled.TimeSelectionContainer key={index}>
-            <DropdownSelect
+          <StyledXs.TimeSelectionContainer key={index}>
+            <DropdownSelectXs
               defaultValue={element.start}
               onChange={(value) => handleChange(index, value, 'start')}
             />
-            <Styled.TitleText>to</Styled.TitleText>
-            <DropdownSelect
+            <StyledXs.TitleText>to</StyledXs.TitleText>
+            <DropdownSelectXs
               defaultValue={element.end}
               onChange={(value) => handleChange(index, value, 'end')}
             />
-          </Styled.TimeSelectionContainer>
+          </StyledXs.TimeSelectionContainer>
         ))}
-        <Styled.TimeSelection
+        <StyledXs.TimeSelection
           onClick={() => {
             CreateNew();
           }}>
           Add a preferred time
-        </Styled.TimeSelection>
-      </Styled.Container>
-      <Styled.OuterBackground onClick={() => onClose()} />
+        </StyledXs.TimeSelection>
+      </StyledXs.Container>
+      <StyledXs.OuterBackground onClick={() => onClose()} />
     </>
   );
 };
 
-export default UserTimingsPopup;
+export default UserTimingsPopupXs;

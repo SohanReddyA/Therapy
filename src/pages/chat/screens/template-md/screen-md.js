@@ -433,7 +433,7 @@ const ChatMd = () => {
   }, [date]);
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="select-none grid grid-cols-4 items-center relative bg-white justify-center m-auto">
+      <div className="select-none grid grid-cols-3 items-center relative bg-white justify-center m-auto">
         {loaderValue < 100 ? (
           <div className="col-span-4">
             <ChatLoader value={loaderValue} />
@@ -562,7 +562,7 @@ const ChatMd = () => {
               </div>
             </div>
 
-            <div className=" col-span-3 select-none right flex-col relative justify-between w-full h-full">
+            <div className=" col-span-2 select-none right flex-col relative justify-between w-full h-full">
               {/* Default start page */}
               {!currentChat && (
                 <div className=" select-none flex flex-col items-center text-center max-width-[70%] m-auto h-full justify-center w-auto">

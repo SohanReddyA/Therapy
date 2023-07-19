@@ -5,7 +5,6 @@ import { BsFilter } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { toast } from "react-hot-toast";
-import ChatCard from "@/src/pages/chat/components/chat-card/template";
 import SockJS from "sockjs-client/dist/sockjs";
 import { over } from "stompjs";
 
@@ -14,9 +13,10 @@ import { BASE_API_URL } from "@/src/utils/api";
 import { CookieUtil } from "@/src/utils";
 import ChatLoader from "@/src/pages/chat/components/loader/template";
 import notificationSound from "@/public/sounds/notification-sound.mp3";
-import UserTimingsPopup from "@/src/pages/chat/components/timings-popup/user/template";
-import OtherTimingsPopup from "@/src/pages/chat/components/timings-popup/other/template";
-import EmojiPickerInput from "@/src/pages/chat/components/emoji-picker/template";
+import OtherTimingsPopupXs from "@/src/pages/chat/components/timings-popup/other/template-xs";
+import UserTimingsPopupXs from "../../components/timings-popup/user/template-xs";
+import MessageCardXs from "../../components/message-card/template-xs";
+import ChatCardXs from "../../components/chat-card/template-xs";
 
 const ChatXs = () => {
   const router = useRouter();
@@ -436,7 +436,7 @@ const ChatXs = () => {
   }, [date]);
   return (
     <div className=" select-none h-screen">
-      <div className=" select-none grid grid-cols-1 items-center relative bg-white justify-center m-auto h-full">
+      <div className=" select-none grid grid-cols-1 items-center relative bg-white justify-center">
         {loaderValue < 100 ? (
           <div className="col-span-1">
             <ChatLoader value={loaderValue} />
@@ -444,14 +444,14 @@ const ChatXs = () => {
         ) : (
           <>
             {openUserModal && (
-              <UserTimingsPopup
+              <UserTimingsPopupXs
                 handleClose={() => setOpenUserModal(false)}
                 time={userTimes}
                 setTime={handleAddPreferredTiming}
               />
             )}
             {openOtherModal && (
-              <OtherTimingsPopup
+              <OtherTimingsPopupXs
                 handleClose={() => setOpenOtherModal(false)}
                 time={otherTimes}
               />
@@ -461,14 +461,14 @@ const ChatXs = () => {
                 {/*Title of the page */}
                 <div className=" select-none h-[10vh] flex justify-between items-center">
                   <h1
-                    className=" select-none font-bold h-full text-[#5627B0] px-3 py-10 mx-5 text-3xl cursor-pointer"
+                    className=" select-none font-bold text-[#5627B0] px-3 py-2 mx-5 text-2xl cursor-pointer"
                     onClick={() => {
                       router.push("/");
                     }}
                   >
                     Friennly
                   </h1>
-                  <div className="mt-5 px-5">
+                  <div className="px-5">
                     <img
                       src={reqUser.profileImage}
                       className="h-10 w-10 rounded-full border-2 border-[#434143]"
@@ -481,7 +481,7 @@ const ChatXs = () => {
                   {/* Input */}
                   <div className=" select-none relative flex justify-center items-center bg-white py-4 px-3">
                     <input
-                      className=" select-none border-none outline-none bg-slate-200 rounded-md w-[93%] pl-9 py-2"
+                      className=" select-none border-none outline-none bg-slate-200 rounded-md w-[93%] pl-9 py-2 text-sm"
                       type="text"
                       placeholder="Search or start new chat"
                       onChange={(e) => {
@@ -490,9 +490,9 @@ const ChatXs = () => {
                       }}
                       value={query}
                     />
-                    <AiOutlineSearch className=" select-none left-5 top-7 absolute" />
+                    <AiOutlineSearch className=" select-none left-5 top-7 absolute text-sm" />
                     <div>
-                      <BsFilter className=" select-none ml-4 text-3xl" />
+                      <BsFilter className=" select-none ml-4 text-2xl" />
                     </div>
                   </div>
 
@@ -508,7 +508,7 @@ const ChatXs = () => {
                           key={index}
                         >
                           {
-                            <ChatCard
+                            <ChatCardXs
                               username={listItem.username}
                               profileImage={listItem.profileImage}
                             />
@@ -525,7 +525,7 @@ const ChatXs = () => {
                           }}
                           key={index}
                         >
-                          <ChatCard
+                          <ChatCardXs
                             curUser={
                               chatItem.latestMessage
                                 ? reqUser.id ===
@@ -559,7 +559,7 @@ const ChatXs = () => {
                       className=" select-none  absolute bottom-[10px] w-[-webkit-fill-available] box-border flex items-center justify-center"
                       onClick={() => setOpenUserModal(true)}
                     >
-                      <p className=" select-none bg-[#E6E1EF] font-semibold text-[#5627B0] p-2 rounded-[16px] cursor-pointer">
+                      <p className=" select-none bg-[#E6E1EF] font-semibold text-[#5627B0] text-sm p-2 rounded-[16px] cursor-pointer">
                         Edit Your Preferred Timings
                       </p>
                     </div>
@@ -574,21 +574,21 @@ const ChatXs = () => {
               <div className=" col-span-1 select-none right flex-col relative justify-between w-full h-full">
                 <div className=" select-none flex flex-col gap-1 relative ">
                   {/* Header */}
-                  <div className=" select-none h-[10vh] border-b-2 border-[#D5C9EB] flex items-center justify-between">
-                    <div className=" select-none flex items-center p-3 space-x-4">
-                      <div className='select-none flex items-center justify-center space-x-2' onClick={handleBackArrow}>
-                        <AiOutlineArrowLeft className="text-2xl text-[#5627B0]" />
+                  <div className=" select-none h-[10vh] border-b-2 border-[#D5C9EB] grid grid-cols-6 justify-between">
+                    <div className=" select-none col-span-4 flex items-center p-3 space-x-4 justify-start">
+                      <div className='select-none col-span-1 flex items-center justify-center space-x-2' onClick={handleBackArrow}>
+                        <AiOutlineArrowLeft className="text-xl text-[#5627B0]" />
                         <img
                           src={
                             reqUser.id !== currentChat.user.id
                               ? currentChat.user.profileImage
                               : currentChat.therapist.profileImage
                           }
-                          className=" select-none w-14 h-14 rounded-full border-2 border-[#434143]"
+                          className=" select-none w-8 h-8 rounded-full border-2 border-[#434143]"
                           alt=""
                         />
                       </div>
-                      <div className=" select-none flex flex-col items-start justify-center w-[40%]">
+                      <div className=" select-none col-span-3 flex flex-col items-start justify-center">
                         <p className=" select-none font-semibold text-sm">
                           {reqUser.id !== currentChat.user.id
                             ? currentChat.user.username
@@ -599,15 +599,13 @@ const ChatXs = () => {
                         </p>
                       </div>
                     </div>
-                    <div>
                       <div
-                        className=" select-none p-3 rounded-3xl mx-5 bg-[#EEE9F7] cursor-pointer flex items-center justify-center"
+                        className=" select-none col-span-2 h-[7vh] mt-2 mr-2 p-3 rounded-3xl bg-[#EEE9F7] cursor-pointer flex items-center justify-center"
                         onClick={() => setOpenOtherModal(true)}
                       >
-                        <p className="select-none text-center text-[#5627B0] text-sm font-semibold">
+                        <p className="select-none text-[#5627B0] text-xs text-center font-semibold">
                           Preferred Timings
                         </p>
-                      </div>
                     </div>
                   </div>
                   {/* Message Section */}
@@ -615,7 +613,7 @@ const ChatXs = () => {
                     <div className=" select-none space-y-2 py-2 flex flex-col overflow-auto h-full">
                       {messages.length > 0 &&
                         messages.map((item, i) => (
-                          <MessageCard
+                          <MessageCardXs
                             key={i}
                             index={i}
                             length={messages.length}
@@ -632,8 +630,8 @@ const ChatXs = () => {
                   </div>
                   {/* Footer part */}
                   {paymentDone && (
-                    <div className=" select-none text-lg w-full bg-white flex justify-center items-center">
-                      <div className=" select-none flex items-center px-5 relative rounded-md bg-[#F8F8F9] w-[90%]">
+                    <div className=" select-none text-sm w-full bg-white flex justify-center items-center h-[5vh]">
+                      <div className=" select-none flex items-center px-5 relative rounded-md bg-[#F8F8F9] w-[80%]">
                         <input
                           type="text"
                           placeholder="Message"

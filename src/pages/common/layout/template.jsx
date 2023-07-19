@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { ColorRing } from 'react-loader-spinner';
 import { BASE_API_URL } from '@/src/utils/api';
+import toast from 'react-hot-toast';
 
 const Layout = ({
   children,
