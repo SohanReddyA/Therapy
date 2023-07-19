@@ -14,7 +14,7 @@ const HeroContainer = styled.div`
   user-select: none;
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
+  margin-top: 2rem;
   gap: 1.5rem;
 `;
 
