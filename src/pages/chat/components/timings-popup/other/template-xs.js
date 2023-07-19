@@ -10,7 +10,7 @@ const OtherTimingsPopupXs = ({ time, handleClose }) => {
         <StyledXs.TitleText>User&apos;s Preferred time</StyledXs.TitleText>
         {time.length > 0 &&
           time.map((element, index) => (
-            <StyledXs.TimeSelectionContainer>
+            <StyledXs.TimeSelectionContainer key={index}>
               <StyledXs.TimeSelection>
                 {element.start + " to " + element.end}
               </StyledXs.TimeSelection>
