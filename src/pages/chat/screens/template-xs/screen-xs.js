@@ -460,9 +460,9 @@ const ChatXs = () => {
               />
             )}
             {!currentChat && (
-              <div className=" col-span-1 select-none left flex-col items-center justify-center">
+              <div className=" col-span-1 select-none left flex-col items-center justify-center h-full">
                 {/*Title of the page */}
-                <div className=" select-none h-[10vh] flex justify-between items-center">
+                <div className=" select-none h-[10%] flex justify-between items-center">
                   <h1
                     className=" select-none font-bold text-[#5627B0] px-3 py-2 mx-5 text-2xl cursor-pointer"
                     onClick={() => {
@@ -479,9 +479,9 @@ const ChatXs = () => {
                   </div>
                 </div>
                 {/* Chat Message Section */}
-                <div className=" select-none h-[85vh]">
+                <div className=" select-none h-[90%]">
                   {/* Input */}
-                  <div className=" select-none relative flex justify-center items-center h-[10vh] bg-white py-4 px-3">
+                  <div className=" select-none relative flex justify-center items-center h-[10%] bg-white py-4 px-3">
                     <input
                       className=" select-none border-none outline-none bg-slate-200 rounded-md w-[93%] pl-9 py-2 text-sm"
                       type="text"
@@ -499,7 +499,7 @@ const ChatXs = () => {
                   </div>
 
                   {/* Chat List */}
-                  <div className=" select-none bg-white overflow-auto h-[75vh] px-3 relative">
+                  <div className=" select-none bg-white overflow-auto h-[90%] px-3 relative">
                     {query &&
                       userList.length > 0 &&
                       userList.map((listItem, index) => (
@@ -556,7 +556,7 @@ const ChatXs = () => {
                         </div>
                       ))}
                     <div
-                      className=" select-none h-[5vh] absolute bottom-[10px] w-[-webkit-fill-available] box-border flex items-center justify-center"
+                      className=" select-none h-[5%] absolute bottom-[10px] w-[-webkit-fill-available] box-border flex items-center justify-center"
                       onClick={() => setOpenUserModal(true)}>
                       <p className=" select-none bg-[#E6E1EF] font-semibold text-[#5627B0] text-sm p-2 rounded-[16px] cursor-pointer">
                         Edit Your Preferred Timings
@@ -571,9 +571,9 @@ const ChatXs = () => {
             {/* Message Part */}
             {currentChat && (
               <div className=" col-span-1 select-none right flex-col relative justify-between w-full h-full">
-                <div className=" select-none flex flex-col gap-1 relative ">
+                <div className=" select-none flex flex-col gap-1 relative h-full">
                   {/* Header */}
-                  <div className=" select-none h-[10vh] border-b-2 border-[#D5C9EB] grid grid-cols-6 justify-between">
+                  <div className=" select-none h-[12%] border-b-2 border-[#D5C9EB] grid grid-cols-6 justify-between items-center">
                     <div className=" select-none col-span-4 flex items-center p-3 space-x-4 justify-start">
                       <div
                         className="select-none col-span-1 flex items-center justify-center space-x-2"
@@ -601,7 +601,7 @@ const ChatXs = () => {
                       </div>
                     </div>
                     <div
-                      className=" select-none col-span-2 h-[7vh] mt-2 mr-2 p-3 rounded-3xl bg-[#EEE9F7] cursor-pointer flex items-center justify-center"
+                      className=" select-none col-span-2 h-min mt-2 mr-2 p-3 rounded-3xl bg-[#EEE9F7] cursor-pointer flex items-center justify-center "
                       onClick={() => setOpenOtherModal(true)}>
                       <p className="select-none text-[#5627B0] text-xs text-center font-semibold">
                         Preferred Timings
@@ -609,7 +609,7 @@ const ChatXs = () => {
                     </div>
                   </div>
                   {/* Message Section */}
-                  <div className=" select-none px-5 h-[80vh] ">
+                  <div className=" select-none px-5 h-[80%] ">
                     <div className=" select-none space-y-2 py-2 flex flex-col overflow-auto h-full">
                       {messages.length > 0 &&
                         messages.map((item, i) => (
@@ -630,7 +630,7 @@ const ChatXs = () => {
                   </div>
                   {/* Footer part */}
                   {paymentDone && (
-                    <div className=" select-none text-sm w-full bg-white flex justify-center items-center h-[5vh]">
+                    <div className=" select-none text-sm w-full bg-white flex justify-center items-center h-[5%]">
                       <div className=" select-none flex items-center px-5 relative rounded-md bg-[#F8F8F9] w-[90%]">
                         <input
                           type="text"
