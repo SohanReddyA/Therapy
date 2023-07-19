@@ -570,10 +570,10 @@ const ChatXs = () => {
             {/* Default start page */}
             {/* Message Part */}
             {currentChat && (
-              <div className=" col-span-1 select-none right flex-col relative justify-between w-full h-full">
+              <div className=" col-span-1 select-none right flex-col relative justify-between w-full h-full overflow-hidden">
                 <div className=" select-none flex flex-col gap-1 relative h-full">
                   {/* Header */}
-                  <div className=" select-none h-[12%] border-b-2 border-[#D5C9EB] grid grid-cols-6 justify-between items-center">
+                  <div className=" select-none h-max border-b-2 border-[#D5C9EB] grid grid-cols-6 justify-between items-center">
                     <div className=" select-none col-span-4 flex items-center p-3 space-x-4 justify-start">
                       <div
                         className="select-none col-span-1 flex items-center justify-center space-x-2"
