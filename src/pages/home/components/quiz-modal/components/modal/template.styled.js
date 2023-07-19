@@ -25,7 +25,7 @@ const ModalOverlay = styled.div`
   min-height: 75vh;
   width: min-content;
   @media (max-width: 600px) {
-    width: max-content;
+    width: 96vw;
   }
   overflow-y: scroll;
   background: #ffffff;
