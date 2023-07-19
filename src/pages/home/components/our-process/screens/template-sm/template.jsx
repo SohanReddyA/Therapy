@@ -10,7 +10,7 @@ const OurProcessSm = () => {
           is Designed to Empower You on Your Path to Healing and Well-being.
         </Styled.MainDesc>
       </Styled.MainFlex>
-      <Styled.Image src="/images/ourProcess.png"></Styled.Image>
+      <Styled.Image src="/images/ourProcessV2.svg"></Styled.Image>
       <Styled.MainContainer>
         <Styled.ProcessContainer>
           <Styled.ProcessImage src="/images/Process1.png" />

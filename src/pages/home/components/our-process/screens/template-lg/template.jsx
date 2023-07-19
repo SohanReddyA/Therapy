@@ -3,7 +3,7 @@ const { default: Styled } = require('./template.styled');
 const OurProcessLg = () => {
   return (
     <Styled.Container>
-      <Styled.Image src="/images/ourProcess.png"></Styled.Image>
+      <Styled.Image src="/images/ourProcessV2.svg"></Styled.Image>
       <Styled.MainContainer>
         <Styled.MainFlex>
           <Styled.MainTitle>Your Journey to Healing</Styled.MainTitle>
