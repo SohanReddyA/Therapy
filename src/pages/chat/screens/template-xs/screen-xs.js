@@ -436,7 +436,7 @@ const ChatXs = () => {
   }, [date]);
   return (
     <div className=" select-none h-screen">
-      <div className=" select-none grid grid-cols-1 items-center relative bg-white justify-center">
+      <div className=" select-none grid grid-cols-1 items-center relative bg-white justify-center h-full">
         {loaderValue < 100 ? (
           <div className="col-span-1">
             <ChatLoader value={loaderValue} />
@@ -609,7 +609,7 @@ const ChatXs = () => {
                     </div>
                   </div>
                   {/* Message Section */}
-                  <div className=" select-none px-10 h-[80vh] ">
+                  <div className=" select-none px-5 h-[80vh] ">
                     <div className=" select-none space-y-2 py-2 flex flex-col overflow-auto h-full">
                       {messages.length > 0 &&
                         messages.map((item, i) => (
@@ -631,7 +631,7 @@ const ChatXs = () => {
                   {/* Footer part */}
                   {paymentDone && (
                     <div className=" select-none text-sm w-full bg-white flex justify-center items-center h-[5vh]">
-                      <div className=" select-none flex items-center px-5 relative rounded-md bg-[#F8F8F9] w-[80%]">
+                      <div className=" select-none flex items-center px-5 relative rounded-md bg-[#F8F8F9] w-[90%]">
                         <input
                           type="text"
                           placeholder="Message"

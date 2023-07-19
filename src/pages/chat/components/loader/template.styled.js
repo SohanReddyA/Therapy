@@ -23,7 +23,7 @@ const Logo = styled.p`
 const ProgressBar = styled.progress`
   user-select: none;
   height: 8px;
-  width: 20vw;
+  width: 40vw;
   border: none;
   border-radius: 4px;
 
