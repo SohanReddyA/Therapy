@@ -7,9 +7,14 @@ const ModalOverlay = styled.div`
   left: 50%;
   padding: 80px 120px;
   max-height: 90vh;
+
+  max-width: 90vw;
+  border-radius: 64px;
   @media (max-width: 768px) {
-    padding: 20px 40px;
+    padding: 20px 0px;
     max-height: 100vh;
+    max-width: 100vw;
+    border-radius: 32px;
   }
   @media (min-width: 768px) and (max-width: 1024px) {
     padding: 20px 40px;
@@ -17,12 +22,13 @@ const ModalOverlay = styled.div`
 
   transform: translate(-50%, -50%);
   min-width: 75vw;
-  max-width: 90vw;
   min-height: 75vh;
-  width: max-content;
+  width: min-content;
+  @media (max-width: 420px) {
+    width: max-content;
+  }
   overflow-y: scroll;
   background: #ffffff;
-  border-radius: 64px;
   display: flex;
   z-index: 9999;
   justify-content: center;
@@ -67,6 +73,11 @@ const CloseButton = styled.button`
   top: 60px;
   padding: 0px 15px;
   right: 60px;
+  @media (max-width: 420px) {
+    top: 30px;
+    padding: 0px 15px;
+    right: 30px;
+  }
   border: none;
   ${(props) => getColorClose(props.quizType)}
   border-radius: 50%;

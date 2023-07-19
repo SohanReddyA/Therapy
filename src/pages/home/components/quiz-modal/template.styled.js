@@ -49,7 +49,10 @@ const Label = styled.div`
   ${(props) => getLabel(props.quiztype)}
   border-radius: 12px;
   font-size: 18px;
-
+  @media (max-width: 767px) {
+    font-size: 12px;
+    padding: 10px;
+  }
   font-weight: 600;
   line-height: 140%;
 `;
