@@ -1,11 +1,27 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  user-select: none;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 32px;
+  @media (max-width: 768px) {
+    user-select: none;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 15px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    user-select: none;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+  }
+  @media (min-width: 1024px) {
+    user-select: none;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 32px;
+  }
 `;
 
 const getLabel = (type) => {
@@ -49,6 +65,12 @@ const QuestionNumber = styled.div`
   user-select: none;
   color: #1a1a1a;
   font-size: 32px;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 25px;
+  }
 
   font-weight: 700;
   line-height: 140%;
@@ -58,6 +80,12 @@ const QuestionText = styled.div`
   user-select: none;
   color: #1a1a1a;
   font-size: 24px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 18px;
+  }
 
   font-weight: 500;
   line-height: 140%;
@@ -67,7 +95,16 @@ const QuizOptionsContainer = styled.div`
   user-select: none;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
   gap: 24px;
+  @media (max-width: 768px) {
+    gap: 12px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    gap: 15px;
+  }
 `;
 
 const getColor = (type) => {
@@ -90,7 +127,13 @@ const QuizOption = styled.div`
   grid-column: span 1 / span 1;
   cursor: pointer;
   display: inline-flex;
-  padding: 20px 0px 20px 32px;
+  padding: 20px 20px 20px 32px;
+  @media (max-width: 768px) {
+    padding: 10px 10px 10px 22px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding: 10px 10px 10px 22px;
+  }
   align-items: center;
   gap: 16px;
   ${(props) => (props.checked ? getColor(props.quiztype) : '')}
@@ -107,6 +150,12 @@ const QuizOptionText = styled.div`
     props.checked ? getOptionTextColor(props.quiztype) : '#1a1a1a'};
   ${(props) => (props.checked ? 'font-weight: 600' : '')};
   font-size: 20px;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 16px;
+  }
 
   line-height: 140%;
   user-select: none;
@@ -127,7 +176,6 @@ const getBackButton = (type) => {
     background: #FFF;
     padding: 12px 24px;
     color: #284E4F;
-    font-size: 24px;
     
     font-weight: 700;
     line-height: 140%;`;
@@ -138,8 +186,6 @@ const getBackButton = (type) => {
     background: #FFF;
     color: #FE981C;
     padding: 12px 24px;
-    font-size: 24px;
-    
     font-weight: 700;
     line-height: 140%;`;
   }
@@ -149,7 +195,6 @@ const getBackButton = (type) => {
     padding: 12px 24px;
     background: #FFF;
     color: #0F60A0;
-    font-size: 24px;
     
     font-weight: 700;
     line-height: 140%;
@@ -159,6 +204,13 @@ const getBackButton = (type) => {
 const BackButton = styled.button`
   user-select: none;
   ${(props) => getBackButton(props.quiztype)}
+  font-size: 24px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 18px;
+  }
 `;
 
 const getNextButton = (type) => {
@@ -168,7 +220,6 @@ const getNextButton = (type) => {
     background: #284E4F;
     padding: 12px 24px;
     color: #FFF;
-    font-size: 24px;
     
     font-weight: 700;
     line-height: 140%;`;
@@ -178,7 +229,6 @@ const getNextButton = (type) => {
     padding: 12px 24px;
     background: #FE981C;
     color: #FFF;
-    font-size: 24px;
     
     font-weight: 700;
     line-height: 140%;`;
@@ -188,7 +238,6 @@ const getNextButton = (type) => {
     padding: 12px 24px;
     background: #0F60A0;
     color: #FFF;
-    font-size: 24px;
     
     font-weight: 700;
     line-height: 140%;
@@ -197,7 +246,13 @@ const getNextButton = (type) => {
 
 const NextButton = styled.button`
   user-select: none;
-  ${(props) => getNextButton(props.quiztype)}
+  ${(props) => getNextButton(props.quiztype)}font-size: 24px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 18px;
+  }
 `;
 
 const Styled = {

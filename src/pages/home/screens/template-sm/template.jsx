@@ -43,24 +43,24 @@ const HomeSm = ({ ADHDQuiz, AnxietyQuiz, depressionQuiz, isLoggedIn }) => {
           Depression={setDepressionOpen}
         />
         <OurProcess />
-        {/* <QuizModal
+        <QuizModal
           isOpen={ADHDOpen}
           setOpen={setADHDOpen}
           Quiz={ADHDQuiz}
           type="ADHD"
-        /> */}
-        {/* <QuizModal
+        />
+        <QuizModal
           isOpen={AnxietyOpen}
           setOpen={setAnxietyOpen}
           Quiz={AnxietyQuiz}
           type="Anxiety"
-        /> */}
-        {/* <QuizModal
+        />
+        <QuizModal
           isOpen={DepressionOpen}
           setOpen={setDepressionOpen}
           Quiz={depressionQuiz}
           type="Depression"
-        /> */}
+        />
         {/* <Blog /> */}
         {contactsOpen && <ContactUs setOpen={setContactsOpen} />}
       </div>

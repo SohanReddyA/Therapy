@@ -6,9 +6,21 @@ const ModalOverlay = styled.div`
   top: 50%;
   left: 50%;
   padding: 80px 120px;
+  max-height: 90vh;
+  @media (max-width: 768px) {
+    padding: 20px 40px;
+    max-height: 100vh;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding: 20px 40px;
+  }
+
   transform: translate(-50%, -50%);
   min-width: 75vw;
+  max-width: 90vw;
   min-height: 75vh;
+  width: max-content;
+  overflow-y: scroll;
   background: #ffffff;
   border-radius: 64px;
   display: flex;
