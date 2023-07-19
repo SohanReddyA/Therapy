@@ -16,8 +16,12 @@ const FooterXs = ({ setContactsOpen }) => {
         <Styled.Heading onClick={() => setContactsOpen(true)}>
           About us
         </Styled.Heading>
-        <Styled.Heading>Team</Styled.Heading>
-        <Styled.Heading>Support</Styled.Heading>
+        <Styled.Heading onClick={() => setContactsOpen(true)}>
+          Team
+        </Styled.Heading>
+        <Styled.Heading onClick={() => setContactsOpen(true)}>
+          Support
+        </Styled.Heading>
       </Styled.MainContainer>
     </Styled.Container>
   );
