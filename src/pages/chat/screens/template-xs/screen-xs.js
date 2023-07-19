@@ -198,7 +198,7 @@ const ChatXs = () => {
         else {
           console.log('get user chat', res);
           setAllChats(res);
-          // startSlowValueChange();
+          startSlowValueChange();
         }
       });
   };
