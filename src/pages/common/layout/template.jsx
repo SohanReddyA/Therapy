@@ -74,7 +74,9 @@ const Layout = ({
             width="20px"
             alt="Message"
           />
-          <Styled.ButtonText>Chat with an expert</Styled.ButtonText>
+          <Styled.ButtonText>
+            Chat with {user.userType === 'USER' ? 'an expert' : 'users'}
+          </Styled.ButtonText>
         </Styled.Container>
       )}
     </div>

@@ -39,8 +39,26 @@ const LoginXs = () => {
       .then((res) => {
         if (res.jwt) {
           CookieUtil.setCookie('FriennlyUser', res.jwt);
-          toast.success('Login Successful', { id: 'login' });
-          router.push('/');
+          fetch(`${BASE_API_URL}/api/users/profile`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${res.jwt}`,
+            },
+          })
+            .then((res) => res.json())
+            .then((res) => {
+              if (res.error) {
+                toast.error('You have been logged out, please login again.');
+                router.push('/');
+              } else if (res.userType === 'USER') {
+                toast.success('Login Successful', { id: 'login' });
+                router.push('/');
+              } else if (res.userType === 'THERAPIST') {
+                toast.success('Login Successful', { id: 'login' });
+                router.push('/');
+              }
+            });
         } else {
           toast.error('Login Failed, Please check your username / password', {
             id: 'login',
