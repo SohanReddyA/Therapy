@@ -74,7 +74,8 @@ const ChatXs = () => {
   };
 
   const handleSearch = (e) => {
-    searchUser(e);
+    // searchUser(e);
+    console.log(e);
   };
 
   const handleDateChange = (e) => {
