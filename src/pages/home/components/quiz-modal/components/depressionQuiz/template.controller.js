@@ -2,10 +2,11 @@ import { toast } from 'react-hot-toast';
 
 const { useState } = require('react');
 
-const DepressionController = (Quiz, onClose) => {
+const DepressionController = (Quiz) => {
   const [checked, setChecked] = useState(0);
   const [count, setCount] = useState(0);
   const [current, setCurrent] = useState(Quiz[count]);
+  const [finalScore, setFinalScore] = useState(-1);
   const [score, setScore] = useState({
     0: { option: 0, value: null },
     1: { option: 0, value: null },
@@ -68,7 +69,7 @@ const DepressionController = (Quiz, onClose) => {
         zIndex: 10000,
       },
     });
-    onClose();
+    setFinalScore(sr);
   }
   return {
     prev,
@@ -79,6 +80,7 @@ const DepressionController = (Quiz, onClose) => {
     current,
     checked,
     setChecked,
+    finalScore,
   };
 };
 
