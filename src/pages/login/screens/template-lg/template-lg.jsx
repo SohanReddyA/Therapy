@@ -49,7 +49,9 @@ const LoginLg = () => {
             .then((res) => res.json())
             .then((res) => {
               if (res.error) {
-                toast.error('You have been logged out, please login again.');
+                toast.error('You have been logged out, please login again.', {
+                  id: 'login',
+                });
                 router.push('/');
               } else if (res.userType === 'USER') {
                 toast.success('Login Successful', { id: 'login' });

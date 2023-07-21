@@ -1,8 +1,17 @@
 import React from 'react';
 import { HiCheck } from 'react-icons/hi';
+import dateDifference from '../../template.util';
 
-const ChatCardMd = ({ username, content, time, curUser, profileImage }) => {
+const ChatCardMd = ({
+  username,
+  content,
+  time,
+  curUser,
+  profileImage,
+  date,
+}) => {
   // console.log(curUser, 'USerCHoasj');
+  const daysDifference = dateDifference(date);
   return (
     <div className="flex items-center justify-center py-2 group cursor-pointer">
       {/* Profile Picture */}
@@ -17,7 +26,13 @@ const ChatCardMd = ({ username, content, time, curUser, profileImage }) => {
       <div className="pl-3 w-[80%]">
         <div className="flex justify-between items-center">
           <p className="text-md font-semibold">{username}</p>
-          <p className="text-xs text-[#5F5F5F]">{time}</p>
+          <p className="text-xs text-[#5F5F5F]">
+            {daysDifference == 0
+              ? time
+              : daysDifference == 1
+              ? 'yesterday'
+              : date}
+          </p>
         </div>
 
         {content && (

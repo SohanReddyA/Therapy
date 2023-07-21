@@ -90,7 +90,9 @@ const ChatLg = () => {
         .then((res) => {
           if (res.error) {
             CookieUtil.removeCookie('FriennlyUser');
-            toast.error('You have been logged out, please login again.');
+            toast.error('You have been logged out, please login again.', {
+              id: 'login',
+            });
             router.push('/login');
           } else {
             console.log('currentUser - ', res);
@@ -527,6 +529,11 @@ const ChatLg = () => {
                           content={
                             chatItem.latestMessage
                               ? chatItem.latestMessage.content
+                              : null
+                          }
+                          date={
+                            chatItem.latestMessage
+                              ? chatItem.latestMessage.date
                               : null
                           }
                           time={

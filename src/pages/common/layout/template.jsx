@@ -30,7 +30,9 @@ const Layout = ({
           // console.log('currentUser - ', res);
           if (res.error) {
             CookieUtil.removeCookie('FriennlyUser');
-            toast.error('You have been logged out, please login again.');
+            toast.error('You have been logged out, please login again.', {
+              id: 'login',
+            });
             router.push('/');
           }
           setUser(res);
