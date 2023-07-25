@@ -1,8 +1,13 @@
 import Admin from '@/src/pages/admin/template';
 import { getCurrentEnvironment } from '@/src/utils';
+import { useRouter } from 'next/router';
 const AdminPage = () => {
   const currentEnvironment = getCurrentEnvironment();
-  if (currentEnvironment != 'development') return null;
+  const router = useRouter();
+  if (currentEnvironment != 'development') {
+    router.push('/');
+    return null;
+  }
   return <Admin />;
 };
 
