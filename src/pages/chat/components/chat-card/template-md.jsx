@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { HiCheck } from 'react-icons/hi';
 import dateDifference from '../../template.util';
