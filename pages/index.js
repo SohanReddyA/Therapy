@@ -4,13 +4,11 @@ export default function HomePage(props) {
 }
 
 export async function getStaticProps() {
-  const res1 = await fetch('https://therapy-mauve.vercel.app/api/quiz/ADHD');
+  const res1 = await fetch('http://friennly.in/api/quiz/ADHD');
   const ADHDQuiz = await res1.json();
-  const res2 = await fetch('https://therapy-mauve.vercel.app/api/quiz/Anxiety');
+  const res2 = await fetch('http://friennly.in/api/quiz/Anxiety');
   const AnxietyQuiz = await res2.json();
-  const res3 = await fetch(
-    'https://therapy-mauve.vercel.app/api/quiz/depression'
-  );
+  const res3 = await fetch('http://friennly.in/api/quiz/depression');
   const depressionQuiz = await res3.json();
   return {
     props: {
